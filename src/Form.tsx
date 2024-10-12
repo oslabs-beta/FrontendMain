@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import OAuth from './OAuth';
 import { motion } from 'framer-motion';
 import './css/App.css';
@@ -136,9 +136,8 @@ const Form: React.FC = () => {
                   isSignupPage ? '' : 'active'
                 }`}
               >
-                <p>
-                  Get started with <span id='name'> StreamForge</span>
-                </p>
+                <p>Get started with</p> <span id='name'> StreamForge</span>
+                
                 <motion.button
                   className='hidden'
                   onClick={handleLoginClick}
