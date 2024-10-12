@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 .dm-serif-display-regular {
-  font-family: "DM Serif Display", serif;
+  font-family: 'DM Serif Display', serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -9,12 +9,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "DM Serif Display", serif;
+  font-family: 'DM Serif Display', serif;
+  /* border: 1px solid white; */
 }
 
 body {
-  background-color: #e8e8e8;
-  background: linear-gradient(to right, #ffa9a9, #7d3cf5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +22,7 @@ body {
 }
 
 .container {
-  background-color: #fff;
+  background-color: #1c1c1e;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -50,26 +49,27 @@ body {
 }
 
 .container button {
-  background-color: #512da8;
+  background-color: #845cc0;
   color: #fff;
-  font-size: 12px;
+  font-size: 16px;
   padding: 10px 45px;
   border: 1px solid transparent;
   border-radius: 8px;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  margin-top: 10px;
+  margin-top: 30px;
   cursor: pointer;
 }
 
 .container button.hidden {
   background-color: transparent;
   border-color: #fff;
+  margin-top: 2rem;
 }
 
 .container form {
-  background-color: #fff;
+  background-color: #1c1c1e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,15 +80,19 @@ body {
 
 .container input {
   background-color: #fff;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 0.5px solid #522da877;
-  margin: 8px 0;
-  padding: 10px 15px;
-  font-size: 13px;
-  width: 60%;
+  border: none;
+  border-radius: 8px;
+  margin: 5px 0;
+  padding: 8px 15px;
+  font-size: 14px;
+  width: 40%;
   outline: none;
+  text-align: center;
+  color: #845cc0;
+}
+
+.container input::placeholder {
+  color: #845cc0;
 }
 
 .form-container {
@@ -96,6 +100,27 @@ body {
   top: 0;
   height: 100%;
   transition: all 0.6s ease-in-out;
+}
+
+.form-container p {
+  color: #fff;
+}
+
+.form-container p span {
+  padding: 0 5px;
+}
+
+.form-container p a {
+  color: #845cc0;
+  padding: 0 15px;
+  background-color: rgb(255, 255, 0);
+  border-radius: 8px;
+}
+
+.form-container .greetings {
+  font-size: 2em;
+  color: #fff;
+  padding: 25px 10px;
 }
 
 .sign-in {
@@ -137,16 +162,17 @@ body {
 
 .oauth-icons {
   margin: 20px 0;
-  display:flex;
+  display: flex;
 }
 
 .oauth-icons a {
-  border: 1px solid #ccc;
+  background-color: #fff;
+  border: none;
   border-radius: 20%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin: 0 10px;
+  margin: 15px 12px;
   width: 40px;
   height: 40px;
 }
@@ -169,7 +195,6 @@ body {
 }
 
 .toggle {
-  background-color: #512da8;
   height: 100%;
   background: linear-gradient(to right, #845cc0, #512da8);
   color: #fff;
@@ -217,12 +242,10 @@ body {
   transform: translateX(200%);
 }
 
-#github {
-  width: 25px;
-}
-
-.container {
-  /* background-color: #6675fe; */
+#name {
+  font-size: 4em;
+  font-weight: bold;
+  padding: 30px 0;
 }
 
 /* #5090F2 */
