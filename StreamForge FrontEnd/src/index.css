@@ -1,0 +1,34 @@
+.nav-link, .navbar-brand {
+  color: white!important;
+}
+.bg-purple {
+  background-color: #6f42c1;
+  padding:12px 0px!important;
+}
+.bg-btnPurple {
+  background-color: #5e2c88;
+  border-radius: 0.5rem; 
+  text-align: center; 
+  transition: background-color 0.3s ease;
+}
+.bg-btnPurple:hover {
+  background-color: #4b007f; 
+  color: white; 
+}
+.btn-primary {
+  --bs-btn-border-color: none;
+  --bs-btn-hover-bg:#4b007f;
+  --bs-btn-hover-border-color:#4a007fbd;
+}
+
+@media (max-width: 992px) {
+  .bg-btnPurple {
+    background: none!important;
+    border-radius: 0; 
+    text-align: left; 
+    transition: background 0.3s ease;
+  }
+  .btn {
+    padding-left: 0px;
+  }
+}
