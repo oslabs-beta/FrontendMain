@@ -3,7 +3,6 @@ import Form from "./Form";
 import Dashboard from "./Dashboard";
 import Metrics from "./components/Metrics";
 import System from "./components/System";
-import "./css/navbar.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 function App(): JSX.Element {
@@ -12,12 +11,15 @@ function App(): JSX.Element {
   return (
     <div>
       {location.pathname !== "/" && <NavBar />}
-      <Routes>
-        <Route path="/" element={<Form />} />
-        <Route path="/dash" element={<Dashboard />} />
-        <Route path = "/system" element ={<System/>} />
-        <Route path = "/metrics" element={<Metrics/>}/>
-      </Routes>
+
+      <div className="app-content">
+        <Routes>
+          <Route path="/" element={<Form />} />
+          <Route path="/dash" element={<Dashboard />} />
+          <Route path="/system" element={<System />} />
+          <Route path="/metrics" element={<Metrics />} />
+        </Routes>
+      </div>
     </div>
   );
 }

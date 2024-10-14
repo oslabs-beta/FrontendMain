@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import "../css/navbar.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 const NavBar: React.FC = () => {
   const [bodyBgColor, setBodyBgColor] = useState<string>("white");
@@ -19,10 +19,10 @@ const NavBar: React.FC = () => {
   }, [bodyBgColor]);
   return (
     <>
-      <div>
+      <div className="containermain">
         <Navbar expand="lg" className="bg-purple">
           <Container>
-            <Navbar.Brand as={Link} to={"/home"}>
+            <Navbar.Brand as={Link} to={"/home"} className="me-2">
               React-Bootstrap
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />

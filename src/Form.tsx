@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import OAuth from './OAuth';
 import { motion } from 'framer-motion';
 import './css/App.css';
@@ -64,7 +64,7 @@ const Form: React.FC = () => {
 
       <body>
         <div
-          className={`container ${isSignupPage ? 'active' : ''}`}
+          className={`containerbox ${isSignupPage ? 'active' : ''}`}
           id='container'
         >
           {/* sign-up */}
