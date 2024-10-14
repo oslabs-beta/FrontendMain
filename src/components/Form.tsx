@@ -1,57 +1,18 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import OAuth from './OAuth';
 import { motion } from 'framer-motion';
-import './css/App.css';
+import '../css/App.css';
+import { handleSigninSubmit } from '../helpers/handleSigninSubmit';
+import { handleSignUpSubmit } from '../helpers/handleSignUpSubmit';
+import { handleLoginClick } from '../helpers/handleLoginClick';
+import { handleSignupClick } from '../helpers/handleSignupClick';
 
 const Form: React.FC = () => {
-  const [username, setUsername] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [isSignupPage, setIsSignupPage] = useState<boolean>(false);
-
-  const handleSignUpSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    e.preventDefault();
-    await fetch('/api/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: username, password: password }),
-    })
-      .then((response) => response.json())
-      .then(
-        (response) => console.log(response)
-
-        //set cookie?
-      )
-      .catch((error) => console.log(error));
-  };
-
-  const handleSigninSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    e.preventDefault();
-    await fetch('/api/signin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: username, password: password }),
-    })
-      .then((response) => response.json())
-      .then(
-        (response) => console.log(response)
-        //set cookie?
-      )
-      .catch((error) => console.log(error));
-  };
-
-  const handleSignupClick = () => {
-    setIsSignupPage(true);
-  };
-
-  const handleLoginClick = () => {
-    setIsSignupPage(false);
-  };
 
   return (
     <>
@@ -69,7 +30,7 @@ const Form: React.FC = () => {
         >
           {/* sign-up */}
           <div className='form-container sign-up'>
-            <form onSubmit={handleSignUpSubmit}>
+            <form onSubmit={(e) => handleSignUpSubmit(e, email, password)}>
               <p className='greetings'>Join us today!</p>
               <br></br>
               <br></br>
@@ -77,8 +38,8 @@ const Form: React.FC = () => {
                 required
                 type='text'
                 placeholder='Email'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 required
@@ -101,14 +62,14 @@ const Form: React.FC = () => {
 
           {/* sign-in */}
           <div className='form-container sign-in'>
-            <form onSubmit={handleSigninSubmit}>
+            <form onSubmit={(e) => handleSigninSubmit(e, email, password)}>
               <p className='greetings'>Welcome back!</p>
               <input
                 required
                 type='text'
                 placeholder='Email'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 required
@@ -136,12 +97,10 @@ const Form: React.FC = () => {
                   isSignupPage ? '' : 'active'
                 }`}
               >
-                <p>
-                  Get started with <span id='name'> StreamForge</span>
-                </p>
+                <p>Get started with</p> <span id='name'> StreamForge</span>
                 <motion.button
                   className='hidden'
-                  onClick={handleLoginClick}
+                  onClick={() => handleLoginClick(setIsSignupPage)}
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
@@ -156,7 +115,7 @@ const Form: React.FC = () => {
                 <p id='name'>StreamForge</p>
                 <motion.button
                   className='hidden'
-                  onClick={handleSignupClick}
+                  onClick={() => handleSignupClick(setIsSignupPage)}
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
