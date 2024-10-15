@@ -2,8 +2,9 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { GraphUp, Gear, BarChart } from 'react-bootstrap-icons';
 import '../css/sidebar.css';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+
 interface iconMap {
   [key: string]: React.ElementType;
 }
@@ -18,11 +19,11 @@ const SidebarMenu: React.FC<SideBarProps> = ({
   onMouseEnter,
   onMouseLeave,
 }) => {
-  const [textColorArr, setTextColor] = useState<string[]>([
-    'text-primary',
-    'text-primary',
-    'text-primary',
-  ]);
+  // const [textColorArr, setTextColor] = useState<string[]>([
+  //   'text-primary',
+  //   'text-primary',
+  //   'text-primary',
+  // ]);
   // const [sidebarBgColorArr, setSidebarBgColor] = useState<string[]>([
   //   'bg-dark',
   //   'bg-dark',
@@ -44,13 +45,13 @@ const SidebarMenu: React.FC<SideBarProps> = ({
     const endPoint = endpointMaps[content];
     return (
       <li
-        className={`nav-item d-flex align-items-center px-0 mb-3 rounded listStyle ${textColorArr[index]} `}
+        className={`nav-item d-flex align-items-center px-0 mb-3 rounded listStyle `}
         key={index}
       >
         <IconComponent className='sidebar-icons' />
         <NavLink
           to={`${endPoint}`}
-          className={`nav-link fw-semibold ${textColorArr[index]} sidebar-text`}
+          className={`nav-link fw-semibold sidebar-text`}
           // onClick={() => handleSideBarClick(index)}
         >
           {content}

@@ -11,6 +11,7 @@
 .sidebar {
   color: #ffffff;
   z-index: 2000;
+  position: fixed;
 }
 .sidebar-text {
   max-width: 0;

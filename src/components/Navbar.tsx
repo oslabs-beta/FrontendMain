@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import About from './About';
+import Config from './Config';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+// import NavDropdown from "react-bootstrap/NavDropdown";
+// import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import '../css/navbar.css';
 import { Routes, Route, Link } from 'react-router-dom';
 interface NavProps {
@@ -132,10 +135,7 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
             path='/dash'
             //  element={<Home/>}
           />
-          <Route
-            path='/about'
-            //  element={<About/>}
-          />
+          <Route path='/about' element={<About />} />
           <Route
             path='/prod1'
             //  element={<Prod1/>}
@@ -144,10 +144,7 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
             path='/readme'
             //  element={<ReadMe/>}
           />
-          <Route
-            path='/config'
-            //  element={<Config/>}
-          />
+          <Route path='/config' element={<Config />} />
           <Route
             path='/profile'
             //  element={<Profile/>}
