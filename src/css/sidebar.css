@@ -4,6 +4,10 @@
 .listStyle {
   max-width: 100%;
 }
+.sidebar {
+  color: #FFFFFF;
+  z-index: 2000;
+}
 .sidebar-text {
   max-width: 0;
   white-space: nowrap;
@@ -12,8 +16,10 @@
   opacity: 0;
   visibility: hidden;
 }
-.nav-link {
+.sidebar .nav-link {
   padding: 0!important;
+  color: #95A5A6;
+  font-size: 16px;
 }
 .sidebar:hover .sidebar-text{
   max-width: 100%;
