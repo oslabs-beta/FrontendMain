@@ -1,8 +1,8 @@
 
 .metrics {
-    display: grid;
-    grid-gap: 10px; /* Space between the grid items */
-    grid-template-columns: repeat(2, 1fr); /* 2 columns of equal width */
-    grid-template-rows: repeat(3, auto); /* 3 rows with automatic height */
-    margin: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 150px;
+
 }

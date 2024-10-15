@@ -8,8 +8,10 @@ import About from "./About"
 import Config from "./Config"
 import "../css/navbar.css";
 import { Route, Routes, useLocation } from "react-router-dom";
-import React, { useState } from "react";
+import { useState } from "react";
 import SidebarMenu from "./SidebarMenu";
+
+
 function App(): JSX.Element {
   const location = useLocation();
   const [isSideBarHovered, setIsSideBarHovered] = useState<boolean>(false);
