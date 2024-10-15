@@ -1,22 +1,29 @@
-import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import About from "./About"
-import Config from "./Config";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Button from "react-bootstrap/Button";
-import "../css/navbar.css";
-import { Routes, Route, Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import About from './About';
+import Config from './Config';
+import Navbar from 'react-bootstrap/Navbar';
+// import NavDropdown from "react-bootstrap/NavDropdown";
+// import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import '../css/navbar.css';
+import { Routes, Route, Link } from 'react-router-dom';
 interface NavProps {
-  isSideBarHovered: boolean
+  isSideBarHovered: boolean;
 }
-const NavBar: React.FC<NavProps> = ({isSideBarHovered}) => {
-  const [bodyBgColor, setBodyBgColor] = useState<string>("white");
-  const [isSmallerThanLg, setIsSmallerThanLg] = useState(window.innerWidth < 1600);
+const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
+  const [bodyBgColor, setBodyBgColor] = useState<string>('#1c1c1e');
+  const [isToggled, setIsToggled] = useState<boolean>(false);
+  const [isSmallerThanLg, setIsSmallerThanLg] = useState(
+    window.innerWidth < 1600
+  );
   const handleModeToggle: () => void = () => {
+    setIsToggled(!isToggled);
     setBodyBgColor((bodyBgColor) =>
-      bodyBgColor === "white" ? "#1c1c1e" : "white"
+      bodyBgColor === '#1c1c1e' ? '#fff' : '#1c1c1e'
     );
   };
   useEffect(() => {
@@ -29,126 +36,121 @@ const NavBar: React.FC<NavProps> = ({isSideBarHovered}) => {
     window.addEventListener('resize', handleResize);
     return () => {
       window.addEventListener('resize', handleResize);
-    }
-  },[]);
+    };
+  }, []);
   return (
     <>
-      <div className="containermain">
-        <Navbar expand="lg" className="bg-purple">
-          <Container style={{paddingLeft: isSideBarHovered && isSmallerThanLg? '100px': '0px'}}>
-            <Navbar.Brand as={Link} to={"/home"} className="me-2 ms-lg-4">
-              Stream Forge
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
+      <head>
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+        </style>
+      </head>
+      <div className='containermain'>
+        <Navbar expand='lg' className='bg-purple'>
+          <Container
+            style={{
+              paddingLeft:
+                isSideBarHovered && isSmallerThanLg ? '100px' : '0px',
+            }}
+          >
+            <Navbar.Toggle aria-controls='basic-navbar-nav' />
+            <Navbar.Collapse id='basic-navbar-nav'>
+              <Nav className='me-auto'>
                 <Nav.Link
                   as={Link}
-                  to={"/about"}
-                  className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
+                  to={'/about'}
+                  className='bg-btnPurple me-2 ms-5 d-flex flex-column justify-content-center'
                 >
-                  About
+                  <span>About</span>
                 </Nav.Link>
-                <NavDropdown
-                  title="Product"
-                  id="basic-nav-dropdown"
-                  className="bg-btnPurple me-1 d-flex flex-column justify-content-center"
+                {/* <NavDropdown
+                  title='Product'
+                  id='basic-nav-dropdown'
+                  className='bg-btnPurple me-1 d-flex flex-column justify-content-center'
                 >
-                  <NavDropdown.Item as={Link} to={"/prod1"}>
-                    Product 1
+                  <NavDropdown.Item as={Link} to={'dash'}>
+                    Kafka
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={"/prod2"}>
-                    Product 2
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={"/prod3"}>
-                    Product 3
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to={"/prod4"}>
-                    Product 4
-                  </NavDropdown.Item>
-                </NavDropdown>
+                </NavDropdown> */}
                 <Nav.Link
                   as={Link}
-                  to={"/readme"}
-                  className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
+                  to={'/readme'}
+                  className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
                 >
-                  ReadMe
+                  <span>ReadMe</span>
                 </Nav.Link>
                 <Nav.Link
                   as={Link}
-                  to={"/config"}
-                  className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
+                  to={'/config'}
+                  className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
                 >
-                  Instruction
+                  <span>Instruction</span>
                 </Nav.Link>
               </Nav>
-              <Nav className="ml-auto">
+              <Navbar.Brand
+                as={Link}
+                to={'/dash'}
+                className='me-auto'
+                style={{ fontSize: '30px' }}
+              >
+                StreamForge
+              </Navbar.Brand>
+              <Nav className='ml-auto'>
                 <Nav.Link
                   as={Link}
-                  to={"/profile"}
-                  className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
+                  to={'/profile'}
+                  className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
                 >
-                  Profile
+                  <FontAwesomeIcon icon={faUser} style={{ fontSize: '14px' }} />
                 </Nav.Link>
                 <Nav.Link
                   as={Link}
-                  to={"/git"}
-                  className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
+                  to={'/git'}
+                  className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
                 >
-                  Git
+                  <FontAwesomeIcon
+                    icon={faGithub}
+                    style={{ fontSize: '18px' }}
+                  />
                 </Nav.Link>
-                <Button
-                  onClick={handleModeToggle}
-                  className="bg-btnPurple me-2"
-                >
-                  Theme
-                </Button>
               </Nav>
             </Navbar.Collapse>
+            <div className='form-check form-switch mx-4'>
+              <input
+                className='form-check-input p-2'
+                type='checkbox'
+                role='switch'
+                id='flexSwitchCheck'
+                checked={isToggled}
+                onClick={handleModeToggle}
+              />
+            </div>
           </Container>
         </Navbar>
       </div>
       <div>
         <Routes>
           <Route
-            path="/home"
+            path='/dash'
             //  element={<Home/>}
           />
+          <Route path='/about' element={<About />} />
           <Route
-            path="/about"
-             element={<About/>}
-          />
-          <Route
-            path="/prod1"
+            path='/prod1'
             //  element={<Prod1/>}
           />
           <Route
-            path="/prod2"
-            //  element={<Prod2/>}
-          />
-          <Route
-            path="/prod3"
-            //  element={<Prod3/>}
-          />
-          <Route
-            path="/prod4"
-            //  element={<Prod4/>}
-          />
-          <Route
-            path="/readme"
+            path='/readme'
             //  element={<ReadMe/>}
           />
+          <Route path='/config' element={<Config />} />
           <Route
-            path="/config"
-             element={<Config/>}
-          />
-          <Route
-            path="/profile"
+            path='/profile'
             //  element={<Profile/>}
           />
           <Route
-            path="/git"
+            path='/git'
             //  element={<Git/>}
           />
         </Routes>
