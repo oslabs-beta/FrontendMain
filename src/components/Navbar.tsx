@@ -6,24 +6,36 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import "../css/navbar.css";
 import { Routes, Route, Link } from "react-router-dom";
-
-const NavBar: React.FC = () => {
+interface NavProps {
+  isSideBarHovered: boolean
+}
+const NavBar: React.FC<NavProps> = ({isSideBarHovered}) => {
   const [bodyBgColor, setBodyBgColor] = useState<string>("white");
+  const [isSmallerThanLg, setIsSmallerThanLg] = useState(window.innerWidth < 1600);
   const handleModeToggle: () => void = () => {
     setBodyBgColor((bodyBgColor) =>
-      bodyBgColor === "white" ? "black" : "white"
+      bodyBgColor === "white" ? "#1c1c1e" : "white"
     );
   };
   useEffect(() => {
     document.body.style.backgroundColor = bodyBgColor;
   }, [bodyBgColor]);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallerThanLg(window.innerWidth < 1600);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.addEventListener('resize', handleResize);
+    }
+  },[]);
   return (
     <>
       <div className="containermain">
         <Navbar expand="lg" className="bg-purple">
-          <Container>
-            <Navbar.Brand as={Link} to={"/home"} className="me-2">
-              React-Bootstrap
+          <Container style={{paddingLeft: isSideBarHovered && isSmallerThanLg? '100px': '0px'}}>
+            <Navbar.Brand as={Link} to={"/home"} className="me-2 ms-lg-4">
+              Stream Forge
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -59,14 +71,14 @@ const NavBar: React.FC = () => {
                   to={"/readme"}
                   className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
                 >
-                  Link to readMe
+                  ReadMe
                 </Nav.Link>
                 <Nav.Link
                   as={Link}
                   to={"/config"}
                   className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
                 >
-                  How to configure your kafka cluster for monitoring
+                  Instruction
                 </Nav.Link>
               </Nav>
               <Nav className="ml-auto">
@@ -75,7 +87,7 @@ const NavBar: React.FC = () => {
                   to={"/profile"}
                   className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
                 >
-                  User Profile
+                  Profile
                 </Nav.Link>
                 <Nav.Link
                   as={Link}
@@ -88,7 +100,7 @@ const NavBar: React.FC = () => {
                   onClick={handleModeToggle}
                   className="bg-btnPurple me-2"
                 >
-                  Switch Mode
+                  Theme
                 </Button>
               </Nav>
             </Navbar.Collapse>

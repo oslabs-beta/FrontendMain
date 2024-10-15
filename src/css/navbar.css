@@ -2,24 +2,25 @@
 .navbar-brand {
   color: white !important;
 }
-
+.nav-link {
+  padding-right: var(--bs-navbar-nav-link-padding-x)!important;
+  padding-left: var(--bs-navbar-nav-link-padding-x)!important;
+}
 .containermain {
   position: fixed !important;
   top: 0 !important;
   width: 100% !important;
   z-index: 1000 !important; /* To ensure navbar is on top */
 }
-
 body {
   display: block !important;
 }
-
 .bg-purple {
-  background-color: #6f42c1 !important;
+  background-color: #845cc0 !important;
   padding: 12px 0px !important;
 }
 .bg-btnPurple {
-  background-color: #5e2c88 !important;
+  background-color: #512da8 !important;
   border-radius: 0.5rem !important;
   text-align: center !important;
   transition: background-color 0.3s ease !important;
@@ -33,7 +34,13 @@ body {
   --bs-btn-hover-bg: #4b007f !important;
   --bs-btn-hover-border-color: #4a007fbd !important;
 }
-
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #b0b0b0!important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)!important;
+}
+.nav-pills .nav-link.active {
+ background-color: inherit!important;
+}
 @media (max-width: 992px) {
   .bg-btnPurple {
     background: none !important;
@@ -41,7 +48,31 @@ body {
     text-align: left !important;
     transition: background 0.3s ease !important;
   }
+  button.bg-btnPurple {
+    padding-left: 5px!important;
+  }
   .btn {
     padding-left: 0px !important;
   }
+  .bg-btnPurple:hover {
+    background-color: #512da8 !important;
+  }
+  .dropdown-menu {
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+  }
+  .dropdown-item:hover {
+    background-color: #e0cce9;
+    color: #333; 
+  }
+  .bg-purple {
+    padding-left: 160px!important;
+  }
 }
+
+@media (max-width: 650px) {
+  .bg-purple {
+    padding-left: 80px!important;
+  }
+}
+
