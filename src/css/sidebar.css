@@ -1,0 +1,27 @@
+.nav-link.text-white {
+  color: white!important;
+}
+.listStyle {
+  max-width: 100%;
+}
+.sidebar-text {
+  max-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+.nav-link {
+  padding: 0!important;
+}
+.sidebar:hover .sidebar-text{
+  max-width: 100%;
+  opacity: 1;
+  visibility: visible;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+}
+.sidebar:hover .listStyle {
+  padding: 5px;
+}
