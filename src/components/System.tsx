@@ -1,7 +1,17 @@
+import "../css/system.css";
+
 
 
 function System(): JSX.Element {
-  return <h1>SystemInfo Page</h1>;
+
+
+
+  
+  return (
+    <div id="systempage">
+      <h1>System Information</h1>
+    </div>
+  );
 }
 
 export default System;

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import About from "./About"
+import Config from "./Config";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
@@ -103,7 +105,7 @@ const NavBar: React.FC = () => {
           />
           <Route
             path="/about"
-            //  element={<About/>}
+             element={<About/>}
           />
           <Route
             path="/prod1"
@@ -127,7 +129,7 @@ const NavBar: React.FC = () => {
           />
           <Route
             path="/config"
-            //  element={<Config/>}
+             element={<Config/>}
           />
           <Route
             path="/profile"
