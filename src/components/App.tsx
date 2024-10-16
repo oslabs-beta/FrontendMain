@@ -6,6 +6,9 @@ import Metrics from "./Metrics";
 import System from "./System";
 import "../css/navbar.css";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { useState } from "react";
+import ProtectedRoute from "./ProtectedRoute";
+
 
  
 function App(): JSX.Element {
@@ -18,9 +21,11 @@ function App(): JSX.Element {
       {location.pathname !== "/" && <NavBar />}
       <Routes>
         <Route path="/" element={<Form />} />
+        <Route element={<ProtectedRoute/>}>
         <Route path="/dash" element={<Dashboard />} />
         <Route path = "/system" element ={<System/>} />
         <Route path = "/metrics" element={<Metrics/>}/>
+        </Route>
       </Routes>
     </div>
   );

@@ -6,6 +6,8 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import "../css/navbar.css";
 import { Routes, Route, Link } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
+import Form from "./Form";
 
 const NavBar: React.FC = () => {
   const [bodyBgColor, setBodyBgColor] = useState<string>("white");
@@ -98,44 +100,84 @@ const NavBar: React.FC = () => {
       <div>
         <Routes>
           <Route
-            path="/home"
-            //  element={<Home/>}
+            path="/"
+             element={
+              <ProtectedRoute>
+                <Form />
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/about"
-            //  element={<About/>}
+             element={
+              <ProtectedRoute>
+                {/* <About/> */}
+              </ProtectedRoute>
+             }
           />
           <Route
             path="/prod1"
-            //  element={<Prod1/>}
+             element={
+              <ProtectedRoute>
+               {/* <Prod1/> */}
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/prod2"
-            //  element={<Prod2/>}
+             element={
+              <ProtectedRoute>
+               {/* <Prod2/> */}
+              </ProtectedRoute> 
+            }
           />
           <Route
             path="/prod3"
-            //  element={<Prod3/>}
+             element={
+              <ProtectedRoute>
+               {/* <Prod3/> */}
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/prod4"
-            //  element={<Prod4/>}
+             element={
+             <ProtectedRoute>
+              {/* <Prod4/> */}
+             </ProtectedRoute>
+            }
           />
           <Route
             path="/readme"
-            //  element={<ReadMe/>}
+             element={
+              <ProtectedRoute>
+               {/* <ReadMe/> */}
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/config"
-            //  element={<Config/>}
+             element={
+              <ProtectedRoute>
+               {/* <Config/> */}
+              </ProtectedRoute>
+             }
           />
           <Route
             path="/profile"
-            //  element={<Profile/>}
+             element={
+              <ProtectedRoute>
+               {/* <Profile/> */}
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/git"
-            //  element={<Git/>}
+             element={
+              <ProtectedRoute>
+               {/* <Git/> */}
+              </ProtectedRoute>
+            }
           />
         </Routes>
       </div>
