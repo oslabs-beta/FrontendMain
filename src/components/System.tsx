@@ -1,7 +1,34 @@
+
 import "../css/system.css";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 function System(): JSX.Element {
+  const [textColor, setTextColor] = useState<string>('');
+  const [BgColor, setBgColor] = useState<string>('');
+  const checkBgColor = (): string => {
+    return window.getComputedStyle(document.body).backgroundColor;
+  };
+  
+  useEffect(() => {
+    const handleBgColorChange = () => {
+      const newBgColor = checkBgColor();
+      setBgColor(newBgColor);
+      if(newBgColor === "rgb(17, 18, 24)" || newBgColor==="rgb(28, 28, 30)") {
+        setTextColor("white");
+      } else {
+        setTextColor("black");
+      }
+    }
+    // Create a new MutationObserver instance that listens for changes to the background color.
+    const observer = new MutationObserver(handleBgColorChange);
+    // Start observing the body element, specifically watching for changes to the style attribute.
+    observer.observe(document.body, {attributes:true, attributeFilter: ['style']});
+    // Immediately call handleColorChange once to fetch the initial background color when the component mounts.
+    handleBgColorChange();
+    // When the component unmounts, stop the MutationObserver to prevent memory leaks.
+    return () => observer.disconnect();
+  }, []);
+
   const grafanaIframe = useMemo(() => {
     return (
       <>
@@ -56,7 +83,7 @@ function System(): JSX.Element {
   //metadata batch size /
   return (
     <>
-      <h2>System Metrics</h2>
+      <h2 style={{color:`${textColor}`}}>System Metrics</h2>
       <div id="systempage">{grafanaIframe}</div>
     </>
   );
