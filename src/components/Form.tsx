@@ -10,12 +10,17 @@ import { useNavigate } from "react-router-dom";
 
 
 function Form(): JSX.Element  {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [signInEmail, setSignInEmail] = useState<string>("");
+  const [signInPassword, setSignInPassword] = useState<string>("");
+  const [signUpEmail, setSignUpEmail] = useState<string>("");
+  const [signUpPassword, setSignUpPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isSignupPage, setIsSignupPage] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
-  const [pwdNotConfirmed, setNotPwdConfirmed] = useState<boolean>(false);
+  const [pwdSignInNotConfirmed, setSignInNotPwdConfirmed] = useState<boolean>(false);
+  const [pwdSignUpNotConfirmed, setSignUpNotPwdConfirmed] = useState<boolean>(false);
+  const [emailSignInIsNotValid, setSignInEmailIsNotValid] = useState<boolean>(false);
+  const [emailSignUpIsNotValid, setSignUpEmailIsNotValid] = useState<boolean>(false);
   const navigate = useNavigate();
 
   
@@ -29,75 +34,82 @@ function Form(): JSX.Element  {
      
     e.preventDefault();
     setShowPopup(false);
-    setNotPwdConfirmed(false);
-    try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, password: password, confirmPassword: confirmPassword }),
-      })
-      console.log(response);
-      if(response.ok){
-        console.log('successful signup')
-        setShowPopup(true);
-      } else {
-        const errorData = await response.json();
-        if(errorData === "Passwords given do not match") {
-          setNotPwdConfirmed(true);
+    setSignUpNotPwdConfirmed(false);
+    setSignUpEmailIsNotValid(false);
+    if(validateEmail(email)) {
+      try {
+        const response = await fetch('/api/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, password: password, confirmPassword: confirmPassword }),
+        })
+        console.log(response);
+        if(response.ok){
+          console.log('successful signup');
+          setShowPopup(true);
+        } else {
+          const errorData = await response.json();
+          if(errorData === "Passwords given do not match") {
+            setSignUpNotPwdConfirmed(true);
+          }
         }
-      }
-    } catch (error) {
-      console.log('signup failed',error);
+      } catch (error) {
+        console.log('signup failed',error);
+      }  
+    } else {
+      setSignUpEmailIsNotValid(true);
     }
     
   };
+
+  const validateEmail:(email: string) => boolean = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
   
   const handleSigninSubmit = (
     e: React.FormEvent<HTMLFormElement>,
     email: string,
     password: string,
   ): void => {
-    console.log('sign in clicked')
     e.preventDefault();
-    setNotPwdConfirmed(false);
-    fetch('/api/signin', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, password: password }),
-    })
-    .then(result => result.json())
-    .then((result) => {
-         if(result.success === true) {
-          navigate('/dash');
-          } else {
-          console.log(result,"22222");
-          // if(result.message === "user authentication failed") {
-          //   setNotPwdConfirmed(true);
-          // }
-          }
-         })
-    .catch((error) => 
-      console.log(error, "ERRORSIGNIN")
-    );
+    setSignInNotPwdConfirmed(false);
+    setSignInEmailIsNotValid(false);
+    if(validateEmail(email)) {
+      fetch('/api/signin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, password: password }),
+      })
+      .then(result => result.json())
+      .then((result) => {
+           if(result.success === true) {
+            navigate('/dash');
+            } else {
+            console.log(result,"22222");
+              if(result.message === "user authentication failed") {
+                setSignInNotPwdConfirmed(true);
+              }
+            }
+           })
+      .catch((error) => 
+        console.log(error, "ERROR in SIGNIN")
+      );
+    } else {
+      setSignInEmailIsNotValid(true);
+    }
+   
   };
 
   return (
     <>
-      <head>
-        <style>
-          @import
-          url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-        </style>
-      </head>
-
-      <body>
         <div
           className={`containerbox ${isSignupPage ? "active" : ""}`}
           id="container"
         >
           {/* sign-up */}
           <div className="form-container sign-up">
-            <form onSubmit={ async (e) => handleSignUpSubmit(e, email, password, confirmPassword)}>
+            <form onSubmit={ async (e) => handleSignUpSubmit(e, signUpEmail, signUpPassword, confirmPassword)}>
               <p className="greetings">Join us today!</p>
               <br></br>
               <br></br>
@@ -105,15 +117,15 @@ function Form(): JSX.Element  {
                 required
                 type="text"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={signUpEmail}
+                onChange={(e) => setSignUpEmail(e.target.value)}
               />
               <input
                 required
                 type="password"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={signUpPassword}
+                onChange={(e) => setSignUpPassword(e.target.value)}
               />
               <input
                 required
@@ -122,7 +134,8 @@ function Form(): JSX.Element  {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-              {pwdNotConfirmed && <p style={{color:'red',margin:0}}>Please confirm your password again.</p>}
+              {pwdSignUpNotConfirmed && <p style={{color:'red',margin:0}}>Please confirm your password again.</p>}
+              {emailSignUpIsNotValid && <p style={{color:'red',margin:0}}>Please enter a valid email.</p>}
               <button type="submit">Create Account</button>
               <OAuth />
             </form>
@@ -131,23 +144,24 @@ function Form(): JSX.Element  {
 
           {/* sign-in */}
           <div className="form-container sign-in">
-            <form onSubmit={(e) => handleSigninSubmit(e, email, password)}>
+            <form onSubmit={(e) => handleSigninSubmit(e, signInEmail, signInPassword)}>
               <p className="greetings">Welcome back!</p>
               <input
                 required
                 type="text"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={signInEmail}
+                onChange={(e) => setSignInEmail(e.target.value)}
               />
               <input
                 required
                 type="password"
                 placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={signInPassword}
+                onChange={(e) => setSignInPassword(e.target.value)}
               />
-              {pwdNotConfirmed && <p style={{color:'red',margin:0}}>Please confirm your password again.</p>}
+              {pwdSignInNotConfirmed && <p style={{color:'red',margin:0}}>There is something wrong with your sign in.</p>}
+              {emailSignInIsNotValid && <p style={{color:'red',margin:0}}>Please enter a valid email.</p>}
               <button type="submit">Sign In</button>
               <p>
                 Forgot password?
@@ -195,7 +209,6 @@ function Form(): JSX.Element  {
             </div>
           </div>
         </div>
-      </body>
     </>
   );
 }

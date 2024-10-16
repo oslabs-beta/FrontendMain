@@ -99,86 +99,63 @@ const NavBar: React.FC = () => {
       </div>
       <div>
         <Routes>
-          <Route
-            path="/"
-             element={
-              <ProtectedRoute>
-                <Form />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/about"
-             element={
-              <ProtectedRoute>
-                {/* <About/> */}
-              </ProtectedRoute>
-             }
-          />
-          <Route
-            path="/prod1"
-             element={
-              <ProtectedRoute>
-               {/* <Prod1/> */}
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/prod2"
-             element={
-              <ProtectedRoute>
-               {/* <Prod2/> */}
-              </ProtectedRoute> 
-            }
-          />
-          <Route
-            path="/prod3"
-             element={
-              <ProtectedRoute>
-               {/* <Prod3/> */}
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/prod4"
-             element={
-             <ProtectedRoute>
-              {/* <Prod4/> */}
-             </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/readme"
-             element={
-              <ProtectedRoute>
-               {/* <ReadMe/> */}
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/config"
-             element={
-              <ProtectedRoute>
-               {/* <Config/> */}
-              </ProtectedRoute>
-             }
-          />
-          <Route
-            path="/profile"
-             element={
-              <ProtectedRoute>
-               {/* <Profile/> */}
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/git"
-             element={
-              <ProtectedRoute>
-               {/* <Git/> */}
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<Form />}/>
+          <Route element={<ProtectedRoute/>}>
+            <Route
+              path="/about"
+              element={
+                  {/* <About/> */}
+              }
+            />
+            <Route
+              path="/prod1"
+              element={
+                {/* <Prod1/> */}
+              }
+            />
+            <Route
+              path="/prod2"
+              element={
+                {/* <Prod2/> */}
+              }
+            />
+            <Route
+              path="/prod3"
+              element={
+                {/* <Prod3/> */}
+              }
+            />
+            <Route
+              path="/prod4"
+              element={
+                {/* <Prod4/> */}
+              }
+            />
+            <Route
+              path="/readme"
+              element={
+                {/* <ReadMe/> */}
+              }
+            />
+            <Route
+              path="/config"
+              element={
+                {/* <Config/> */}
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                {/* <Profile/> */}
+              }
+            />
+            <Route
+              path="/git"
+              element={
+                {/* <Git/> */}
+              }
+            />
+            </Route>
         </Routes>
       </div>
     </>
