@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import About from './About';
-import Config from './Config';
 import Navbar from 'react-bootstrap/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -96,7 +95,7 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                   to={'/config'}
                   className='bg-btnPurple me-2 ms-2 d-flex flex-column justify-content-center'
                 >
-                  <span>Instruction</span>
+                  <span>Configuration</span>
                 </Nav.Link>
               </Nav>
 
@@ -154,9 +153,9 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
         <Routes>
           <Route path='/dash' />
           <Route path='/about' element={<About />} />
-          <Route path='/prod1' />
+          {/* <Route path='/prod1' /> */}
           <Route path='/readme' />
-          <Route path='/config' element={<Config />} />
+          <Route path='/config' />
           <Route path='/profile' />
           <Route path='/git' />
         </Routes>
