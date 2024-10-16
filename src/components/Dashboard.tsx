@@ -2,20 +2,20 @@ import '../css/navbar.css';
 import '../css/dash.css';
 import '../css/App.css';
 import { useMemo } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard(): JSX.Element {
   //  const [showMetrics, setShowMetrics] = useState<boolean>(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const metricsClick= (): void =>{
-  //  navigate("/metrics")
+  const metricsClick= (): void =>{
+   navigate("/metrics")
 
-  // }
-  // const systemClick =(): void =>{
-  //   navigate("/system")
-  // }
+  }
+  const systemClick =(): void =>{
+    navigate("/system")
+  }
 
   // const overviewClick = (): void =>{
   //   setShowMetrics(!showMetrics);
@@ -48,7 +48,7 @@ function Dashboard(): JSX.Element {
 
         {grafanaIframe}
       </div>
-      {/* <div className='metricsContainer'>
+      <div className='metricsContainer'>
         <div id='metricsblock'>
           <button id='metricsbutton' onClick={metricsClick}>
             Detailed Metrics
@@ -66,7 +66,7 @@ function Dashboard(): JSX.Element {
             resource usage
           </h5>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
