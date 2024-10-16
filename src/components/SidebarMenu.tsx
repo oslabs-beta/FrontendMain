@@ -19,16 +19,6 @@ const SidebarMenu: React.FC<SideBarProps> = ({
   onMouseEnter,
   onMouseLeave,
 }) => {
-  // const [textColorArr, setTextColor] = useState<string[]>([
-  //   'text-primary',
-  //   'text-primary',
-  //   'text-primary',
-  // ]);
-  // const [sidebarBgColorArr, setSidebarBgColor] = useState<string[]>([
-  //   'bg-dark',
-  //   'bg-dark',
-  //   'bg-dark',
-  // ]);
   const sideBarContents: string[] = ['Overview', 'System', 'Metrics'];
   const iconNameMaps: iconMap = {
     'Overview': GraphUp,
@@ -45,8 +35,9 @@ const SidebarMenu: React.FC<SideBarProps> = ({
     const endPoint = endpointMaps[content];
     return (
       <li
-        className={`nav-item d-flex align-items-center px-0 mb-3 rounded listStyle `}
+        className={`nav-item d-flex align-items-center px-0 mb-3 rounded listStyle`}
         key={index}
+        style={{ fontWeight: '400' }}
       >
         <IconComponent className='sidebar-icons' />
         <NavLink
@@ -60,27 +51,24 @@ const SidebarMenu: React.FC<SideBarProps> = ({
     );
   });
 
-  // const handleSideBarClick = (index: number): void => {
-  //   // const newTextColorArr = ['text-primary', 'text-primary', 'text-primary'];
-  //   // newTextColorArr[index] = 'text-white';
-  //   const newSideBarColorArr = ['bg-dark', 'bg-dark', 'bg-dark'];
-  //   // newSideBarColorArr[index] = 'bg-primary';
-  //   // setTextColor(newTextColorArr);
-  //   // setSidebarBgColor(newSideBarColorArr);
-  // };
-
   return (
-    <div className='container-fluid'>
-      <div className='row'>
-        <div
-          className='bg-dark col-auto min-vh-100 sidebar'
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-        >
-          <ul className='nav flex-column nav-pills pt-5 mt-5'>{listItems}</ul>
+    <>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+      </style>
+      <div className='container-fluid'>
+        <div className='row'>
+          <div
+            className='bg-dark col-auto min-vh-100 sidebar'
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+          >
+            <ul className='nav flex-column nav-pills pt-5 mt-5'>{listItems}</ul>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
