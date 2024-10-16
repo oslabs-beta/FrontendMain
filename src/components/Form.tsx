@@ -87,7 +87,7 @@ function Form(): JSX.Element  {
             navigate('/dash');
             } else {
             console.log(result,"22222");
-              if(result.message === "user authentication failed") {
+              if(result.err === "user authentication failed") {
                 setSignInNotPwdConfirmed(true);
               }
             }
@@ -160,7 +160,7 @@ function Form(): JSX.Element  {
                 value={signInPassword}
                 onChange={(e) => setSignInPassword(e.target.value)}
               />
-              {pwdSignInNotConfirmed && <p style={{color:'red',margin:0}}>There is something wrong with your sign in.</p>}
+              {pwdSignInNotConfirmed && <p style={{color:'red',margin:0}}>Incorrect Password or Email.</p>}
               {emailSignInIsNotValid && <p style={{color:'red',margin:0}}>Please enter a valid email.</p>}
               <button type="submit">Sign In</button>
               <p>
