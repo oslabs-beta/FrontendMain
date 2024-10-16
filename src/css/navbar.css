@@ -1,4 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+.dm-serif-display-regular {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
+  font-family: 'Montserrat', sans-serif !important;
   /* border: 0.5px solid white; */
 }
 
