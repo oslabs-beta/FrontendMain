@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import About from './About';
 import Config from './Config';
+
 import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from "react-bootstrap/NavDropdown";
 // import Button from "react-bootstrap/Button";
@@ -23,7 +24,7 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
   const handleModeToggle: () => void = () => {
     setIsToggled(!isToggled);
     setBodyBgColor((bodyBgColor) =>
-      bodyBgColor === '#1c1c1e' ? '#fff' : '#1c1c1e'
+      bodyBgColor === "#111218" ? "#fff" : "#111218"
     );
   };
   useEffect(() => {
@@ -131,10 +132,10 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
       </div>
       <div>
         <Routes>
-          <Route
+          {/* <Route
             path='/dash'
-            //  element={<Home/>}
-          />
+             element={<Dashboard/>}
+          /> */}
           <Route path='/about' element={<About />} />
           <Route
             path='/prod1'

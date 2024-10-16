@@ -10,11 +10,11 @@ function Dashboard(): JSX.Element {
  const navigate = useNavigate()
 
   const metricsClick= (): void =>{
-   navigate("/Metrics")
+   navigate("/metrics")
 
   }
   const systemClick =(): void =>{
-    navigate("/System")
+    navigate("/system")
   }
 
   // const overviewClick = (): void =>{
@@ -24,19 +24,21 @@ function Dashboard(): JSX.Element {
     return (
       <>
         <iframe
-          src="http://localhost:3009/d-solo/Kn5xm-gZk/kafkaoverview?orgId=1&refresh=15s&panelId=37"
-          width="450"
+          //acctive broker count
+          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=94"
+          width="350"
           height="200"
         ></iframe>
         <iframe
-          src="http://localhost:3009/d-solo/Kn5xm-gZk/kafkaoverview?orgId=1&refresh=15s&from=1729006787321&to=1729008587321&panelId=41"
-          width="450"
+          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=75"
+          width="350"
           height="200"
+        //active controller count 
         ></iframe>
       </>
     );
   }, [])
-
+//broker connection broker failures
   return (
     <div className="dash">
       <div>LOGO HERE</div>
