@@ -32,18 +32,27 @@ function App(): JSX.Element {
           onMouseLeave={handleMouseLeave}
         />
       )}
-      {location.pathname !== '/' && (
-        <ContentPanel isExpanded={isSideBarHovered}>
-          <Routes>
-            <Route path='/' element={<Form />} />
-            <Route path='/dash' element={<Dashboard />} />
-            <Route path='/system' element={<System />} />
-            <Route path='/metrics' element={<Metrics />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/config' element={<Config />} />
-          </Routes>
-        </ContentPanel>
-      )}
+      <Routes>
+  {/* The / route will be outside of the ContentPanel */}
+  <Route path='/' element={<Form />} />
+
+  {/* The rest of the routes will be inside the ContentPanel */}
+  <Route 
+    path='*' // Catch all other paths
+    element={
+      <ContentPanel isExpanded={isSideBarHovered}>
+        <Routes>
+          <Route path='/dash' element={<Dashboard />} />
+          <Route path='/system' element={<System />} />
+          <Route path='/metrics' element={<Metrics />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/config' element={<Config />} />
+        </Routes>
+      </ContentPanel>
+    } 
+  />
+</Routes>
+      
     </div>
   );
 }
