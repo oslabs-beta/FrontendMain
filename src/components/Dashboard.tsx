@@ -23,18 +23,7 @@ function Dashboard(): JSX.Element {
   const grafanaIframe = useMemo(() => {
     return (
       <>
-        <iframe
-          //acctive broker count
-          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=94"
-          width="350"
-          height="200"
-        ></iframe>
-        <iframe
-          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=75"
-          width="350"
-          height="200"
-        //active controller count 
-        ></iframe>
+   
       </>
     );
   }, [])

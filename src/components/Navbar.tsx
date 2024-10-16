@@ -16,7 +16,7 @@ interface NavProps {
 }
 
 const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
-  const [bodyBgColor, setBodyBgColor] = useState<string>('#1c1c1e');
+  const [bodyBgColor, setBodyBgColor] = useState<string>("#111218");
   const [isToggled, setIsToggled] = useState<boolean>(false);
   const [isSmallerThanLg, setIsSmallerThanLg] = useState(
     window.innerWidth < 1600
