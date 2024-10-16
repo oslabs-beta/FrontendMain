@@ -25,9 +25,12 @@
 
 #metricsbutton {
   width: 190px;
-  padding: 20px;
+  padding: 10px;
+  border-radius: 4px;
   border: none;
   margin: 20px;
+  color: #893FAC;
+  background-color: rgb(233, 224, 224);
 }
 
 #systemblock {
@@ -40,7 +43,10 @@
 
 #systembutton {
   width: 190px;
-  padding: 20px;
+  padding: 10px;
   border: none;
+  border-radius: 4px;
   margin: 20px;
+  background-color: rgb(246, 237, 237);
+  color: #893FAC
 }

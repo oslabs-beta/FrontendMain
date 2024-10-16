@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import About from './About';
+// import Config from './Config';
+
 import Navbar from 'react-bootstrap/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -25,8 +27,8 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
 
   const handleModeToggle = () => {
     setIsToggled(!isToggled);
-    setBodyBgColor((prevColor) =>
-      prevColor === '#1c1c1e' ? '#fff' : '#1c1c1e'
+    setBodyBgColor((bodyBgColor) =>
+      bodyBgColor === "#111218" ? "#fff" : "#111218"
     );
   };
 
@@ -151,7 +153,10 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
       </div>
       <div>
         <Routes>
-          <Route path='/dash' />
+          {/* <Route
+            path='/dash'
+             element={<Dashboard/>}
+          /> */}
           <Route path='/about' element={<About />} />
           {/* <Route path='/prod1' /> */}
           <Route path='/readme' />

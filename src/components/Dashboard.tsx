@@ -2,19 +2,20 @@ import '../css/navbar.css';
 import '../css/dash.css';
 import '../css/App.css';
 import { useMemo } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard(): JSX.Element {
   //  const [showMetrics, setShowMetrics] = useState<boolean>(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const metricsClick = (): void => {
-  //   navigate('/Metrics');
-  // };
-  // const systemClick = (): void => {
-  //   navigate('/System');
-  // };
+  const metricsClick= (): void =>{
+   navigate("/metrics")
+
+  }
+  const systemClick =(): void =>{
+    navigate("/system")
+  }
 
   // const overviewClick = (): void =>{
   //   setShowMetrics(!showMetrics);
@@ -23,27 +24,21 @@ function Dashboard(): JSX.Element {
     return (
       <>
         <iframe
-          src='http://localhost:3001/d-solo/qu-QZdfZz/kafka-overview?orgId=1&refresh=10s&from=1729026767060&to=1729027067060&panelId=16'
-          width='150'
-          height='150'
-          style={{ border: 'none' }}
+          //acctive broker count
+          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=94"
+          width="350"
+          height="200"
         ></iframe>
         <iframe
-          src='http://localhost:3001/d-solo/qu-QZdfZz/kafka-overview?orgId=1&refresh=10s&from=1729028786773&to=1729029086773&panelId=12'
-          width='150'
-          height='150'
-          style={{ border: 'none' }}
-        ></iframe>
-        <iframe
-          src='http://localhost:3001/d-solo/qu-QZdfZz/kafka-overview?orgId=1&refresh=10s&panelId=132'
-          width='150'
-          height='150'
-          style={{ border: 'none' }}
+          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=75"
+          width="350"
+          height="200"
+        //active controller count 
         ></iframe>
       </>
     );
-  }, []);
-
+  }, [])
+//broker connection broker failures
   return (
     <div className='dash'>
       {/* <div>LOGO HERE</div>
@@ -53,7 +48,7 @@ function Dashboard(): JSX.Element {
 
         {grafanaIframe}
       </div>
-      {/* <div className='metricsContainer'>
+      <div className='metricsContainer'>
         <div id='metricsblock'>
           <button id='metricsbutton' onClick={metricsClick}>
             Detailed Metrics
@@ -71,7 +66,7 @@ function Dashboard(): JSX.Element {
             resource usage
           </h5>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
