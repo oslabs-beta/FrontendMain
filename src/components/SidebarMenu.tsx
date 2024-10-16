@@ -12,6 +12,7 @@ interface endpointMap {
   [key: string]: string;
 }
 interface SideBarProps {
+  isExpanded: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
 }
@@ -53,10 +54,6 @@ const SidebarMenu: React.FC<SideBarProps> = ({
 
   return (
     <>
-      <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-      </style>
       <div className='container-fluid'>
         <div className='row'>
           <div
