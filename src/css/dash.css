@@ -1,0 +1,46 @@
+.dash {
+  margin-top: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.metricsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#metricsblock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+}
+
+#metricsbutton {
+  width: 190px;
+  padding: 20px;
+  border: none;
+  margin: 20px;
+}
+
+#systemblock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+}
+
+#systembutton {
+  width: 190px;
+  padding: 20px;
+  border: none;
+  margin: 20px;
+}
