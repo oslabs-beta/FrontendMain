@@ -10,7 +10,10 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import SidebarMenu from './SidebarMenu';
 import ContentPanel from './ContentPanel';
+import ProtectedRoute from "./ProtectedRoute";
 
+
+ 
 function App(): JSX.Element {
   const location = useLocation();
   const [isSideBarHovered, setIsSideBarHovered] = useState<boolean>(false);
@@ -42,11 +45,13 @@ function App(): JSX.Element {
     element={
       <ContentPanel isExpanded={isSideBarHovered}>
         <Routes>
-          <Route path='/dash' element={<Dashboard />} />
-          <Route path='/system' element={<System />} />
-          <Route path='/metrics' element={<Metrics />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/config' element={<Config />} />
+          <Route element={<ProtectedRoute/>}>
+            <Route path='/dash' element={<Dashboard />} />
+            <Route path='/system' element={<System />} />
+            <Route path='/metrics' element={<Metrics />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/config' element={<Config />} />
+          </Route>
         </Routes>
       </ContentPanel>
     } 
