@@ -1,5 +1,5 @@
 // import * as React from 'react';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OAuth from "./OAuth";
 import { motion } from "framer-motion";
 import "../css/App.css";
@@ -23,11 +23,31 @@ function Form(): JSX.Element  {
   const [pwdSignUpNotConfirmed, setSignUpNotPwdConfirmed] = useState<boolean>(false);
   const [emailSignInIsNotValid, setSignInEmailIsNotValid] = useState<boolean>(false);
   const [emailSignUpIsNotValid, setSignUpEmailIsNotValid] = useState<boolean>(false);
+  const [isSigupEmailPwdNotValid, setIsSigupEmailPwdNotValid] = useState<boolean>(false);
   const [isPwdShown, setIsPwdShown] = useState<boolean>(false);
+  const [isSignInEmailNotValid, setIsSignInEmailNotValid] = useState<boolean>(false);
+  // const [isLoading, setIsloading] = useState<boolean>(true);
   const navigate = useNavigate();
-
+  // useEffect(() => {
+  //   const checkSession = async () => {
+  //     try {
+  //       const response = await fetch('/api/sessionUp', {
+  //         credentials: 'include',
+  //       })
+  //       console.log(response,"response of checking session valid in root page");
+  //       if(response.ok) {
+  //         //if session is still valid, navigate to Dashboard page
+  //         navigate('/config', {replace:true})
+  //       } 
+  //     } catch(error) {
+  //       console.log(error,"fail in checking session in root page");
+  //     } finally{
+  //       setIsloading(false);
+  //     }
+  //   }
   
-
+  //   checkSession();
+  // }, [navigate]);
   const handleSignUpSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     email: string,
@@ -39,6 +59,7 @@ function Form(): JSX.Element  {
     setShowPopup(false);
     setSignUpNotPwdConfirmed(false);
     setSignUpEmailIsNotValid(false);
+    setIsSigupEmailPwdNotValid(false);
     if(validateEmail(email)) {
       try {
         const response = await fetch('/api/signup', {
@@ -54,6 +75,9 @@ function Form(): JSX.Element  {
           const errorData = await response.json();
           if(errorData === "Passwords given do not match") {
             setSignUpNotPwdConfirmed(true);
+          }
+          if(errorData.err === 'Could not create account') {
+            setIsSigupEmailPwdNotValid(true);
           }
         }
       } catch (error) {
@@ -78,6 +102,7 @@ function Form(): JSX.Element  {
     e.preventDefault();
     setSignInNotPwdConfirmed(false);
     setSignInEmailIsNotValid(false);
+    setIsSignInEmailNotValid(false);
     if(validateEmail(email)) {
       fetch('/api/signin', {
         method: 'POST',
@@ -86,12 +111,16 @@ function Form(): JSX.Element  {
       })
       .then(result => result.json())
       .then((result) => {
+       
            if(result.success === true) {
             navigate('/dash');
             } else {
               if(result.message === "user authentication failed") {
                 setSignInNotPwdConfirmed(true);
               }
+            }
+            if(result.err === "Error in verifying user") {
+              setIsSignInEmailNotValid(true);
             }
            })
       .catch((error) => 
@@ -102,6 +131,9 @@ function Form(): JSX.Element  {
     }
    
   };
+  // if(isLoading) {
+  //     return <div>Loading...</div>
+  // }
 
   return (
     <>
@@ -157,6 +189,7 @@ function Form(): JSX.Element  {
               </div>
               {pwdSignUpNotConfirmed && <p style={{color:'red',margin:0}}>Please confirm your password again.</p>}
               {emailSignUpIsNotValid && <p style={{color:'red',margin:0}}>Please enter a valid email.</p>}
+              {isSigupEmailPwdNotValid && <p style={{color:'red',margin:0}}>Invalid email or password.</p>}
               <button type="submit">Create Account</button>
               <OAuth />
             </form>
@@ -183,6 +216,7 @@ function Form(): JSX.Element  {
               />
               {pwdSignInNotConfirmed && <p style={{color:'red', margin:0}}>There is something wrong with your sign in.</p>}
               {emailSignInIsNotValid && <p style={{color:'red', margin:0}}>Please enter a valid email.</p>}
+              {isSignInEmailNotValid && <p style={{color:'red', margin:0}}>Your email or password is not valid</p>} 
               <button type="submit">Sign In</button>
               <p>
                 Forgot password?
