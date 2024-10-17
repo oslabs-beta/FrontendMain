@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Button from "react-bootstrap/Button";
+//import NavDropdown from "react-bootstrap/NavDropdown";
+//import Button from "react-bootstrap/Button";
 import "../css/navbar.css";
 import { Routes, Route, Link } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
-import Form from "./Form";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 interface NavProps {
   isSideBarHovered: boolean;
 }
