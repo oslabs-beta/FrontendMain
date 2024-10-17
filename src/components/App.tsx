@@ -10,10 +10,14 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import SidebarMenu from './SidebarMenu';
 import ContentPanel from './ContentPanel';
+import ProtectedRoute from "./ProtectedRoute";
 
+
+ 
 function App(): JSX.Element {
   const location = useLocation();
   const [isSideBarHovered, setIsSideBarHovered] = useState<boolean>(false);
+
   const handleMouseEnter = (): void => {
     setIsSideBarHovered(true);
   };
@@ -32,18 +36,29 @@ function App(): JSX.Element {
           onMouseLeave={handleMouseLeave}
         />
       )}
-      {location.pathname !== '/' && (
-        <ContentPanel isExpanded={isSideBarHovered}>
-          <Routes>
-            <Route path='/' element={<Form />} />
+      <Routes>
+  {/* The / route will be outside of the ContentPanel */}
+  <Route path='/' element={<Form />} />
+
+  {/* The rest of the routes will be inside the ContentPanel */}
+  <Route 
+    path='*' // Catch all other paths
+    element={
+      <ContentPanel isExpanded={isSideBarHovered}>
+        <Routes>
+          <Route element={<ProtectedRoute/>}>
             <Route path='/dash' element={<Dashboard />} />
             <Route path='/system' element={<System />} />
             <Route path='/metrics' element={<Metrics />} />
             <Route path='/about' element={<About />} />
             <Route path='/config' element={<Config />} />
-          </Routes>
-        </ContentPanel>
-      )}
+          </Route>
+        </Routes>
+      </ContentPanel>
+    } 
+  />
+</Routes>
+      
     </div>
   );
 }

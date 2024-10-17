@@ -1,7 +1,10 @@
-import "../css/system.css";
-import { useMemo } from "react";
+
+import '../css/system.css';
+import { useMemo } from 'react';
+
 
 function System(): JSX.Element {
+
   const grafanaIframe = useMemo(() => {
     return (
       <div
@@ -72,6 +75,7 @@ function System(): JSX.Element {
           src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=108"
           width="450"
           height="200"
+
           //error reate
         ></iframe>
       </div>

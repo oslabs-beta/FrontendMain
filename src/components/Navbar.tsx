@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import About from './About';
-// import Config from './Config';
-
-import Navbar from 'react-bootstrap/Navbar';
+import React, { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+//import NavDropdown from "react-bootstrap/NavDropdown";
+//import Button from "react-bootstrap/Button";
+import "../css/navbar.css";
+import { Routes, Route, Link } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import '../css/navbar.css';
-import { Routes, Route, Link } from 'react-router-dom';
-
 interface NavProps {
   isSideBarHovered: boolean;
 }
@@ -92,20 +91,20 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                 >
                   <span>ReadMe</span>
                 </Nav.Link>
-                <Nav.Link
+                {/* <Nav.Link
                   as={Link}
                   to={'/config'}
                   className='bg-btnPurple me-2 ms-2 d-flex flex-column justify-content-center'
                 >
                   <span>Configuration</span>
-                </Nav.Link>
+                </Nav.Link> */}
               </Nav>
 
               {noHamburger && (
                 <>
                   <Navbar.Brand
                     as={Link}
-                    to={'/dash'}
+                    to={'/config'}
                     className='me-auto'
                     style={{ fontSize: '30px', fontWeight: 'bold' }}
                   >
@@ -157,12 +156,14 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
             path='/dash'
              element={<Dashboard/>}
           /> */}
-          <Route path='/about' element={<About />} />
-          {/* <Route path='/prod1' /> */}
-          <Route path='/readme' />
-          <Route path='/config' />
-          <Route path='/profile' />
-          <Route path='/git' />
+          <Route element={<ProtectedRoute/>}>
+            <Route path='/about' />
+            {/* <Route path='/prod1' /> */}
+            <Route path='/readme' />
+            <Route path='/config' />
+            <Route path='/profile' />
+            <Route path='/git' />
+          </Route>
         </Routes>
       </div>
     </>

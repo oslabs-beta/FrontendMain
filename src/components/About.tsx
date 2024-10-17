@@ -1,15 +1,8 @@
+const About: React.FC = () => {
+  return <div></div>;
+};
 
-function About (): JSX.Element {
-
-    return (
-     
-     
-        <h5>
-       
-        </h5>
-    
-    );
-}
 
 
 export default About;
+
