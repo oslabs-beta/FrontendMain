@@ -1,10 +1,5 @@
-
-function About (): JSX.Element {
-
-    return;
-    
-    
-}
-
+const About: React.FC = () => {
+  return <div></div>;
+};
 
 export default About;

@@ -14,6 +14,7 @@ import ContentPanel from './ContentPanel';
 function App(): JSX.Element {
   const location = useLocation();
   const [isSideBarHovered, setIsSideBarHovered] = useState<boolean>(false);
+
   const handleMouseEnter = (): void => {
     setIsSideBarHovered(true);
   };
@@ -32,18 +33,23 @@ function App(): JSX.Element {
           onMouseLeave={handleMouseLeave}
         />
       )}
-      {location.pathname !== '/' && (
-        <ContentPanel isExpanded={isSideBarHovered}>
-          <Routes>
-            <Route path='/' element={<Form />} />
-            <Route path='/dash' element={<Dashboard />} />
-            <Route path='/system' element={<System />} />
-            <Route path='/metrics' element={<Metrics />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/config' element={<Config />} />
-          </Routes>
-        </ContentPanel>
-      )}
+      <Routes>
+        <Route path='/' element={<Form />} />
+        <Route
+          path='*'
+          element={
+            <ContentPanel isExpanded={isSideBarHovered}>
+              <Routes>
+                <Route path='/dash' element={<Dashboard />} />
+                <Route path='/system' element={<System />} />
+                <Route path='/metrics' element={<Metrics />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/config' element={<Config />} />
+              </Routes>
+            </ContentPanel>
+          }
+        />
+      </Routes>
     </div>
   );
 }
