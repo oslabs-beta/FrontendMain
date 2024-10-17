@@ -1,0 +1,21 @@
+
+.metrics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 150px;
+
+}
+
+.frames {
+  border: 2px solid #110303;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(29, 27, 27, 0.1)
+}
+
+#logmetrics{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}

@@ -1,0 +1,79 @@
+* {
+  /* border: 0.5px solid white !important; */
+}
+
+.nav-link.text-white {
+  color: white !important;
+}
+
+.listStyle {
+  max-width: 100%;
+  transition: background-color 0.3s;
+}
+
+.listStyle:hover {
+  background-color: rgb(151, 150, 150, 0.3);
+}
+
+.sidebar {
+  color: #ffffff;
+  z-index: 2000;
+  position: fixed;
+}
+
+.sidebar-text {
+  max-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sidebar .nav-link {
+  padding: 0 !important;
+  color: #fff;
+  font-size: 12px;
+}
+
+.sidebar:hover .sidebar-text {
+  max-width: 100%;
+  opacity: 1;
+  visibility: visible;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.sidebar:hover .listStyle {
+  padding: 10px 22px !important;
+}
+
+.sidebar {
+  background: linear-gradient(to bottom, #ac4ab0, #512da8) !important;
+  padding: 5px;
+  margin: 0;
+}
+
+.sidebar-text {
+  color: #fff !important; /* Default text color */
+  font-size: 10px !important;
+}
+
+/* Add styles for when the sidebar is active */
+.sidebar .bg-primary {
+  background-color: #fff !important;
+}
+
+.sidebar .text-primary {
+  color: #fff;
+}
+
+.sidebar-icons {
+  color: #fff;
+  background: transparent !important;
+}
+
+.sidebar .nav.flex-column.nav-pills {
+  padding-top: 90px !important;
+  width: 100% !important;
+}

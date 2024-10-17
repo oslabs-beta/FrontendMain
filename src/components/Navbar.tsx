@@ -9,156 +9,164 @@ import { Routes, Route, Link } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import Form from "./Form";
 
-const NavBar: React.FC = () => {
-  const [bodyBgColor, setBodyBgColor] = useState<string>("white");
-  const handleModeToggle: () => void = () => {
+interface NavProps {
+  isSideBarHovered: boolean;
+}
+
+const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
+  const [bodyBgColor, setBodyBgColor] = useState<string>('#1c1c1e');
+  const [isToggled, setIsToggled] = useState<boolean>(false);
+  const [isSmallerThanLg, setIsSmallerThanLg] = useState(
+    window.innerWidth < 1600
+  );
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const noHamburger = window.innerWidth >= 1200;
+
+  const handleModeToggle = () => {
+    setIsToggled(!isToggled);
     setBodyBgColor((bodyBgColor) =>
-      bodyBgColor === "white" ? "black" : "white"
+      bodyBgColor === "#111218" ? "#fff" : "#111218"
     );
   };
+
+  const handleMouseEnter = () => {
+    setIsExpanded(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsExpanded(false);
+  };
+
   useEffect(() => {
     document.body.style.backgroundColor = bodyBgColor;
   }, [bodyBgColor]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallerThanLg(window.innerWidth < 1600);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <>
-      <div className="containermain">
-        <Navbar expand="lg" className="bg-purple">
-          <Container>
-            <Navbar.Brand as={Link} to={"/home"} className="me-2">
-              React-Bootstrap
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
+      <div className='containermain'>
+        <Navbar
+          expand='lg'
+          className='bg-purple'
+          onMouseLeave={handleMouseLeave}
+        >
+          <Container
+            style={{
+              paddingLeft:
+                isSideBarHovered && isSmallerThanLg ? '100px' : '0px',
+            }}
+          >
+            <Navbar.Toggle
+              aria-controls='basic-navbar-nav'
+              onMouseEnter={handleMouseEnter}
+            />
+            <Navbar.Collapse
+              id='basic-navbar-nav'
+              in={isExpanded && !noHamburger}
+            >
+              <Nav className='me-auto'>
                 <Nav.Link
                   as={Link}
-                  to={"/about"}
-                  className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
+                  to={'/about'}
+                  className='bg-btnPurple me-2 ms-2 d-flex flex-column justify-content-center'
                 >
-                  About
-                </Nav.Link>
-                <NavDropdown
-                  title="Product"
-                  id="basic-nav-dropdown"
-                  className="bg-btnPurple me-1 d-flex flex-column justify-content-center"
-                >
-                  <NavDropdown.Item as={Link} to={"/prod1"}>
-                    Product 1
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={"/prod2"}>
-                    Product 2
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to={"/prod3"}>
-                    Product 3
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to={"/prod4"}>
-                    Product 4
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <Nav.Link
-                  as={Link}
-                  to={"/readme"}
-                  className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
-                >
-                  Link to readMe
+                  <span>About</span>
                 </Nav.Link>
                 <Nav.Link
                   as={Link}
-                  to={"/config"}
-                  className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
+                  to={'/readme'}
+                  className='bg-btnPurple me-2 ms-2 d-flex flex-column justify-content-center'
                 >
-                  How to configure your kafka cluster for monitoring
+                  <span>ReadMe</span>
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to={'/config'}
+                  className='bg-btnPurple me-2 ms-2 d-flex flex-column justify-content-center'
+                >
+                  <span>Configuration</span>
                 </Nav.Link>
               </Nav>
-              <Nav className="ml-auto">
-                <Nav.Link
-                  as={Link}
-                  to={"/profile"}
-                  className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
-                >
-                  User Profile
-                </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  to={"/git"}
-                  className="bg-btnPurple me-2 d-flex flex-column justify-content-center"
-                >
-                  Git
-                </Nav.Link>
-                <Button
-                  onClick={handleModeToggle}
-                  className="bg-btnPurple me-2"
-                >
-                  Switch Mode
-                </Button>
-              </Nav>
+
+              {noHamburger && (
+                <>
+                  <Navbar.Brand
+                    as={Link}
+                    to={'/dash'}
+                    className='me-auto'
+                    style={{ fontSize: '30px', fontWeight: 'bold' }}
+                  >
+                    StreamForge
+                  </Navbar.Brand>
+                  <Nav className='ml-auto'>
+                    <Nav.Link
+                      as={Link}
+                      to={'/profile'}
+                      className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
+                    >
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        style={{ fontSize: '14px' }}
+                      />
+                    </Nav.Link>
+                    <Nav.Link
+                      as={Link}
+                      to={'/git'}
+                      className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
+                    >
+                      <FontAwesomeIcon
+                        icon={faGithub}
+                        style={{ fontSize: '18px' }}
+                      />
+                    </Nav.Link>
+                  </Nav>
+                </>
+              )}
             </Navbar.Collapse>
+            {!isExpanded && (
+              <div className='form-check form-switch mx-4'>
+                <input
+                  className='form-check-input p-2'
+                  type='checkbox'
+                  role='switch'
+                  id='flexSwitchCheck'
+                  checked={isToggled}
+                  onClick={handleModeToggle}
+                />
+              </div>
+            )}
           </Container>
         </Navbar>
       </div>
       <div>
         <Routes>
-          <Route path="/" element={<Form />}/>
+          {/* <Route
+            path='/dash'
+             element={<Dashboard/>}
+          /> */}
           <Route element={<ProtectedRoute/>}>
-            <Route
-              path="/about"
-              element={
-                  {/* <About/> */}
-              }
-            />
-            <Route
-              path="/prod1"
-              element={
-                {/* <Prod1/> */}
-              }
-            />
-            <Route
-              path="/prod2"
-              element={
-                {/* <Prod2/> */}
-              }
-            />
-            <Route
-              path="/prod3"
-              element={
-                {/* <Prod3/> */}
-              }
-            />
-            <Route
-              path="/prod4"
-              element={
-                {/* <Prod4/> */}
-              }
-            />
-            <Route
-              path="/readme"
-              element={
-                {/* <ReadMe/> */}
-              }
-            />
-            <Route
-              path="/config"
-              element={
-                {/* <Config/> */}
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                {/* <Profile/> */}
-              }
-            />
-            <Route
-              path="/git"
-              element={
-                {/* <Git/> */}
-              }
-            />
-            </Route>
+            <Route path='/about' />
+            {/* <Route path='/prod1' /> */}
+            <Route path='/readme' />
+            <Route path='/config' />
+            <Route path='/profile' />
+            <Route path='/git' />
+          </Route>
         </Routes>
       </div>
     </>
   );
 };
+
 export default NavBar;

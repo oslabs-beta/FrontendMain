@@ -1,0 +1,11 @@
+.content-panel {
+  flex-grow: 1;
+  margin-top: 50px;
+  padding-left: 30px;
+  transition: margin-left 0.3s;
+  height: 100vh;
+}
+
+.content-panel.expanded {
+  margin-left: 105px;
+}
