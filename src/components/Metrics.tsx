@@ -8,6 +8,7 @@ import { useMemo } from 'react';
 function Metrics(): JSX.Element {
   const grafanaIframe = useMemo(() => {
     return (
+
       <div className = 'metrics'
          style={{
           maxWidth: "1200px",
@@ -16,6 +17,7 @@ function Metrics(): JSX.Element {
           // padding: "0 20px",
         }}>
         <div id="top">
+
           <iframe
             className='frames'
             //offline partitions
