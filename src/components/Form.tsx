@@ -7,6 +7,8 @@ import AccountCreatedModal from "./AccountCreatedPopup";
 import { handleLoginClick } from "../helpers/handleLoginClick";
 import { handleSignupClick } from "../helpers/handleSignupClick";
 import { useNavigate } from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 
 
 function Form(): JSX.Element  {
@@ -21,6 +23,7 @@ function Form(): JSX.Element  {
   const [pwdSignUpNotConfirmed, setSignUpNotPwdConfirmed] = useState<boolean>(false);
   const [emailSignInIsNotValid, setSignInEmailIsNotValid] = useState<boolean>(false);
   const [emailSignUpIsNotValid, setSignUpEmailIsNotValid] = useState<boolean>(false);
+  const [isPwdShown, setIsPwdShown] = useState<boolean>(false);
   const navigate = useNavigate();
 
   
@@ -86,7 +89,6 @@ function Form(): JSX.Element  {
            if(result.success === true) {
             navigate('/dash');
             } else {
-            console.log(result,"22222");
               if(result.message === "user authentication failed") {
                 setSignInNotPwdConfirmed(true);
               }
@@ -120,20 +122,39 @@ function Form(): JSX.Element  {
                 value={signUpEmail}
                 onChange={(e) => setSignUpEmail(e.target.value)}
               />
-              <input
-                required
-                type="password"
-                placeholder="Password"
-                value={signUpPassword}
-                onChange={(e) => setSignUpPassword(e.target.value)}
-              />
-              <input
-                required
-                type="password"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+              <div style={{width:"40%", position:"relative"}}>
+                <input
+                  required
+                  type={`${isPwdShown?"text":"password"}`}
+                  placeholder="Password"
+                  value={signUpPassword}
+                  className="password-input"
+                  onChange={(e) => setSignUpPassword(e.target.value)}
+                />
+                <button 
+                  type="button"
+                  className="toggle-password-btn"
+                  onClick={() => setIsPwdShown(!isPwdShown)}>
+                   <i className={`bi bi-eye${isPwdShown?"-slash":""} eyeicon`}></i>
+                </button>
+              </div>
+              <div style={{width:"40%", position:"relative"}} >
+                <input
+                  required
+                  type={`${isPwdShown?"text":"password"}`}
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  className="password-input"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <button 
+                  //specify button type to be "type" or it will cause the form submit
+                  type="button"
+                  className="toggle-password-btn"
+                  onClick={() => setIsPwdShown(!isPwdShown)}>
+                  <i className={`bi bi-eye${isPwdShown?"-slash":""} eyeicon`}></i>
+                </button>
+              </div>
               {pwdSignUpNotConfirmed && <p style={{color:'red',margin:0}}>Please confirm your password again.</p>}
               {emailSignUpIsNotValid && <p style={{color:'red',margin:0}}>Please enter a valid email.</p>}
               <button type="submit">Create Account</button>
@@ -160,8 +181,8 @@ function Form(): JSX.Element  {
                 value={signInPassword}
                 onChange={(e) => setSignInPassword(e.target.value)}
               />
-              {pwdSignInNotConfirmed && <p style={{color:'red',margin:0}}>There is something wrong with your sign in.</p>}
-              {emailSignInIsNotValid && <p style={{color:'red',margin:0}}>Please enter a valid email.</p>}
+              {pwdSignInNotConfirmed && <p style={{color:'red', margin:0}}>There is something wrong with your sign in.</p>}
+              {emailSignInIsNotValid && <p style={{color:'red', margin:0}}>Please enter a valid email.</p>}
               <button type="submit">Sign In</button>
               <p>
                 Forgot password?
