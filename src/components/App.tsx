@@ -17,6 +17,7 @@ import ProtectedRoute from "./ProtectedRoute";
 function App(): JSX.Element {
   const location = useLocation();
   const [isSideBarHovered, setIsSideBarHovered] = useState<boolean>(false);
+
   const handleMouseEnter = (): void => {
     setIsSideBarHovered(true);
   };

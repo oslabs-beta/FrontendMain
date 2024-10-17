@@ -4,7 +4,14 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 150px;
+    padding: 100px;
 
+}
+
+#top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .frames {
@@ -15,7 +22,7 @@
 
 #logmetrics{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
 }

@@ -3,7 +3,7 @@
   margin-top: 50px;
   padding-left: 30px;
   transition: margin-left 0.3s;
-  height: 100vh;
+  min-height: calc(100vh - 100px);
 }
 
 .content-panel.expanded {

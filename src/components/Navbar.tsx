@@ -15,7 +15,7 @@ interface NavProps {
 }
 
 const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
-  const [bodyBgColor, setBodyBgColor] = useState<string>('#1c1c1e');
+  const [bodyBgColor, setBodyBgColor] = useState<string>("#111218");
   const [isToggled, setIsToggled] = useState<boolean>(false);
   const [isSmallerThanLg, setIsSmallerThanLg] = useState(
     window.innerWidth < 1600
@@ -91,20 +91,20 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                 >
                   <span>ReadMe</span>
                 </Nav.Link>
-                <Nav.Link
+                {/* <Nav.Link
                   as={Link}
                   to={'/config'}
                   className='bg-btnPurple me-2 ms-2 d-flex flex-column justify-content-center'
                 >
                   <span>Configuration</span>
-                </Nav.Link>
+                </Nav.Link> */}
               </Nav>
 
               {noHamburger && (
                 <>
                   <Navbar.Brand
                     as={Link}
-                    to={'/dash'}
+                    to={'/config'}
                     className='me-auto'
                     style={{ fontSize: '30px', fontWeight: 'bold' }}
                   >
