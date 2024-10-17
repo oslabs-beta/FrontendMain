@@ -7,7 +7,15 @@ function System(): JSX.Element {
 
   const grafanaIframe = useMemo(() => {
     return (
-      <>
+      <div
+        id="systempage"
+        style={{
+          maxWidth: "1200px",
+          // width: "100%",
+          margin: "0 auto",
+          // padding: "0 20px",
+        }}
+      >
         <div id="active">
           <iframe
             //acctive broker count
@@ -22,30 +30,30 @@ function System(): JSX.Element {
             //active controller count
           ></iframe>
         </div>
-  
-          <div id="memPanels">
-            <iframe
-              className="frames"
-              src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=100"
-              width="300"
-              height="150"
-              //free memory
-            ></iframe>
-            <iframe
-              className="frames"
-              src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&from=1729047986334&to=1729049786334&theme=dark&panelId=28"
-              width="300"
-              height="150"
-              //total memory
-            ></iframe>
-          </div>
+
+        <div id="memPanels">
           <iframe
             className="frames"
-            src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=58"
-            width="600"
-            height="300"
-            //cpu
+            src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=100"
+            width="300"
+            height="150"
+            //free memory
           ></iframe>
+          <iframe
+            className="frames"
+            src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&from=1729047986334&to=1729049786334&theme=dark&panelId=28"
+            width="300"
+            height="150"
+            //total memory
+          ></iframe>
+        </div>
+        <iframe
+          className="frames"
+          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=58"
+          width="600"
+          height="300"
+          //cpu
+        ></iframe>
 
         <iframe
           id="largeframe"
@@ -70,15 +78,14 @@ function System(): JSX.Element {
 
           //error reate
         ></iframe>
-      </>
+      </div>
     );
   }, []);
 
   //metadata batch size /
   return (
     <>
-      <div id="systempage">{grafanaIframe}</div>
-
+      {grafanaIframe}
     </>
   );
 }
