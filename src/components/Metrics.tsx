@@ -8,69 +8,83 @@ import { useMemo } from 'react';
 function Metrics(): JSX.Element {
   const grafanaIframe = useMemo(() => {
     return (
-
-      <div className = 'metrics'
-         style={{
+      <div
+        className="metrics"
+        style={{
           maxWidth: "1200px",
           // width: "100%",
           margin: "0 auto",
           // padding: "0 20px",
-        }}>
+        }}
+      >
         <div id="top">
-
           <iframe
-            className='frames'
+            className="frames"
             //offline partitions
-            src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&from=1729035439187&to=1729037239187&panelId=32'
-            width='450'
-            height='300'
+            src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&from=1729035439187&to=1729037239187&panelId=32"
+            width="450"
+            height="300"
           ></iframe>
           <iframe
-            className='frames'
-            src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=107'
-            width='450'
-            height='300'
+            className="frames"
+            src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=107"
+            width="450"
+            height="300"
             //message conversion time
           ></iframe>
         </div>
-        <div id='logmetrics'>
+        <div id="logmetrics">
           <iframe
-            className='frames'
-            src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=96'
-            width='450'
-            height='150'
+            className="frames"
+            src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=96"
+            width="450"
+            height="150"
             //log flush rate(3)
           ></iframe>
           <iframe
-            className='frames'
-            src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=98'
-            width='450'
-            height='150'
+            className="frames"
+            src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=98"
+            width="450"
+            height="150"
           ></iframe>
           <iframe
-            className='frames'
-            src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=34'
-            width='450'
-            height='150'
+            className="frames"
+            src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=34"
+            width="450"
+            height="150"
           ></iframe>
           <iframe
-            className='frames'
-            src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=60'
-            width='450'
-            height='150'
+            className="frames"
+            src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=60"
+            width="450"
+            height="150"
 
             //log end offset
           ></iframe>
         </div>
         <iframe
-
-          className='frames'
-          id='recordlag'
-          src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=80'
-          width='900'
-          height='200'
+          className="frames"
+          id="recordlag"
+          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=80"
+          width="900"
+          height="200"
 
           //last applied record lag
+        ></iframe>
+        <iframe
+          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=114"
+          width="300"
+          height="200"
+        ></iframe>
+        <iframe
+          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&from=1729194892438&to=1729196692438&theme=dark&panelId=84"
+          width="300"
+          height="200"
+        ></iframe>
+        <iframe
+          src="http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&from=1729194837222&to=1729196637222&theme=dark&panelId=82"
+          width="300"
+          height="200"
         ></iframe>
       </div>
     );
