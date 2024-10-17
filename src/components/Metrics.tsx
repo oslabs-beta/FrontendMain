@@ -50,10 +50,12 @@ function Metrics(): JSX.Element {
             src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=60'
             width='450'
             height='150'
+
             //log end offset
           ></iframe>
         </div>
         <iframe
+
           className='frames'
           id='recordlag'
           src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=80'
@@ -64,8 +66,15 @@ function Metrics(): JSX.Element {
         ></iframe>
       </>
     );
+
   }, []);
-  return <div className='metrics'>{grafanaIframe}</div>;
+
+  return (
+    <div className="metrics">
+      {grafanaIframe}
+    </div>
+  );
+
 }
 
 export default Metrics;
@@ -75,4 +84,3 @@ export default Metrics;
 //dashboard/overview: highlevel overview, key metrics, alerts
 //resource usage: CPU/memory/diskusage, Configuration(config settings for each broker)
 //metrics: network traffic (bytes in/out), partition metrics, replication metrics, latency,
-//system info: configuration info ()
