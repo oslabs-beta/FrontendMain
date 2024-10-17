@@ -1,13 +1,13 @@
+
+
 #systempage{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 150px;
     margin-bottom: 150px;
-    
-
+    padding: 100px;
 }
-
 
 
 .frames {
@@ -20,3 +20,10 @@
  display: flex;
  flex-direction: column;
 }
+
+
+
+/* #00a4ef
+#0077b3
+#00CED1
+rgb(130, 55, 165) */
