@@ -1,8 +1,29 @@
+
+
 #systempage{
-    margin-top: 150px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-
+    margin-top: 150px;
+    margin-bottom: 150px;
+    padding: 100px;
 }
+
+
+.frames {
+  border: 2px solid #110303;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(29, 27, 27, 0.1)
+}
+
+#memPanels{
+ display: flex;
+ flex-direction: column;
+}
+
+
+
+/* #00a4ef
+#0077b3
+#00CED1
+rgb(130, 55, 165) */

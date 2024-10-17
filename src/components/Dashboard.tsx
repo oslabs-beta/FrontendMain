@@ -1,84 +1,50 @@
 import '../css/navbar.css';
 import '../css/dash.css';
 import '../css/App.css';
-import { useMemo } from 'react';
-// import { useNavigate } from 'react-router-dom';
 
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 function Dashboard(): JSX.Element {
   //  const [showMetrics, setShowMetrics] = useState<boolean>(false);
-
-  // const navigate = useNavigate();
-
-  // const metricsClick = (): void => {
-  //   navigate('/Metrics');
-  // };
-  // const systemClick = (): void => {
-  //   navigate('/System');
-  // };
-
-  // const overviewClick = (): void =>{
-  //   setShowMetrics(!showMetrics);
-  // }
-  const grafanaIframe = useMemo(() => {
-    return (
-      <>
-        <iframe
-          src='http://localhost:3001/d-solo/qu-QZdfZz/kafka-overview?orgId=1&refresh=10s&from=1729026767060&to=1729027067060&panelId=16'
-          width='150'
-          height='150'
-          style={{ border: 'none' }}
-        ></iframe>
-        <iframe
-          src='http://localhost:3001/d-solo/qu-QZdfZz/kafka-overview?orgId=1&refresh=10s&from=1729028786773&to=1729029086773&panelId=12'
-          width='150'
-          height='150'
-          style={{ border: 'none' }}
-        ></iframe>
-        <iframe
-          src='http://localhost:3001/d-solo/qu-QZdfZz/kafka-overview?orgId=1&refresh=10s&panelId=132'
-          width='150'
-          height='150'
-          style={{ border: 'none' }}
-        ></iframe>
-      </>
-    );
+  const [textColor, setTextColor] = useState<string>('');
+  const [BgColor, setBgColor] = useState<string>('');
+  const checkBgColor = (): string => {
+    return window.getComputedStyle(document.body).backgroundColor;
+  };
+  
+  useEffect(() => {
+    const handleBgColorChange = () => {
+      const newBgColor = checkBgColor();
+      setBgColor(newBgColor);
+      if(newBgColor === "rgb(17, 18, 24)" || newBgColor==="rgb(28, 28, 30)") {
+        setTextColor("white");
+      } else {
+        setTextColor("black");
+      }
+    }
+    // Create a new MutationObserver instance that listens for changes to the background color.
+    const observer = new MutationObserver(handleBgColorChange);
+    // Start observing the body element, specifically watching for changes to the style attribute.
+    observer.observe(document.body, {attributes:true, attributeFilter: ['style']});
+    // Immediately call handleColorChange once to fetch the initial background color when the component mounts.
+    handleBgColorChange();
+    // When the component unmounts, stop the MutationObserver to prevent memory leaks.
+    return () => observer.disconnect();
   }, []);
 
-  return (
-    <div className='dash'>
-      {/* <div>LOGO HERE</div>
-      <h4>Broker Overview</h4> */}
-      <div className='metricsContainer'>
-        {/* {showMetrics && <Overview/>} */}
+  const navigate = useNavigate();
 
-        {grafanaIframe}
-      </div>
-      {/* <div className='metricsContainer'>
-        <div id='metricsblock'>
-          <button id='metricsbutton' onClick={metricsClick}>
-            Detailed Metrics
-          </button>
-          <h5>
-            View information on network traffic, partitions, latency and more
-          </h5>
-        </div>
-        <div id='systemblock'>
-          <button id='systembutton' onClick={systemClick}>
-            System Information
-          </button>
-          <h5>
-            View configuration of your Kafka broker, errors, and specific
-            resource usage
-          </h5>
-        </div>
-      </div> */}
-    </div>
+
+function Dashboard(): JSX.Element {
+
+
+  return (
+    <></>
   );
+}
 }
 
 export default Dashboard;
 
-//dashboard/overview: highlevel overview, key metrics, alerts
-//resource usage: CPU/memory/diskusage, Configuration(config settings for each broker)
-//metrics: network traffic (bytes in/out), partition metrics, replication metrics, latency,
-//system info: configuration info ()
+

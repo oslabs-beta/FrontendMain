@@ -1,45 +1,80 @@
-import "../css/system.css";
-import { useMemo } from "react";
-
-
+import '../css/system.css';
+import { useMemo } from 'react';
 
 function System(): JSX.Element {
+  const grafanaIframe = useMemo(() => {
+    return (
+      <>
+        <div id='active'>
+          <iframe
+            //acctive broker count
+            src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=94'
+            width='450'
+            height='200'
+          ></iframe>
+          <iframe
+            src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=75'
+            width='450'
+            height='200'
+            //active controller count
+          ></iframe>
+        </div>
 
-const grafanaIframe = useMemo(()=>{
+        <div id='memPanels'>
+          <iframe
+            className='frames'
+            src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=100'
+            width='300'
+            height='150'
+            //free memory
+          ></iframe>
+          <iframe
+            className='frames'
+            src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&from=1729047986334&to=1729049786334&theme=dark&panelId=28'
+            width='300'
+            height='150'
+            //total memory
+          ></iframe>
+        </div>
+        <iframe
+          className='frames'
+          src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=58'
+          width='600'
+          height='300'
+          //cpu
+        ></iframe>
+
+        <iframe
+          id='largeframe'
+          className='frames'
+          src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=105'
+          width='900'
+          height='200'
+          //memory pool
+        ></iframe>
+        <iframe
+          className='frames'
+          src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=62'
+          width='450'
+          height='200'
+          //heartbeat reqs
+        ></iframe>
+        <iframe
+          className='frames'
+          src='http://localhost:3001/d-solo/qPkgGHg7k/kafka?orgId=1&theme=dark&panelId=108'
+          width='450'
+          height='200'
+          //error reate
+        ></iframe>
+      </>
+    );
+  }, []);
+
+  //metadata batch size /
   return (
     <>
-      <iframe
-        src="http://localhost:3009/d-solo/Kn5xm-gZk/kafkaoverview?orgId=1&refresh=15s&from=1729005628258&to=1729007428258&theme=dark&panelId=7"
-        width="450"
-        height="200"
-      ></iframe>
-      <iframe
-        src="http://localhost:3009/d-solo/Kn5xm-gZk/kafkaoverview?orgId=1&refresh=15s&from=1729006552347&to=1729008352347&theme=dark&panelId=5"
-        width="450"
-        height="200"
-      ></iframe>
-      <iframe
-        src="http://localhost:3009/d-solo/Kn5xm-gZk/kafkaoverview?orgId=1&refresh=15s&from=1729006740158&to=1729008540158&theme=dark&panelId=64"
-        width="900"
-        height="200"
-      ></iframe>
-      <iframe
-        src="http://localhost:3009/d-solo/Kn5xm-gZk/kafkaoverview?orgId=1&refresh=15s&from=1729006712599&to=1729008512599&panelId=69"
-        width="900"
-        height="200"
-      ></iframe>
+      <div id='systempage'>{grafanaIframe}</div>
     </>
-  );
-}, [])
-
-  
-  return (
-    <div id="systempage">
-      <h1>System Information</h1>
-      <div>
-        {grafanaIframe}
-      </div>
-    </div>
   );
 }
 

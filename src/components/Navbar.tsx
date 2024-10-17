@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import React, { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+//import NavDropdown from "react-bootstrap/NavDropdown";
+//import Button from "react-bootstrap/Button";
+import "../css/navbar.css";
+import { Routes, Route, Link } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import '../css/navbar.css';
-import { Link } from 'react-router-dom';
-
 interface NavProps {
   isSideBarHovered: boolean;
 }
 
 const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
-  const [bodyBgColor, setBodyBgColor] = useState<string>('#1c1c1e');
+  const [bodyBgColor, setBodyBgColor] = useState<string>("#111218");
   const [isToggled, setIsToggled] = useState<boolean>(false);
   const [isSmallerThanLg, setIsSmallerThanLg] = useState(
     window.innerWidth < 1600
@@ -24,8 +26,8 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
 
   const handleModeToggle = () => {
     setIsToggled(!isToggled);
-    setBodyBgColor((prevColor) =>
-      prevColor === '#1c1c1e' ? '#fff' : '#1c1c1e'
+    setBodyBgColor((bodyBgColor) =>
+      bodyBgColor === "#111218" ? "#fff" : "#111218"
     );
   };
 
@@ -148,17 +150,22 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
           </Container>
         </Navbar>
       </div>
-      {/* <div> */}
-      {/* <Routes> */}
-      {/* <Route path='/dash' /> */}
-      {/* <Route path='/about' element={<About />} /> */}
-      {/* <Route path='/prod1' /> */}
-      {/* <Route path='/readme' /> */}
-      {/* <Route path='/config' /> */}
-      {/* <Route path='/profile' /> */}
-      {/* <Route path='/git' /> */}
-      {/* </Routes> */}
-      {/* </div> */}
+      <div>
+        <Routes>
+          {/* <Route
+            path='/dash'
+             element={<Dashboard/>}
+          /> */}
+          <Route element={<ProtectedRoute/>}>
+            <Route path='/about' />
+            {/* <Route path='/prod1' /> */}
+            <Route path='/readme' />
+            <Route path='/config' />
+            <Route path='/profile' />
+            <Route path='/git' />
+          </Route>
+        </Routes>
+      </div>
     </>
   );
 };
