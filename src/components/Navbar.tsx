@@ -95,6 +95,7 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                 >
                   <span>ReadMe</span>
                 </Nav.Link>
+
                 {/* <Nav.Link
                   as={Link}
                   to={'/config'}
@@ -106,6 +107,11 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
 
               {noHamburger && (
                 <>
+                  <img
+                    className='logo'
+                    src='src/assets/steamForge-logo.png'
+                    style={{ height: '50px' }}
+                  />
                   <Navbar.Brand
                     as={Link}
                     to={'/config'}
@@ -146,6 +152,7 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                 </>
               )}
             </Navbar.Collapse>
+
             {!isExpanded && (
               <div className='form-check form-switch mx-4'>
                 <input

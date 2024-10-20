@@ -1,4 +1,4 @@
-
+/* 
 .metrics {
     display: flex;
     flex-wrap: wrap;
@@ -26,4 +26,11 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
+} */
+
+.metrics {
+  display: flex;
+  justify-content: flex-end;
 }
+
+
