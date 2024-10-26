@@ -1,0 +1,17 @@
+.linechart {
+  /* border: 0.5px solid white; */
+  background: linear-gradient(to right, rgb(27, 23, 23), rgb(10, 10, 10));
+  color: white;
+  box-shadow: 3px 3px 15px rgb(0, 0, 0);
+  width: 100%;
+  grid-column: span 3;
+  height: 150px;
+  text-align: center;
+  display: block;
+  opacity: 0.9;
+  transition: transform 0.2s ease;
+}
+
+.linechart:hover {
+  transform: translateY(-2.5px) translateX(-2.5px);
+}
