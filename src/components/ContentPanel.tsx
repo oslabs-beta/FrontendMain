@@ -16,7 +16,9 @@ interface ContentPanelProps {
   setLabelText: React.Dispatch<React.SetStateAction<string>>;
   userInput: string;
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
-  children: React.ReactNode;
+  aiResponse: string;
+  setAiResponse: React.Dispatch<React.SetStateAction<string>>;
+  children?: React.ReactNode;
 }
 
 const ContentPanel: React.FC<ContentPanelProps> = ({
@@ -29,6 +31,8 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
   userInput,
   setUserInput,
   isExpanded,
+  aiResponse,
+  setAiResponse,
   children,
 }) => {
   const location = useLocation();
@@ -39,30 +43,34 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
   };
 
   useEffect(() => {
-    let interval: number | null = null;
+    let interval: NodeJS.Timeout | null = null;
 
     if (isOpenAiWindow) {
       if (inputRef.current) {
         inputRef.current.focus();
       }
 
-      const timeout = setTimeout(() => {
-        interval = startTypingEffect(setLabelText);
+      interval = setTimeout(() => {
+        startTypingEffect(
+          setLabelText,
+          '  Welcome to StreamForge! How can I help you today?'
+        );
       }, 300);
 
       return () => {
-        clearTimeout(timeout);
-        if (interval !== null) {
-          clearInterval(interval);
-        }
+        clearTimeout(interval as NodeJS.Timeout);
       };
-    } else setLabelText('');
+    } else {
+      setLabelText('');
+    }
   }, [isOpenAiWindow, setLabelText]);
 
   const handleKeyPress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' || e.key === 'Return') {
       e.preventDefault();
-      await handleOpenAiCall(userInput);
+      const response: string = await handleOpenAiCall(userInput);
+      console.log(response);
+      startTypingEffect(setAiResponse, `  ${response}`);
       setUserInput('');
     }
   };
@@ -83,7 +91,7 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
           }`}
         >
           <div className='open-icon-container'>
-            <button className='icon' onClick={handleButtonClick}>
+            <button className='slider-icon' onClick={handleButtonClick}>
               <FontAwesomeIcon
                 id={isRotated ? 'arrow' : ''}
                 icon={faAnglesLeft}
@@ -93,7 +101,7 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
           </div>
           {isOpenAiWindow && (
             <div className={`openAI ${isOpenAiWindow ? 'active' : ''}`}>
-              <div className='ai-response'>check</div>
+              <div className='ai-response'>{aiResponse}</div>
               <div className='input-container'>
                 <label htmlFor='promptBox' style={{ color: '#fff' }}>
                   {labelText}

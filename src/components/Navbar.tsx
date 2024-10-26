@@ -161,7 +161,8 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                   role='switch'
                   id='flexSwitchCheck'
                   checked={isToggled}
-                  onClick={handleModeToggle}
+                  onChange={handleModeToggle}
+                  
                 />
               </div>
             )}

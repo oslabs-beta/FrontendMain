@@ -1,24 +1,29 @@
 import NavBar from './Navbar';
 import Form from '../components/Form';
-import Dashboard from './Dashboard';
 import Metrics from './Metrics';
 import System from './System';
 import About from './About';
 import Config from './Config';
 import '../css/navbar.css';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import SidebarMenu from './SidebarMenu';
 import ContentPanel from './ContentPanel';
 import ProtectedRoute from './ProtectedRoute';
+import { DataResponse } from '../components/Metrics';
 
 function App(): JSX.Element {
   const location = useLocation();
+  //used in NavBar
   const [isSideBarHovered, setIsSideBarHovered] = useState<boolean>(false);
+  //used in ContentPanel
   const [isOpenAiWindow, setIsOpenAiWindow] = useState<boolean>(false);
   const [isRotated, setIsRotated] = useState<boolean>(false);
   const [labelText, setLabelText] = useState<string>('');
   const [userInput, setUserInput] = useState<string>('');
+  const [aiResponse, setAiResponse] = useState<string>('');
+  //used in Metrics
+  const [data, setData] = useState<DataResponse | null>(null);
 
   const handleMouseEnter = (): void => {
     setIsSideBarHovered(true);
@@ -40,12 +45,9 @@ function App(): JSX.Element {
         />
       )}
       <Routes>
-        {/* The / route will be outside of the ContentPanel */}
         <Route path='/' element={<Form />} />
-
-        {/* The rest of the routes will be inside the ContentPanel */}
         <Route
-          path='*' // Catch all other paths
+          // path='/*'
           element={
             <ContentPanel
               isExpanded={isSideBarHovered}
@@ -57,19 +59,25 @@ function App(): JSX.Element {
               setLabelText={setLabelText}
               userInput={userInput}
               setUserInput={setUserInput}
+              aiResponse={aiResponse}
+              setAiResponse={setAiResponse}
             >
-              <Routes>
-                <Route element={<ProtectedRoute />}>
-                  <Route path='/dash' element={<Dashboard />} />
-                  <Route path='/system' element={<System />} />
-                  <Route path='/metrics' element={<Metrics />} />
-                  <Route path='/about' element={<About />} />
-                  <Route path='/config' element={<Config />} />
-                </Route>
-              </Routes>
+              <Outlet />
             </ContentPanel>
           }
-        />
+        >
+          <Route element={<ProtectedRoute />}>
+            <Route path='/system' element={<System />} />
+            <Route
+              path='/metrics'
+              element={<Metrics data={data} setData={setData} />}
+            />
+            <Route path='/about' element={<About />} />
+            <Route path='/config' element={<Config />} />
+          </Route>
+        </Route>
+
+        <Route path='*' element={<Form />} />
       </Routes>
     </div>
   );

@@ -1,19 +1,21 @@
 export const startTypingEffect = (
-  setLabelText: React.Dispatch<React.SetStateAction<string>>
+  setText: React.Dispatch<React.SetStateAction<string>>,
+  text: string
 ): number => {
-  const text = '  Welcome to StreamForge! How can I help you today?';
   let index = 0;
 
-  setLabelText('');
-
-  const interval = window.setInterval(() => {
+  const updateText = () => {
     if (index < text.length - 1) {
-      setLabelText((prev) => prev + text[index]);
+      setText((prev) => prev + text[index]);
       index++;
     } else {
       clearInterval(interval);
     }
-  }, 30);
+  };
+
+  setText(''); // Reset text at the beginning
+
+  const interval = window.setInterval(updateText, 30);
 
   return interval;
 };

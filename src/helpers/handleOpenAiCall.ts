@@ -1,4 +1,4 @@
-export const handleOpenAiCall = async (userInput: string): Promise<void> => {
+export const handleOpenAiCall = async (userInput: string): Promise<string> => {
   try {
     const response = await fetch('/api/openAi', {
       method: 'POST',
@@ -15,8 +15,9 @@ export const handleOpenAiCall = async (userInput: string): Promise<void> => {
     }
 
     const data = await response.json();
-    console.log('Data from server:', data);
+    return data.response;
   } catch (error) {
     console.log('Error connecting to the server', error);
+    return '';
   }
 };

@@ -17,7 +17,7 @@
 }
 
 .content-panel.expanded {
-  margin-left: 85px;
+  margin-left: 130px;
 }
 
 .content-panel.active {
@@ -129,7 +129,7 @@ label {
   width: 15px;
 }
 
-.icon {
+.slider-icon {
   padding: 0;
   margin: 0;
   height: 100px;

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import OAuth from './OAuth';
 import { motion } from 'framer-motion';
+
 import '../css/App.css';
 import AccountCreatedModal from './AccountCreatedPopup';
 import { handleLoginClick } from '../helpers/handleLoginClick';
@@ -30,28 +31,7 @@ function Form(): JSX.Element {
   const [isPwdShown, setIsPwdShown] = useState<boolean>(false);
   const [isSignInEmailNotValid, setIsSignInEmailNotValid] =
     useState<boolean>(false);
-  // const [isLoading, setIsloading] = useState<boolean>(true);
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   const checkSession = async () => {
-  //     try {
-  //       const response = await fetch('/api/sessionUp', {
-  //         credentials: 'include',
-  //       })
-  //       console.log(response,"response of checking session valid in root page");
-  //       if(response.ok) {
-  //         //if session is still valid, navigate to Dashboard page
-  //         navigate('/config', {replace:true})
-  //       }
-  //     } catch(error) {
-  //       console.log(error,"fail in checking session in root page");
-  //     } finally{
-  //       setIsloading(false);
-  //     }
-  //   }
-
-  //   checkSession();
-  // }, [navigate]);
   const handleSignUpSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     email: string,
@@ -302,11 +282,13 @@ function Form(): JSX.Element {
                 isSignupPage ? 'active' : ''
               }`}
             >
-              <img
-                className='logo'
-                src='src/assets/steamForge-logo.png'
-                style={{ height: '250px' }}
-              />
+              {
+                <img
+                  className='logo'
+                  src='src/assets/steamForge-logo.png'
+                  style={{ height: '250px' }}
+                />
+              }
               <p id='name'>StreamForge</p>
               <motion.button
                 className='hidden'
