@@ -5,7 +5,7 @@ import {
 } from '../helpers/queries';
 import { DataResponse, Metric } from '../components/metricsDisplayRender/renderMetrics';
 
-const templateUrl = 'http://localhost:9090/api/v1/query?query=kafka';
+const templateUrl = "http://3.87.201.229:9090/api/v1/query?query=kafka";
 
 const queryMap = {
   systemQueries,
