@@ -87,7 +87,7 @@ function Form(): JSX.Element  {
       .then(result => result.json())
       .then((result) => {
            if(result.success === true) {
-            navigate('/dash');
+            navigate('/config');
             } else {
               if(result.message === "user authentication failed") {
                 setSignInNotPwdConfirmed(true);
