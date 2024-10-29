@@ -46,69 +46,9 @@ Features an AI-powered chat that helps users with queries and guides them throug
 
 1. Initial setup instructions
 2. Installation/configuration
-```
-# code block
-
-```
-3. Running the application 
-
-4. Usage guidelines (how to use / gifs how to use main features )
-
-5. Links to other documentation (docker docs, AWS ec2 , prometheus etc)
-
-
-## Collaborate with StreamForge
-
-StreamForge is an open-source product, welcoming collaboration from developers who want to contribute to advancing Kafka monitoring. Any contributions are always appreciated!
-
-* Fork the repository
-* Create your feature branch
-* Create a pull request detailing the changes you would like to introduce
-
-
-
-
-
-## License Information
-
-This project is licensed under the MIT license- see the [LICENSE](./LICENSE) file for details
-
-## Contributer Information
-
-
-<div align="center" style="display: flex; justify-content: center; gap: 20px;">
-<div align="center">
-    <h6>Qianlin Zhang</h6>
-    <img src="src/assets/qianlin-hs.jpg" alt="Qianlin Zhang Headshot" width="120" height="120"/><br>
-    <a href="https://github.com/QianQian1997">GitHub</a> |
-    <a href="https://www.linkedin.com/in/qianlin-zhang-381972191/">LinkedIn</a>
-</div>
-<div align="center">
-    <h6>David Schweitzer</h6>
-    <img src="src/assets/david-hs.png" alt="David Headshot" width="120" height="120"/><br>
-    <a href="https://github.com/DSchweitzer314">GitHub</a> |
-    <a href="https://www.linkedin.com/in/david-schweitzer-b34768333/">LinkedIn</a>
-</div>
-<div align="center">
-    <h6>Chenao Wang</h6>
-    <img src="src/assets/chenao-hs.jpeg" alt="Chenao Headshot" width="120" height="120"/><br>
-    <a href="https://github.com/chenaowang-debug">GitHub</a> |
-    <a href="https://www.linkedin.com/in/chenao-wang-ab3b84ab/">LinkedIn</a>
-</div>
-<div align="center">
-    <h6>Allie Itczak</h6>
-    <img src="src/assets/allie-hs.png" alt="Allie Headshot" width="130" height="120"/><br>
-    <a href="https://github.com/aitczak">GitHub</a> |
-    <a href="https://www.linkedin.com/in/allieitczak/">LinkedIn</a>
-</div>
-</div>
-# FrontendMain
-Main branch for production on the frontend
-
-# DAY 1 FRONTEND
-
+  First make sure you have a prometheus service running for your Kafka cluster.
+If you are using amazon's MSK(Managed Streaming for Kafka) you can set up a ec2 instance to accomplish this
 # HOW TO CONNECT YOUR MSK CLUSTER TO PROMETHEUS
-
 # Set up an ec2 service running prometheus
 Create a ec2 instance in the same vpc as your desired MSK cluster
 <img src="./src/assets/Ec2.gif"/>
@@ -193,3 +133,56 @@ Now we can check the status of the service using
 
 If you want to see the metrics you are scraping from your broker simply go to the public address of your ec2 instance on port 9090
 {YOUR_EC2_INSTANCE_PUBLICIPv4}:9090(You will use this address later to connect your prometheus to our web application.)
+
+3. Running the application 
+
+4. Usage guidelines (how to use / gifs how to use main features )
+
+5. Links to other documentation (docker docs, AWS ec2 , prometheus etc)
+
+
+## Collaborate with StreamForge
+
+StreamForge is an open-source product, welcoming collaboration from developers who want to contribute to advancing Kafka monitoring. Any contributions are always appreciated!
+
+* Fork the repository
+* Create your feature branch
+* Create a pull request detailing the changes you would like to introduce
+
+
+
+
+
+## License Information
+
+This project is licensed under the MIT license- see the [LICENSE](./LICENSE) file for details
+
+## Contributer Information
+
+
+<div align="center" style="display: flex; justify-content: center; gap: 20px;">
+<div align="center">
+    <h6>Qianlin Zhang</h6>
+    <img src="src/assets/qianlin-hs.jpg" alt="Qianlin Zhang Headshot" width="120" height="120"/><br>
+    <a href="https://github.com/QianQian1997">GitHub</a> |
+    <a href="https://www.linkedin.com/in/qianlin-zhang-381972191/">LinkedIn</a>
+</div>
+<div align="center">
+    <h6>David Schweitzer</h6>
+    <img src="src/assets/david-hs.png" alt="David Headshot" width="120" height="120"/><br>
+    <a href="https://github.com/DSchweitzer314">GitHub</a> |
+    <a href="https://www.linkedin.com/in/david-schweitzer-b34768333/">LinkedIn</a>
+</div>
+<div align="center">
+    <h6>Chenao Wang</h6>
+    <img src="src/assets/chenao-hs.jpeg" alt="Chenao Headshot" width="120" height="120"/><br>
+    <a href="https://github.com/chenaowang-debug">GitHub</a> |
+    <a href="https://www.linkedin.com/in/chenao-wang-ab3b84ab/">LinkedIn</a>
+</div>
+<div align="center">
+    <h6>Allie Itczak</h6>
+    <img src="src/assets/allie-hs.png" alt="Allie Headshot" width="130" height="120"/><br>
+    <a href="https://github.com/aitczak">GitHub</a> |
+    <a href="https://www.linkedin.com/in/allieitczak/">LinkedIn</a>
+</div>
+</div>
