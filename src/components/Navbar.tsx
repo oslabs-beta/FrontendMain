@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import React, { useEffect, useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 //import NavDropdown from "react-bootstrap/NavDropdown";
 //import Button from "react-bootstrap/Button";
 import "../css/navbar.css";
@@ -14,19 +14,19 @@ interface NavProps {
 }
 
 const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
-  const [bodyBgColor, setBodyBgColor] = useState<string>("#111218");
+  const [bodyBgColor, setBodyBgColor] = useState<string>('#111218');
   const [isToggled, setIsToggled] = useState<boolean>(false);
   const [isSmallerThanLg, setIsSmallerThanLg] = useState(
     window.innerWidth < 1600
   );
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  const noHamburger = window.innerWidth >= 1200;
+  const noHamburger = window.innerWidth >= 1000;
 
   const handleModeToggle = () => {
     setIsToggled(!isToggled);
     setBodyBgColor((bodyBgColor) =>
-      bodyBgColor === "#111218" ? "#fff" : "#111218"
+      bodyBgColor === '#111218' ? '#fff' : '#111218'
     );
   };
 
@@ -84,12 +84,17 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                   <span>About</span>
                 </Nav.Link>
                 <Nav.Link
-                  as={Link}
-                  to={'/readme'}
+                  onClick={() =>
+                    window.open(
+                      'https://github.com/oslabs-beta/FrontendMain/blob/dev/README.md',
+                      '_blank'
+                    )
+                  }
                   className='bg-btnPurple me-2 ms-2 d-flex flex-column justify-content-center'
                 >
                   <span>ReadMe</span>
                 </Nav.Link>
+
                 {/* <Nav.Link
                   as={Link}
                   to={'/config'}
@@ -101,6 +106,11 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
 
               {noHamburger && (
                 <>
+                  <img
+                    className='logo'
+                    src='src/assets/steamForge-logo.png'
+                    style={{ height: '50px' }}
+                  />
                   <Navbar.Brand
                     as={Link}
                     to={'/config'}
@@ -131,9 +141,17 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                       />
                     </Nav.Link>
                   </Nav>
+                  <Nav.Link
+                    as={Link}
+                    to={'/'}
+                    className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
+                  >
+                    Logout
+                  </Nav.Link>
                 </>
               )}
             </Navbar.Collapse>
+
             {!isExpanded && (
               <div className='form-check form-switch mx-4'>
                 <input
@@ -142,7 +160,8 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                   role='switch'
                   id='flexSwitchCheck'
                   checked={isToggled}
-                  onClick={handleModeToggle}
+                  onChange={handleModeToggle}
+                  
                 />
               </div>
             )}

@@ -1,15 +1,49 @@
-
-
-#systempage{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 150px;
-    margin-bottom: 150px;
-    padding: 100px;
+.system {
+  /* border: 0.5px solid white; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
 }
 
+.queryDisplay-container,
+.queryEditor-container {
+  color: white;
+  box-shadow: 3px 3px 5px rgb(0, 0, 0);
+  background-color: #1f1f1f82;
+  margin: 21px;
+  border-radius: 7px;
+}
 
+.queryEditor-editor,
+.queryEditor-log,
+.queryDisplay-box {
+  /* border: 0.5px solid white; */
+  box-shadow: 3px 3px 5px rgb(0, 0, 0);
+  background-color: #3e3e3e3f;
+  margin: 40px;
+  border-radius: 7px;
+}
+
+.queryEditor-editor {
+  height: 20%;
+}
+
+.queryEditor-log {
+  height: 69%;
+}
+
+.queryDisplay-box {
+  height: 92.3%;
+}
+
+.queryEditor-editor input {
+  border: 0.5px solid white;
+  width: 85%;
+  margin: 50px;
+  height: 30px;
+  border-radius: 7px;
+}
+/* 
 .frames {
   border: 2px solid #110303;
   border-radius: 4px;
@@ -19,9 +53,7 @@
 #memPanels{
  display: flex;
  flex-direction: column;
-}
-
-
+} */
 
 /* #00a4ef
 #0077b3

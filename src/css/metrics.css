@@ -1,4 +1,4 @@
-
+/* 
 .metrics {
     display: flex;
     flex-wrap: wrap;
@@ -26,4 +26,68 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
+} */
+
+.metrics {
+  /* border: 0.5px solid white; */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1px;
+  width: 100%;
+}
+
+.numberBox-blue {
+  background: linear-gradient(to right, rgb(60, 102, 251), rgb(17, 0, 255));
+}
+
+.numberBox-orange {
+  background: linear-gradient(to right, rgb(253, 164, 67), rgb(255, 111, 0));
+}
+
+.numberBox-pink {
+  background: linear-gradient(to right, rgb(251, 75, 230), rgb(255, 0, 225));
+}
+
+.numberBox-blue,
+.numberBox-orange,
+.numberBox-pink {
+  /* border: 0.5px solid white; */
+  color: #fff;
+  height: 150px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.2s ease;
+  box-shadow: 3px 3px 15px rgb(0, 0, 0);
+}
+
+.numberBox-blue:hover,
+.numberBox-orange:hover,
+.numberBox-pink:hover {
+  transform: translateY(-2.5px) translateX(-2.5px);
+}
+
+.numberBox-value {
+  /* border: 0.5px solid white; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 100%;
+  font-size: 60px;
+  padding-top: 18px;
+}
+
+.numberBox-info {
+  /* border: 0.5px solid white; */
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 7px;
+  width: 100%;
+  padding-left: 10px;
+  margin-bottom: 30px;
+  overflow-wrap: break-word;
 }

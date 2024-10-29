@@ -21,11 +21,16 @@ function Form(): JSX.Element  {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [isSignupPage, setIsSignupPage] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
-  const [pwdSignInNotConfirmed, setSignInNotPwdConfirmed] = useState<boolean>(false);
-  const [pwdSignUpNotConfirmed, setSignUpNotPwdConfirmed] = useState<boolean>(false);
-  const [emailSignInIsNotValid, setSignInEmailIsNotValid] = useState<boolean>(false);
-  const [emailSignUpIsNotValid, setSignUpEmailIsNotValid] = useState<boolean>(false);
-  const [isSigupEmailPwdNotValid, setIsSigupEmailPwdNotValid] = useState<boolean>(false);
+  const [pwdSignInNotConfirmed, setSignInNotPwdConfirmed] =
+    useState<boolean>(false);
+  const [pwdSignUpNotConfirmed, setSignUpNotPwdConfirmed] =
+    useState<boolean>(false);
+  const [emailSignInIsNotValid, setSignInEmailIsNotValid] =
+    useState<boolean>(false);
+  const [emailSignUpIsNotValid, setSignUpEmailIsNotValid] =
+    useState<boolean>(false);
+  const [isSigupEmailPwdNotValid, setIsSigupEmailPwdNotValid] =
+    useState<boolean>(false);
   const [isPwdShown, setIsPwdShown] = useState<boolean>(false);
   const [isSignInEmailNotValid, setIsSignInEmailNotValid] = useState<boolean>(false);
   const gitOAuthCalledRef = useRef<boolean>(false);
@@ -163,42 +168,44 @@ function Form(): JSX.Element  {
     password: string,
     confirmPassword: string
   ): Promise<void> => {
-     
     e.preventDefault();
     setShowPopup(false);
     setSignUpNotPwdConfirmed(false);
     setSignUpEmailIsNotValid(false);
     setIsSigupEmailPwdNotValid(false);
-    if(validateEmail(email)) {
+    if (validateEmail(email)) {
       try {
         const response = await fetch('/api/signup', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, password: password, confirmPassword: confirmPassword }),
-        })
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+          }),
+        });
         console.log(response);
-        if(response.ok){
+        if (response.ok) {
           console.log('successful signup');
           setShowPopup(true);
         } else {
           const errorData = await response.json();
-          if(errorData === "Passwords given do not match") {
+          if (errorData === 'Passwords given do not match') {
             setSignUpNotPwdConfirmed(true);
           }
-          if(errorData.err === 'Could not create account') {
+          if (errorData.err === 'Could not create account') {
             setIsSigupEmailPwdNotValid(true);
           }
         }
       } catch (error) {
-        console.log('signup failed',error);
-      }  
+        console.log('signup failed', error);
+      }
     } else {
       setSignUpEmailIsNotValid(true);
     }
-    
   };
 
-  const validateEmail:(email: string) => boolean = (email) => {
+  const validateEmail: (email: string) => boolean = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -206,37 +213,32 @@ function Form(): JSX.Element  {
   const handleSigninSubmit = (
     e: React.FormEvent<HTMLFormElement>,
     email: string,
-    password: string,
+    password: string
   ): void => {
     e.preventDefault();
     setSignInNotPwdConfirmed(false);
     setSignInEmailIsNotValid(false);
     setIsSignInEmailNotValid(false);
-    if(validateEmail(email)) {
+    if (validateEmail(email)) {
       fetch('/api/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: password }),
       })
-      .then(result => result.json())
-      .then((result) => {
-       
-           if(result.success === true) {
-
+        .then((result) => result.json())
+        .then((result) => {
+          if (result.success === true) {
             navigate('/config');
-
-            } else {
-              if(result.message === "user authentication failed") {
-                setSignInNotPwdConfirmed(true);
-              }
+          } else {
+            if (result.message === 'user authentication failed') {
+              setSignInNotPwdConfirmed(true);
             }
-            if(result.err === "Error in verifying user") {
-              setIsSignInEmailNotValid(true);
-            }
-           })
-      .catch((error) => 
-        console.log(error, "ERROR in SIGNIN")
-      );
+          }
+          if (result.err === 'Error in verifying user') {
+            setIsSignInEmailNotValid(true);
+          }
+        })
+        .catch((error) => console.log(error, 'ERROR in SIGNIN'));
     } else {
       setSignInEmailIsNotValid(true);
     }
@@ -342,42 +344,54 @@ function Form(): JSX.Element  {
             </form>
           </div>
 
-          {/* toggle */}
-          <div className="toggle-container">
-            <div className="toggle">
-              <div
-                className={`toggle-panel toggle-left ${
-                  isSignupPage ? "" : "active"
-                }`}
+        {/* toggle */}
+        <div className='toggle-container'>
+          <div className='toggle'>
+            <div
+              className={`toggle-panel toggle-left ${
+                isSignupPage ? '' : 'active'
+              }`}
+            >
+              <img
+                className='logo'
+                src='src/assets/steamForge-logo.png'
+                style={{ height: '250px' }}
+              />
+              <p>Get started with</p> <span id='name'> StreamForge</span>
+              <motion.button
+                className='hidden'
+                onClick={() => handleLoginClick(setIsSignupPage)}
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: 'spring', stiffness: 300 }}
               >
-                <p>Get started with</p> <span id="name"> StreamForge</span>
-                <motion.button
-                  className="hidden"
-                  onClick={() => handleLoginClick(setIsSignupPage)}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  Sign In
-                </motion.button>
-              </div>
-              <div
-                className={`toggle-panel toggle-right ${
-                  isSignupPage ? "active" : ""
-                }`}
+                Sign In
+              </motion.button>
+            </div>
+            <div
+              className={`toggle-panel toggle-right ${
+                isSignupPage ? 'active' : ''
+              }`}
+            >
+              {
+                <img
+                  className='logo'
+                  src='src/assets/steamForge-logo.png'
+                  style={{ height: '250px' }}
+                />
+              }
+              <p id='name'>StreamForge</p>
+              <motion.button
+                className='hidden'
+                onClick={() => handleSignupClick(setIsSignupPage)}
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: 'spring', stiffness: 300 }}
               >
-                <p id="name">StreamForge</p>
-                <motion.button
-                  className="hidden"
-                  onClick={() => handleSignupClick(setIsSignupPage)}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  Sign Up
-                </motion.button>
-              </div>
+                Sign Up
+              </motion.button>
             </div>
           </div>
         </div>
+      </div>
     </>
   );
 }
