@@ -27,7 +27,7 @@ const SidebarMenu: React.FC<SideBarProps> = ({
     'Metrics': BarChart,
   };
   const endpointMaps: endpointMap = {
-    'Overview': '/dash',
+    'Overview': '/config',
     'System': '/system',
     'Metrics': '/metrics',
   };
