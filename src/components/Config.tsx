@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../css/config.css';
+import { teamMembers } from '../assets/teamInfo';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -11,14 +12,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faDocker } from '@fortawesome/free-brands-svg-icons';
 
-interface TeamMember {
-  id: string;
-  name: string;
-  image: string;
-  github: string;
-  linkedin: string;
-}
-
 const Config: React.FC = () => {
   const [showDescription, setShowDescription] = useState(false);
   const [textColor, setTextColor] = useState<string>('');
@@ -26,65 +19,41 @@ const Config: React.FC = () => {
   const checkBgColor = (): string => {
     return window.getComputedStyle(document.body).backgroundColor;
   };
-  
+
   useEffect(() => {
     const handleBgColorChange = () => {
       const newBgColor = checkBgColor();
       setBgColor(newBgColor);
-      if(newBgColor === "rgb(17, 18, 24)" || newBgColor==="rgb(28, 28, 30)") {
-        setTextColor("white");
+      if (
+        newBgColor === 'rgb(17, 18, 24)' ||
+        newBgColor === 'rgb(28, 28, 30)'
+      ) {
+        setTextColor('white');
       } else {
-        setTextColor("black");
+        setTextColor('black');
       }
-    }
+    };
     // Create a new MutationObserver instance that listens for changes to the background color.
     const observer = new MutationObserver(handleBgColorChange);
     // Start observing the body element, specifically watching for changes to the style attribute.
-    observer.observe(document.body, {attributes:true, attributeFilter: ['style']});
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['style'],
+    });
     // Immediately call handleColorChange once to fetch the initial background color when the component mounts.
     handleBgColorChange();
     // When the component unmounts, stop the MutationObserver to prevent memory leaks.
     return () => observer.disconnect();
-   }, []);
+  }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     setShowDescription(true);
-    }, []);
+  }, []);
 
-    const teamMembers: TeamMember[] = [
-      {
-        id: 'allie',
-        name: 'Allie Itczak',
-        image: 'src/assets/allie-hs.png',
-        github: 'https://github.com/aitczak',
-        linkedin: 'https://www.linkedin.com/in/allieitczak/',
-      },
-      {
-        id: 'qianlin',
-        name: 'Qianlin Zhang',
-        image: 'src/assets/qianlin-hs.jpg',
-        github: 'https://github.com/QianQian1997',
-        linkedin: 'https://www.linkedin.com/in/qianlin-zhang-381972191/',
-      },
-      {
-        id: 'david',
-        name: 'David Schweitzer',
-        image: 'src/assets/david-hs.png',
-        github: 'https://github.com/DSchweitzer314',
-        linkedin: 'https://www.linkedin.com/in/david-schweitzer-b34768333/',
-      },
-      {
-        id: 'chenao',
-        name: 'Chenao Wang',
-        image: 'src/assets/chenao-hs.jpeg',
-        github: 'https://github.com/chenaowang-debug',
-        linkedin: 'https://www.linkedin.com/in/chenao-wang-ab3b84ab/',
-      },
-   ];
   return (
     <>
       <div>
-        <div className='config-content' style={{color:`${textColor}`}}>
+        <div className='config-content' style={{ color: `${textColor}` }}>
           <div className='headline'>
             <h1 style={{ fontSize: '55px' }}>
               <p style={{ fontSize: '30px' }}>Spin up</p>
