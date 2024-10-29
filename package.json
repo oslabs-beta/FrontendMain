@@ -18,6 +18,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "framer-motion": "^11.11.8",
+    "lodash": "^4.17.21",
     "react-bootstrap": "^2.10.5",
     "react-bootstrap-icons": "^1.11.4",
     "react-dom": "^18.3.1",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
+    "@types/lodash": "^4.17.12",
     "@types/node": "^22.7.5",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",

@@ -11,7 +11,7 @@ import { useState } from 'react';
 import SidebarMenu from './SidebarMenu';
 import ContentPanel from './ContentPanel';
 import ProtectedRoute from "./ProtectedRoute";
-
+import GoogleRouteCallback from './googleRoute';
 
  
 function App(): JSX.Element {
@@ -37,28 +37,21 @@ function App(): JSX.Element {
         />
       )}
       <Routes>
-  {/* The / route will be outside of the ContentPanel */}
-  <Route path='/' element={<Form />} />
-
-  {/* The rest of the routes will be inside the ContentPanel */}
-  <Route 
-    path='*' // Catch all other paths
-    element={
-      <ContentPanel isExpanded={isSideBarHovered}>
-        <Routes>
-          <Route element={<ProtectedRoute/>}>
-            <Route path='/dash' element={<Dashboard />} />
-            <Route path='/system' element={<System />} />
-            <Route path='/metrics' element={<Metrics />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/config' element={<Config />} />
+        {/* The / route will be outside of the ContentPanel */}
+        <Route path='/' element={<Form />} />
+        <Route path='/oauth/google' element={<GoogleRouteCallback/>}/>
+        {/* The rest of the routes will be inside the ContentPanel */}
+        <Route element={<ProtectedRoute />}>
+          <Route element={<ContentPanel isExpanded={isSideBarHovered} />}>
+            <Route path="/dash" element={<Dashboard />} />
+            <Route path="/system" element={<System />} />
+            <Route path="/metrics" element={<Metrics />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/config" element={<Config />} />
           </Route>
-        </Routes>
-      </ContentPanel>
-    } 
-  />
-</Routes>
-      
+        </Route>
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+      </Routes>
     </div>
   );
 }

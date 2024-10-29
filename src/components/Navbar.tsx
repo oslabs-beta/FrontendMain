@@ -6,7 +6,6 @@ import Navbar from "react-bootstrap/Navbar";
 //import Button from "react-bootstrap/Button";
 import "../css/navbar.css";
 import { Routes, Route, Link } from "react-router-dom";
-import ProtectedRoute from "./ProtectedRoute";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -156,14 +155,11 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
             path='/dash'
              element={<Dashboard/>}
           /> */}
-          <Route element={<ProtectedRoute/>}>
             <Route path='/about' />
-            {/* <Route path='/prod1' /> */}
             <Route path='/readme' />
             <Route path='/config' />
             <Route path='/profile' />
             <Route path='/git' />
-          </Route>
         </Routes>
       </div>
     </>

@@ -1,18 +1,16 @@
 import React from 'react';
 import '../css/contentPanel.css';
-
+import { Outlet } from 'react-router-dom';
 interface ContentPanelProps {
   isExpanded: boolean;
-  children: React.ReactNode;
 }
 
 const ContentPanel: React.FC<ContentPanelProps> = ({
-  isExpanded,
-  children,
+  isExpanded
 }) => {
   return (
     <div className={`content-panel ${isExpanded ? 'expanded' : ''}`}>
-      {children}
+      <Outlet/>
     </div>
   );
 };
