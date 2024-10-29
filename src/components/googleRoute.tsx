@@ -1,22 +1,16 @@
-import React,{ useEffect, useRef } from "react";
+import React,{ useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { useGettingContext } from "./AuthContext";
 const API_URL = import.meta.env.VITE_API_URL;
+export const clearTokens = () => {
+  localStorage.removeItem('googleAccessToken');
+  localStorage.removeItem('googleRefreshToken');
+  localStorage.removeItem('googleAccessTokenExpireTime');
+};
+
 const GoogleRouteCallback: React.FC = ()  => {
   const navigate = useNavigate();
-  const {setIsGoogleLoginFailed} = useGettingContext();
-  const intervalId = useRef<NodeJS.Timeout | null>(null);
-  const startTokenCheckInterval = () => {
-    intervalId.current = setInterval(async () => {
-      try {
-        console.log('Checking token...');
-        await handleTokenValidation(); //  call handleTokenValidation
-      } catch(error) {
-        console.log(error,"error in calling handleTokenValid");
-      }
-      
-    }, 5 * 60 * 1000);  //check every 5 minutes
-  };
+  const {setIsGoogleLoginFailed,setLoginGateway,clearTokenCheckInterval, startTokenCheckInterval} = useGettingContext();
 
   const handleTokenValidation = async () => {
     const googleAccessToken = localStorage.getItem("googleAccessToken");
@@ -30,18 +24,24 @@ const GoogleRouteCallback: React.FC = ()  => {
           //promise's value is false, accessToken is no longer valid, send back to login page;
           console.log("accessToken in localStorage is invalid or expired, go back to login page");
           //remove googleAccessToken if invalid
-          localStorage.removeItem("googleAccessToken");
+          clearTokens();
+          setLoginGateway("standard");
+          clearTokenCheckInterval();
           navigate('/', {replace:true});
         } else {
           console.log("accessToken in localStorage is valid, transiting to target page");
         }
       }).catch(error => {
         console.log("Error during token validation:", error);
-        localStorage.removeItem("googleAccessToken");
+        clearTokens();
+        clearTokenCheckInterval();
+        setLoginGateway("standard");
         navigate('/', { replace: true });
       })
     } else {
       console.log("No accessToken in localStorage, go back to login page");
+      setLoginGateway("standard");
+      clearTokenCheckInterval();
       navigate('/', { replace: true });
     }
   };
@@ -62,6 +62,9 @@ const GoogleRouteCallback: React.FC = ()  => {
       if(!response.ok) {
         console.log("fail to get access token from backend");
         setIsGoogleLoginFailed(true);
+        clearTokens();
+        clearTokenCheckInterval();
+        setLoginGateway("standard");
         navigate('/', {replace:true});
         return null;
       }
@@ -79,8 +82,11 @@ const GoogleRouteCallback: React.FC = ()  => {
       //if type is refresh, return renewed accessToken to checkAccessTokenValidation function
       return googleToken.access_token;
     } catch(error){
-      setIsGoogleLoginFailed(true);
       console.log(error,"fail to fetch access Token");
+      setIsGoogleLoginFailed(true);
+      clearTokens();
+      clearTokenCheckInterval();
+      setLoginGateway("standard");
       navigate('/config', {replace: true});
       return null;
     }
@@ -104,6 +110,9 @@ const GoogleRouteCallback: React.FC = ()  => {
       return true;
     } else {
       console.log("fail to refresh accessToken");
+      clearTokens();
+      clearTokenCheckInterval();
+      setLoginGateway("standard");
       return false
     }
   };
@@ -120,10 +129,16 @@ const GoogleRouteCallback: React.FC = ()  => {
       //access token is invalid, refresh access token
       if(!response.ok) {
         console.log("token not valid");
+        clearTokens();
+        clearTokenCheckInterval();
+        setLoginGateway("standard");
         return refreshToken();
       }
       return true;
     } catch(error) {
+      clearTokens();
+      clearTokenCheckInterval();
+      setLoginGateway("standard");
       console.log(error, "fail to validate accessToken");
       return false;
     }
@@ -139,6 +154,9 @@ const GoogleRouteCallback: React.FC = ()  => {
     if(stateInUrl !== stateStored) {
       console.log('Potential CSRF attack.');
       navigate('/', { replace: true });
+      clearTokens();
+      clearTokenCheckInterval();
+      setLoginGateway("standard");
       setIsGoogleLoginFailed(true);
       return;
     }
@@ -146,12 +164,12 @@ const GoogleRouteCallback: React.FC = ()  => {
     if(code) {
       //no accessToken in localStorage but can get code from URL to get accessToken from backend
       getGoogleAccessToken("authorization_code", code).then(() =>{
-        startTokenCheckInterval();
+        startTokenCheckInterval(handleTokenValidation);
       } );
     } else {
       //check if existing accessToken in localStorage is valid or not
       handleTokenValidation().then(() => {
-        startTokenCheckInterval();
+        startTokenCheckInterval(handleTokenValidation);
       });
       console.log("no code sent back from URL");
     }

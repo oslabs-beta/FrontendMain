@@ -9,10 +9,16 @@ import { handleSignupClick } from "../helpers/handleSignupClick";
 import { useNavigate } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {useGettingContext, loginTypes} from "./AuthContext";
-const github_clientID = import.meta.env.REACT_GITHUB_CLIENTID;
+const github_clientID = import.meta.env.VITE_GITHUB_CLIENTID;
 const google_clientID = import.meta.env.VITE_GOOGLE_CLIENTID;
 const API_URL = import.meta.env.VITE_API_URL;
 const google_redirect_uri = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
+export const LogOutGithub = () => {
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('githubJwtToken');
+  localStorage.removeItem('githubRefreshJwtToken');
+};
+
 function Form(): JSX.Element  {
   const [signInEmail, setSignInEmail] = useState<string>("");
   const [signInPassword, setSignInPassword] = useState<string>("");
@@ -34,8 +40,7 @@ function Form(): JSX.Element  {
   const [isPwdShown, setIsPwdShown] = useState<boolean>(false);
   const [isSignInEmailNotValid, setIsSignInEmailNotValid] = useState<boolean>(false);
   const gitOAuthCalledRef = useRef<boolean>(false);
-  const [isGithubLoginFailed, setGithubLoginFailed] = useState<boolean>(false);
-  const {setLoginGateway, isGoogleLoginFailed} = useGettingContext();
+  const {setLoginGateway, isGoogleLoginFailed, setGithubLoginFailed, isGithubLoginFailed} = useGettingContext();
   // const [isLoading, setIsloading] = useState<boolean>(true);
   const navigate = useNavigate();
   const loginWithGithub = ():void => {
@@ -63,6 +68,7 @@ function Form(): JSX.Element  {
     //redirect to google login page
     window.location.assign(googleAuthUrl);
   };
+
   //since we used <OAuth> twice in root page, this useEffect can only be implemented in root page instead of OAuth component to avoid duplicate API calls
   useEffect(() => {
     const queryString = window.location.search;
@@ -87,9 +93,8 @@ function Form(): JSX.Element  {
           console.log(error,"error in getting accessToken from frontend");
         })
     }
-    
   }, []);
-  //
+  
   const getUserData = ():void => {
     setGithubLoginFailed(false);
     fetch(`${API_URL}/getUserData`, {
@@ -113,18 +118,16 @@ function Form(): JSX.Element  {
         navigate('/config', {replace: true});
       } else {
         //fail to get userData back means your accessToken is no longer valid, remove everything in localStorage and login again
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('githubJwtToken');
-        localStorage.removeItem('githubRefreshJwtToken');
+        LogOutGithub();
         setGithubLoginFailed(true);
+        setLoginGateway("standard");
         console.log("fail to get user data or getting jwt");
       }
     })
     .catch(error => {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('githubJwtToken');
-      localStorage.removeItem('githubRefreshJwtToken');
+      LogOutGithub();
       setGithubLoginFailed(true);
+      setLoginGateway("standard");
       console.log(error,'error in getting user data front end');
     })
   };

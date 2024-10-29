@@ -9,6 +9,9 @@ import { Routes, Route, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { LogOutGithub } from './Form';
+import {clearTokens} from './googleRoute';
+import { useGettingContext } from "./AuthContext";
 interface NavProps {
   isSideBarHovered: boolean;
 }
@@ -20,24 +23,31 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
     window.innerWidth < 1600
   );
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
   const noHamburger = window.innerWidth >= 1000;
-
+  const  {loginGateway, setLoginGateway, clearTokenCheckInterval} = useGettingContext();
   const handleModeToggle = () => {
     setIsToggled(!isToggled);
     setBodyBgColor((bodyBgColor) =>
       bodyBgColor === '#111218' ? '#fff' : '#111218'
     );
   };
-
+  const handleLogoutClick = (loginGateWay: string): void => {
+    if(loginGateWay === "github") {
+      LogOutGithub();
+      setLoginGateway("standard");
+    }
+    if(loginGateWay === "google") {
+      clearTokens();
+      clearTokenCheckInterval();
+      setLoginGateway("standard");
+    }
+  };
   const handleMouseEnter = () => {
     setIsExpanded(true);
   };
-
   const handleMouseLeave = () => {
     setIsExpanded(false);
   };
-
   useEffect(() => {
     document.body.style.backgroundColor = bodyBgColor;
   }, [bodyBgColor]);
@@ -145,6 +155,7 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                     as={Link}
                     to={'/'}
                     className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
+                    onClick={() => handleLogoutClick(loginGateway)}
                   >
                     Logout
                   </Nav.Link>
