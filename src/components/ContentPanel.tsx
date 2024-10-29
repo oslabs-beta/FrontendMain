@@ -5,7 +5,7 @@ import { faAnglesLeft, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import '../css/contentPanel.css';
 import { startTypingEffect } from '../helpers/typingEffect';
 import { handleOpenAiCall } from '../helpers/handleOpenAiCall';
-
+import { Outlet } from 'react-router-dom';
 interface ContentPanelProps {
   isExpanded: boolean;
   isOpenAiWindow: boolean;

@@ -11,7 +11,7 @@ import SidebarMenu from './SidebarMenu';
 import ContentPanel from './ContentPanel';
 import ProtectedRoute from './ProtectedRoute';
 import { DataResponse } from '../components/Metrics';
-
+import GoogleRouteCallback from './googleRoute';
 function App(): JSX.Element {
   const location = useLocation();
   //used in NavBar
@@ -46,6 +46,7 @@ function App(): JSX.Element {
       )}
       <Routes>
         <Route path='/' element={<Form />} />
+        <Route path='/oauth/google' element={<GoogleRouteCallback/>}/>
         <Route
           // path='/*'
           element={
