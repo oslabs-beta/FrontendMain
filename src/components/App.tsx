@@ -9,10 +9,9 @@ import { Route, Routes, useLocation, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import SidebarMenu from './SidebarMenu';
 import ContentPanel from './ContentPanel';
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from './ProtectedRoute';
+import { DataResponse } from '../components/Metrics';
 import GoogleRouteCallback from './googleRoute';
-
- 
 function App(): JSX.Element {
   const location = useLocation();
   //used in NavBar
@@ -46,12 +45,14 @@ function App(): JSX.Element {
         />
       )}
       <Routes>
-        {/* The / route will be outside of the ContentPanel */}
         <Route path='/' element={<Form />} />
         <Route path='/oauth/google' element={<GoogleRouteCallback/>}/>
-        {/* The rest of the routes will be inside the ContentPanel */}
-        <Route element={<ProtectedRoute />}>
-          <Route element={<ContentPanel isExpanded={isSideBarHovered} isOpenAiWindow={isOpenAiWindow}
+        <Route
+          // path='/*'
+          element={
+            <ContentPanel
+              isExpanded={isSideBarHovered}
+              isOpenAiWindow={isOpenAiWindow}
               setIsOpenAiWindow={setIsOpenAiWindow}
               isRotated={isRotated}
               setIsRotated={setIsRotated}
@@ -60,15 +61,24 @@ function App(): JSX.Element {
               userInput={userInput}
               setUserInput={setUserInput}
               aiResponse={aiResponse}
-              setAiResponse={setAiResponse}/>}>
-            <Route path="/dash" element={<Dashboard />} />
-            <Route path="/system" element={<System />} />
-            <Route path="/metrics" element={<Metrics />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/config" element={<Config />} />
+              setAiResponse={setAiResponse}
+            >
+              <Outlet />
+            </ContentPanel>
+          }
+        >
+          <Route element={<ProtectedRoute />}>
+            <Route path='/system' element={<System />} />
+            <Route
+              path='/metrics'
+              element={<Metrics data={data} setData={setData} />}
+            />
+            <Route path='/about' element={<About />} />
+            <Route path='/config' element={<Config />} />
           </Route>
         </Route>
-        <Route path="*" element={<h1>404 Not Found</h1>} />
+
+        <Route path='*' element={<Form />} />
       </Routes>
     </div>
   );
