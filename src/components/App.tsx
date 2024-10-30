@@ -12,6 +12,7 @@ import SidebarMenu from './SidebarMenu';
 import ContentPanel from './ContentPanel';
 import ProtectedRoute from './ProtectedRoute';
 import { DataResponse } from './metricsDisplayRender/renderMetrics';
+import GoogleRouteCallback from './googleRoute';
 
 function App(): JSX.Element {
   const location = useLocation();
@@ -56,6 +57,8 @@ function App(): JSX.Element {
           path='/'
           element={<Form queries={queries} setQueries={setQueries} />}
         />
+        <Route path='/' element={<Form />} />
+        <Route path='/oauth/google' element={<GoogleRouteCallback/>}/>
         <Route
           // path='/*'
           element={
