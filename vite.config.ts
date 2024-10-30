@@ -7,7 +7,7 @@ export default defineConfig({
     port: 8080,
     proxy: {
       '/api': {
-        target: 'http://localhost:3008',
+        target: 'http://StreamForgeBackEnd-env.eba-ck4xhmjr.us-east-1.elasticbeanstalk.com',
         changeOrigin: true,
         secure: false,
         ws: true
