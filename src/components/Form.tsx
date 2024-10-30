@@ -1,15 +1,17 @@
-import { useEffect, useState, useRef } from 'react';
-import OAuth from './OAuth';
-import { motion } from 'framer-motion';
-import '../css/App.css';
-import AccountCreatedModal from './AccountCreatedPopup';
-import { handleLoginClick } from '../helpers/handleLoginClick';
-import { handleSignupClick } from '../helpers/handleSignupClick';
+
+// import * as React from 'react';
 import retreiveUserQueryMap from '../helpers/retreiveUserQueryMap';
-// impForm } from './System';
-import { useNavigate } from 'react-router-dom';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import { useGettingContext, loginTypes } from './AuthContext';
+import { QueriesProps } from './System';
+import { useEffect, useState, useRef} from "react";
+import OAuth from "./OAuth";
+import { motion } from "framer-motion";
+import "../css/App.css";
+import AccountCreatedModal from "./AccountCreatedPopup";
+import { handleLoginClick } from "../helpers/handleLoginClick";
+import { handleSignupClick } from "../helpers/handleSignupClick";
+import { useNavigate } from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import {useGettingContext, loginTypes} from "./AuthContext";
 const github_clientID = import.meta.env.VITE_GITHUB_CLIENTID;
 const google_clientID = import.meta.env.VITE_GOOGLE_CLIENTID;
 const API_URL = import.meta.env.VITE_API_URL;
@@ -20,11 +22,7 @@ export const LogOutGithub = () => {
   localStorage.removeItem('githubRefreshJwtToken');
 };
 
-interface FormProps {
-  setQueries: React.Dispatch<React.SetStateAction<{ [key: string]: string[] }>>;
-}
-
-function Form({ setQueries }: FormProps): JSX.Element {
+function Form({ setQueries }: QueriesProps): JSX.Element {
   const [signInEmail, setSignInEmail] = useState<string>('');
   const [signInPassword, setSignInPassword] = useState<string>('');
   const [signUpEmail, setSignUpEmail] = useState<string>('');
@@ -43,15 +41,9 @@ function Form({ setQueries }: FormProps): JSX.Element {
   const [isSigupEmailPwdNotValid, setIsSigupEmailPwdNotValid] =
     useState<boolean>(false);
   const [isPwdShown, setIsPwdShown] = useState<boolean>(false);
-  const [isSignInEmailNotValid, setIsSignInEmailNotValid] =
-    useState<boolean>(false);
+  const [isSignInEmailNotValid, setIsSignInEmailNotValid] = useState<boolean>(false);
   const gitOAuthCalledRef = useRef<boolean>(false);
-  const {
-    setLoginGateway,
-    isGoogleLoginFailed,
-    setGithubLoginFailed,
-    isGithubLoginFailed,
-  } = useGettingContext();
+  const {setLoginGateway, isGoogleLoginFailed, setGithubLoginFailed, isGithubLoginFailed} = useGettingContext();
   // const [isLoading, setIsloading] = useState<boolean>(true);
   const navigate = useNavigate();
   const loginWithGithub = (): void => {
@@ -207,7 +199,7 @@ function Form({ setQueries }: FormProps): JSX.Element {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-
+  
   const handleSigninSubmit = (
     e: React.FormEvent<HTMLFormElement>,
     email: string,
@@ -250,160 +242,100 @@ function Form({ setQueries }: FormProps): JSX.Element {
 
   return (
     <>
-      <div
-        className={`containerbox ${isSignupPage ? 'active' : ''}`}
-        id='container'
-      >
-        {/* sign-up */}
-        <div className='form-container sign-up'>
-          <form
-            onSubmit={async (e) =>
-              handleSignUpSubmit(
-                e,
-                signUpEmail,
-                signUpPassword,
-                confirmPassword
-              )
-            }
-          >
-            <p className='greetings'>Join us today!</p>
-            <br></br>
-            <br></br>
-            <input
-              required
-              type='text'
-              placeholder='Email'
-              value={signUpEmail}
-              onChange={(e) => setSignUpEmail(e.target.value)}
-            />
-            <div style={{ width: '40%', position: 'relative' }}>
+        <div
+          className={`containerbox ${isSignupPage ? "active" : ""}`}
+          id="container"
+        >
+          {/* sign-up */}
+          <div className="form-container sign-up">
+            <form onSubmit={ async (e) => handleSignUpSubmit(e, signUpEmail, signUpPassword, confirmPassword)}>
+              <p className="greetings">Join us today!</p>
+              <br></br>
+              <br></br>
               <input
                 required
-                type={`${isPwdShown ? 'text' : 'password'}`}
-                placeholder='Password'
-                value={signUpPassword}
-                className='password-input'
-                onChange={(e) => setSignUpPassword(e.target.value)}
+                type="text"
+                placeholder="Email"
+                value={signUpEmail}
+                onChange={(e) => setSignUpEmail(e.target.value)}
               />
-              <button
-                type='button'
-                className='toggle-password-btn'
-                onClick={() => setIsPwdShown(!isPwdShown)}
-              >
-                <i
-                  className={`bi bi-eye${isPwdShown ? '-slash' : ''} eyeicon`}
-                ></i>
-              </button>
-            </div>
-            <div style={{ width: '40%', position: 'relative' }}>
-              <input
-                required
-                type={`${isPwdShown ? 'text' : 'password'}`}
-                placeholder='Confirm Password'
-                value={confirmPassword}
-                className='password-input'
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-              <button
-                //specify button type to be "type" or it will cause the form submit
-                type='button'
-                className='toggle-password-btn'
-                onClick={() => setIsPwdShown(!isPwdShown)}
-              >
-                <i
-                  className={`bi bi-eye${isPwdShown ? '-slash' : ''} eyeicon`}
-                ></i>
-              </button>
-            </div>
-            {pwdSignUpNotConfirmed && (
-              <p style={{ color: 'red', margin: 0 }}>
-                Please confirm your password again.
-              </p>
-            )}
-            {emailSignUpIsNotValid && (
-              <p style={{ color: 'red', margin: 0 }}>
-                Please enter a valid email.
-              </p>
-            )}
-            {isSigupEmailPwdNotValid && (
-              <p style={{ color: 'red', margin: 0 }}>
-                Invalid email or password.
-              </p>
-            )}
-            {isGithubLoginFailed && (
-              <p style={{ color: 'red', margin: 0 }}>
-                Github login failed. Please try again.
-              </p>
-            )}
-            {isGoogleLoginFailed && (
-              <p style={{ color: 'red', margin: 0 }}>
-                Google login failed. Please try again.
-              </p>
-            )}
-            <button type='submit'>Create Account</button>
-            <OAuth handleOAuthClick={handleOAuthClick} />
-          </form>
-          <AccountCreatedModal
-            modalShow={showPopup}
-            handleModalClose={() => setShowPopup(false)}
-          />
-        </div>
+              <div style={{width:"40%", position:"relative"}}>
+                <input
+                  required
+                  type={`${isPwdShown?"text":"password"}`}
+                  placeholder="Password"
+                  value={signUpPassword}
+                  className="password-input"
+                  onChange={(e) => setSignUpPassword(e.target.value)}
+                />
+                <button 
+                  type="button"
+                  className="toggle-password-btn"
+                  onClick={() => setIsPwdShown(!isPwdShown)}>
+                   <i className={`bi bi-eye${isPwdShown?"-slash":""} eyeicon`}></i>
+                </button>
+              </div>
+              <div style={{width:"40%", position:"relative"}} >
+                <input
+                  required
+                  type={`${isPwdShown?"text":"password"}`}
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  className="password-input"
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <button 
+                  //specify button type to be "type" or it will cause the form submit
+                  type="button"
+                  className="toggle-password-btn"
+                  onClick={() => setIsPwdShown(!isPwdShown)}>
+                  <i className={`bi bi-eye${isPwdShown?"-slash":""} eyeicon`}></i>
+                </button>
+              </div>
+              {pwdSignUpNotConfirmed && <p style={{color:'red',margin:0}}>Please confirm your password again.</p>}
+              {emailSignUpIsNotValid && <p style={{color:'red',margin:0}}>Please enter a valid email.</p>}
+              {isSigupEmailPwdNotValid && <p style={{color:'red',margin:0}}>Invalid email or password.</p>}
+              {isGithubLoginFailed && <p style={{color:'red',margin:0}}>Github login failed. Please try again.</p>}
+              {isGoogleLoginFailed && <p style={{color:'red',margin:0}}>Google login failed. Please try again.</p>}
+              <button type="submit">Create Account</button>
+              <OAuth handleOAuthClick = {handleOAuthClick}/>
+            </form>
+            <AccountCreatedModal modalShow={showPopup} handleModalClose={() => setShowPopup(false)} />
+          </div>
 
-        {/* sign-in */}
-        <div className='form-container sign-in'>
-          <form
-            onSubmit={(e) => handleSigninSubmit(e, signInEmail, signInPassword)}
-          >
-            <p className='greetings'>Welcome back!</p>
-            <input
-              required
-              type='text'
-              placeholder='Email'
-              value={signInEmail}
-              onChange={(e) => setSignInEmail(e.target.value)}
-            />
-            <input
-              required
-              type='password'
-              placeholder='Password'
-              value={signInPassword}
-              onChange={(e) => setSignInPassword(e.target.value)}
-            />
-            {pwdSignInNotConfirmed && (
-              <p style={{ color: 'red', margin: 0 }}>
-                There is something wrong with your sign in.
+          {/* sign-in */}
+          <div className="form-container sign-in">
+            <form onSubmit={(e) => handleSigninSubmit(e, signInEmail, signInPassword)}>
+              <p className="greetings">Welcome back!</p>
+              <input
+                required
+                type="text"
+                placeholder="Email"
+                value={signInEmail}
+                onChange={(e) => setSignInEmail(e.target.value)}
+              />
+              <input
+                required
+                type="password"
+                placeholder="Password"
+                value={signInPassword}
+                onChange={(e) => setSignInPassword(e.target.value)}
+              />
+              {pwdSignInNotConfirmed && <p style={{color:'red', margin:0}}>There is something wrong with your sign in.</p>}
+              {emailSignInIsNotValid && <p style={{color:'red', margin:0}}>Please enter a valid email.</p>}
+              {isSignInEmailNotValid && <p style={{color:'red', margin:0}}>Your email or password is not valid</p>} 
+              {isGithubLoginFailed && <p style={{color:'red',margin:0}}>Github login failed. Please try again.</p>}
+              {isGoogleLoginFailed && <p style={{color:'red',margin:0}}>Google login failed. Please try again.</p>}
+              <button type="submit">Sign In</button>
+              <p>
+                Forgot password?
+                <span>
+                  <a href="#">Reset password 🔓</a>
+                </span>
               </p>
-            )}
-            {emailSignInIsNotValid && (
-              <p style={{ color: 'red', margin: 0 }}>
-                Please enter a valid email.
-              </p>
-            )}
-            {isSignInEmailNotValid && (
-              <p style={{ color: 'red', margin: 0 }}>
-                Your email or password is not valid
-              </p>
-            )}
-            {isGithubLoginFailed && (
-              <p style={{ color: 'red', margin: 0 }}>
-                Github login failed. Please try again.
-              </p>
-            )}
-            {isGoogleLoginFailed && (
-              <p style={{ color: 'red', margin: 0 }}>
-                Google login failed. Please try again.
-              </p>
-            )}
-            <button type='submit'>Sign In</button>
-            <p>
-              Forgot password?
-              <span>
-                <a href='#'>Reset password 🔓</a>
-              </span>
-            </p>
-            <OAuth handleOAuthClick={handleOAuthClick} />
-          </form>
-        </div>
+              <OAuth handleOAuthClick = {handleOAuthClick}/>
+            </form>
+          </div>
 
         {/* toggle */}
         <div className='toggle-container'>

@@ -13,6 +13,7 @@ import ContentPanel from './ContentPanel';
 import ProtectedRoute from './ProtectedRoute';
 import { DataResponse } from './metricsDisplayRender/renderMetrics';
 import GoogleRouteCallback from './googleRoute';
+
 function App(): JSX.Element {
   const location = useLocation();
   //used in NavBar

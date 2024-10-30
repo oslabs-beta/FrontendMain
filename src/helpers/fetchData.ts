@@ -7,6 +7,7 @@ interface Queries {
   [key: string]: string[];
 }
 
+
 export const fetchData = async ({
   queries,
 }: {
