@@ -197,7 +197,7 @@ StreamForge is an open-source product, welcoming collaboration from developers w
 
 * Fork the repository
 * Create your feature branch
-* Create a pull request detailing the changes you would like to introduce
+* Create a pull request to the "dev" branch detailing the changes you would like to introduce
 
 
 
@@ -210,29 +210,31 @@ This project is licensed under the MIT license- see the [LICENSE](./LICENSE) fil
 ## Contributer Information
 
 
-<div align="left" style="display: flex; justify-content: flex-start; gap: 20px;">
-<div align="center">
-    <h6>Qianlin Zhang</h6>
-    <img src="src/assets/qianlin-hs.jpg" alt="Qianlin Zhang Headshot" width="120" height="120"/><br>
-    <a href="https://github.com/QianQian1997">GitHub</a> |
-    <a href="https://www.linkedin.com/in/qianlin-zhang-381972191/">LinkedIn</a>
-</div>
-<div align="center">
-    <h6>David Schweitzer</h6>
-    <img src="src/assets/david-hs.png" alt="David Headshot" width="120" height="120"/><br>
-    <a href="https://github.com/DSchweitzer314">GitHub</a> |
-    <a href="https://www.linkedin.com/in/david-schweitzer-b34768333/">LinkedIn</a>
-</div>
-<div align="center">
-    <h6>Chenao Wang</h6>
-    <img src="src/assets/chenao-hs.jpeg" alt="Chenao Headshot" width="120" height="120"/><br>
-    <a href="https://github.com/chenaowang-debug">GitHub</a> |
-    <a href="https://www.linkedin.com/in/chenao-wang-ab3b84ab/">LinkedIn</a>
-</div>
-<div align="center">
-    <h6>Allie Itczak</h6>
-    <img src="src/assets/allie-hs.png" alt="Allie Headshot" width="130" height="120"/><br>
-    <a href="https://github.com/aitczak">GitHub</a> |
-    <a href="https://www.linkedin.com/in/allieitczak/">LinkedIn</a>
-</div>
-</div>
+<table>
+  <tr>
+    <td align="center">
+      <h6>Qianlin Zhang</h6>
+      <img src="src/assets/qianlin-hs.jpg" alt="Qianlin Zhang Headshot" width="120" height="120"/><br>
+      <a href="https://github.com/QianQian1997">GitHub</a> |
+      <a href="https://www.linkedin.com/in/qianlin-zhang-381972191/">LinkedIn</a>
+    </td>
+    <td align="center">
+      <h6>David Schweitzer</h6>
+      <img src="src/assets/david-hs.png" alt="David Headshot" width="120" height="120"/><br>
+      <a href="https://github.com/DSchweitzer314">GitHub</a> |
+      <a href="https://www.linkedin.com/in/david-schweitzer-b34768333/">LinkedIn</a>
+    </td>
+    <td align="center">
+      <h6>Chenao Wang</h6>
+      <img src="src/assets/chenao-hs.jpeg" alt="Chenao Headshot" width="120" height="120"/><br>
+      <a href="https://github.com/chenaowang-debug">GitHub</a> |
+      <a href="https://www.linkedin.com/in/chenao-wang-ab3b84ab/">LinkedIn</a>
+    </td>
+    <td align="center">
+      <h6>Allie Itczak</h6>
+      <img src="src/assets/allie-hs.png" alt="Allie Headshot" width="130" height="120"/><br>
+      <a href="https://github.com/aitczak">GitHub</a> |
+      <a href="https://www.linkedin.com/in/allieitczak/">LinkedIn</a>
+    </td>
+  </tr>
+</table>
