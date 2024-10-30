@@ -1,11 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useBgColor } from './BgColorContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesLeft, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import '../css/contentPanel.css';
 import { startTypingEffect } from '../helpers/typingEffect';
 import { handleOpenAiCall } from '../helpers/handleOpenAiCall';
-
 interface ContentPanelProps {
   isExpanded: boolean;
   isOpenAiWindow: boolean;
@@ -41,6 +41,7 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
     setIsOpenAiWindow((prev) => !prev);
     setIsRotated((prev) => !prev);
   };
+  const { textColor } = useBgColor();
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
@@ -90,22 +91,22 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
           className={`openAI-container ${isOpenAiWindow ? 'expanded' : ''} 
           }`}
         >
-          <div className='open-icon-container'>
+          <div className='open-icon-container' style={{ color: textColor }}>
             <button className='slider-icon' onClick={handleButtonClick}>
               <FontAwesomeIcon
                 id={isRotated ? 'arrow' : ''}
                 icon={faAnglesLeft}
               />
             </button>
-            1
           </div>
           {isOpenAiWindow && (
-            <div className={`openAI ${isOpenAiWindow ? 'active' : ''}`}>
+            <div
+              className={`openAI ${isOpenAiWindow ? 'active' : ''}`}
+              style={{ color: textColor }}
+            >
               <div className='ai-response'>{aiResponse}</div>
               <div className='input-container'>
-                <label htmlFor='promptBox' style={{ color: '#fff' }}>
-                  {labelText}
-                </label>
+                <label htmlFor='promptBox'>{labelText}</label>
                 <input
                   id='promptBox'
                   type='text'

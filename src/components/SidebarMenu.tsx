@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { GraphUp, Gear, BarChart } from 'react-bootstrap-icons';
 import '../css/sidebar.css';
-// import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 interface iconMap {
@@ -44,7 +43,6 @@ const SidebarMenu: React.FC<SideBarProps> = ({
         <NavLink
           to={`${endPoint}`}
           className={`nav-link fw-semibold sidebar-text`}
-          // onClick={() => handleSideBarClick(index)}
         >
           {content}
         </NavLink>

@@ -1,14 +1,18 @@
 import React, { useRef } from 'react';
-import { QueriesProps } from '../System';
 import addQuery from '../../helpers/addQuery';
 import deleteQuery from '../../helpers/deleteQuery';
 import handleAddCategory from '../../helpers/addCategory';
 import handleDeleteCategory from '../../helpers/deleteCategory';
 
+interface QueryEditorProps {
+  queries: { [key: string]: string[] };
+  setQueries: React.Dispatch<React.SetStateAction<{ [key: string]: string[] }>>;
+}
+
 export function QueryEditor({
   queries,
   setQueries,
-}: QueriesProps): JSX.Element {
+}: QueryEditorProps): JSX.Element {
   const inputRef1 = useRef<HTMLInputElement>(null);
   const inputRef2 = useRef<HTMLInputElement>(null);
   const selectRef = useRef<HTMLSelectElement>(null);

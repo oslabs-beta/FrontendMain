@@ -10,7 +10,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
-  /* border: 1px solid white; */
 }
 
 ::-webkit-scrollbar {
@@ -97,7 +96,6 @@ body {
   font-size: 14px;
   width: 40%;
   outline: none;
-  /* text-align: center; */
   color: #845cc0;
 }
 
@@ -193,7 +191,7 @@ body {
 .oauth-icons {
   margin: 20px 0;
   display: flex;
-}
+} 
 
 .oauth-icons a {
   background-color: #fff;
@@ -295,8 +293,3 @@ body {
   padding: 20px;
   border-radius: 5px;
 }
-
-/* #5090F2 */
-/* #35409E */
-/* #5F6FFF */
-/* #A9C1FF */

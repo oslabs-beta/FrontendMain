@@ -6,8 +6,11 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
 import * as React from 'react';
-
-const OAuth: React.FC = () => {
+import {loginTypes} from './AuthContext';
+interface OAuthProp {
+  handleOAuthClick: (type: loginTypes) => void
+}
+const OAuth: React.FC <OAuthProp>= ({handleOAuthClick}) => {
   return (
     <div className='oauth-icons'>
       <motion.div
@@ -20,7 +23,7 @@ const OAuth: React.FC = () => {
         }}
         whileHover={{ scale: 1.2 }}
       >
-        <a href='#' className='icon'>
+        <a href='#' className='icon' onClick={() => handleOAuthClick("google")}>
           <FontAwesomeIcon icon={faGoogle} />
         </a>
       </motion.div>
@@ -34,7 +37,7 @@ const OAuth: React.FC = () => {
         }}
         whileHover={{ scale: 1.2 }}
       >
-        <a href='#' className='icon'>
+        <a href='#' className='icon' onClick={() => handleOAuthClick("facebook")}>
           <FontAwesomeIcon icon={faFacebook} />
         </a>
       </motion.div>
@@ -48,7 +51,7 @@ const OAuth: React.FC = () => {
         }}
         whileHover={{ scale: 1.2 }}
       >
-        <a href='#' className='icon'>
+        <a href='#' className='icon' onClick={() => handleOAuthClick("github")}>
           <FontAwesomeIcon icon={faGithub} />
         </a>
       </motion.div>

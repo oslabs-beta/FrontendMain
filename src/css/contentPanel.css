@@ -25,13 +25,11 @@
 }
 
 .openAI-container {
-  /* border: 0.5px solid #fff; */
   margin-top: 57px;
   transition: width 0.4s ease;
   display: flex;
   justify-content: flex-end;
   min-height: calc(100vh - 57px);
-  background-color: rgb(17, 18, 24);
   position: fixed;
   right: 0;
   bottom: 0;
@@ -62,16 +60,13 @@
 }
 
 .ai-response {
-  /* border: 0.5px solid #32e900; */
   width: 100%;
-  color: #fff;
   padding: 50px;
   font-size: 13px;
   height: 900px;
 }
 
 .input-container {
-  /* border: 0.5px solid #fff; */
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
@@ -120,7 +115,6 @@ label {
 }
 
 .open-icon-container {
-  /* border: 0.5px solid #fff; */
   display: flex;
   flex-grow: 0;
   flex-direction: column;
@@ -150,7 +144,7 @@ label {
 }
 
 .icon:hover {
-  box-shadow: 1px 0 15px 0px rgb(75, 171, 240);
+  box-shadow: 1px 0 10px 0px rgb(75, 171, 240);
 }
 
 #arrow {

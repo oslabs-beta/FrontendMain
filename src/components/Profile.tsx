@@ -10,6 +10,7 @@ interface ProfileProps {
   setIp: (value: string) => void;
   port: string;
   setPort: (value: string) => void;
+  queries: { [key: string]: string[] };
 }
 
 export default function Profile({
@@ -19,6 +20,7 @@ export default function Profile({
   setIp,
   port,
   setPort,
+  queries,
 }: ProfileProps): JSX.Element {
   useEffect(() => {
     const savedDataSource = localStorage.getItem('dataSource');
@@ -43,7 +45,7 @@ export default function Profile({
 
     //call fetch func
     try {
-      const fetchedData = await fetchData();
+      const fetchedData = await fetchData({ queries });
       console.log(fetchedData);
     } catch (error) {
       console.error('Error fetching Data', error);

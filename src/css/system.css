@@ -1,5 +1,4 @@
 .system {
-  /* border: 0.5px solid white; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100vh;
@@ -23,7 +22,6 @@
 .queryEditor-editor,
 .queryEditor-log,
 .queryDisplay-box {
-  /* border: 0.5px solid white; */
   box-shadow: 3px 3px 5px rgb(27, 27, 27);
   background-color: #303030;
   border-radius: 7px;
@@ -35,6 +33,7 @@
   color: white;
   text-decoration: none;
   margin-top: 10px;
+  font-weight: 600;
 }
 
 .queryEditor-container label {
@@ -60,6 +59,7 @@
   border: 0.1px solid rgba(171, 171, 171, 0.25);
   border-radius: 7px;
   font-size: 13px;
+  font-weight: 500;
 }
 
 .add-query select {
@@ -68,6 +68,7 @@
   text-decoration: none;
   border: 0.1px solid rgba(171, 171, 171, 0.25);
   border-radius: 7px;
+  outline: none;
 }
 
 .queryEditor-log {
@@ -98,28 +99,3 @@
   margin: 2px;
   color: #202020;
 }
-
-/* .queryEditor-editor input {
-  border: 0.5px solid white;
-  width: 50%;
-  margin: 50px;
-  height: 30px;
-  border-radius: 7px;
-} */
-
-/* 
-.frames {
-  border: 2px solid #110303;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(29, 27, 27, 0.1)
-}
-
-#memPanels{
- display: flex;
- flex-direction: column;
-} */
-
-/* #00a4ef
-#0077b3
-#00CED1
-rgb(130, 55, 165) */
