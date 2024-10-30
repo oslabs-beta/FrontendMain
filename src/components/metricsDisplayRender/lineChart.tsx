@@ -13,7 +13,6 @@ export const RenderLineChart: React.FC<RenderLineChartProps> = ({
   const floatMetrics = metrics.filter(
     (d) => d.dataType === 'float' || d.dataType === 'big-int'
   );
-  console.log('this is floatMetrics', floatMetrics);
   return (
     <>
       {floatMetrics.map((metric, index) => (
@@ -67,11 +66,18 @@ const LineChart: React.FC<LineChartProps> = ({ metric }) => {
 
   useEffect(() => {
     const renderChart = (data: [number, string][]) => {
-      const extractObjectName = (input: string): string => {
-        const firstIndex = input.indexOf('=');
-        return input.substring(firstIndex + 1);
+      const trimObjectName = (name: string | undefined) => {
+        if (typeof name !== 'string') {
+          console.error('Expected a string but got:', name);
+          return '';
+        }
+
+        const firstIndex = name.indexOf('=');
+        return firstIndex !== -1 ? name.slice(firstIndex + 1) : name;
       };
-      const label = extractObjectName(metric.metric._objectname);
+      const trimmedObjectName = trimObjectName(metric.metric._objectname);
+      const combinedString = `${metric.metric.instance} ${metric.metric.__name__} ${trimmedObjectName}, value: ${metric.value[1]}`;
+      const label = combinedString;
       const svg = d3
         .select(svgRef.current)
         .attr('width', width + margin.left + margin.right)

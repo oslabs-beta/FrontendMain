@@ -1,8 +1,22 @@
-// import * as d3 from 'd3';
-// import React from 'react';
+import TreeChart from './treeChart';
 
-export function QueryDisplay(): JSX.Element {
-  return <div className='queryDisplay-container'>
-    <div className="queryDisplay-box"></div>
-  </div>;
+interface QueryDisplayProps {
+  queries: { [key: string]: string[] };
+}
+
+export function QueryDisplay({ queries }: QueryDisplayProps) {
+  return (
+    <div className='queryDisplay-container'>
+      <div
+        style={{
+          background: '#303030',
+          height: '100vh',
+          borderRadius: '7px',
+          border: '0.1px solid rgba(171, 171, 171, 0.25)',
+        }}
+      >
+        <TreeChart queries={queries} />
+      </div>
+    </div>
+  );
 }

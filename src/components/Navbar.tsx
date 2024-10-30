@@ -2,16 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-//import NavDropdown from "react-bootstrap/NavDropdown";
-//import Button from "react-bootstrap/Button";
-import "../css/navbar.css";
-import { Routes, Route, Link } from "react-router-dom";
+import '../css/navbar.css';
+import { Routes, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LogOutGithub } from './Form';
-import {clearTokens} from './googleRoute';
-import { useGettingContext } from "./AuthContext";
+import { clearTokens } from './googleRoute';
+import { useGettingContext } from './AuthContext';
 interface NavProps {
   isSideBarHovered: boolean;
 }
@@ -24,7 +22,8 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
   );
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const noHamburger = window.innerWidth >= 1000;
-  const  {loginGateway, setLoginGateway, clearTokenCheckInterval} = useGettingContext();
+  const { loginGateway, setLoginGateway, clearTokenCheckInterval } =
+    useGettingContext();
   const handleModeToggle = () => {
     setIsToggled(!isToggled);
     setBodyBgColor((bodyBgColor) =>
@@ -32,14 +31,14 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
     );
   };
   const handleLogoutClick = (loginGateWay: string): void => {
-    if(loginGateWay === "github") {
+    if (loginGateWay === 'github') {
       LogOutGithub();
-      setLoginGateway("standard");
+      setLoginGateway('standard');
     }
-    if(loginGateWay === "google") {
+    if (loginGateWay === 'google') {
       clearTokens();
       clearTokenCheckInterval();
-      setLoginGateway("standard");
+      setLoginGateway('standard');
     }
   };
   const handleMouseEnter = () => {
@@ -104,14 +103,6 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                 >
                   <span>ReadMe</span>
                 </Nav.Link>
-
-                {/* <Nav.Link
-                  as={Link}
-                  to={'/config'}
-                  className='bg-btnPurple me-2 ms-2 d-flex flex-column justify-content-center'
-                >
-                  <span>Configuration</span>
-                </Nav.Link> */}
               </Nav>
 
               {noHamburger && (
@@ -142,7 +133,9 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                     </Nav.Link>
                     <Nav.Link
                       as={Link}
-                      to={'/git'}
+                      to={
+                        'https://github.com/orgs/oslabs-beta/teams/streamforge'
+                      }
                       className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
                     >
                       <FontAwesomeIcon
@@ -176,7 +169,6 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                   id='flexSwitchCheck'
                   checked={isToggled}
                   onChange={handleModeToggle}
-                  
                 />
               </div>
             )}
@@ -189,11 +181,11 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
             path='/dash'
              element={<Dashboard/>}
           /> */}
-            <Route path='/about' />
-            <Route path='/readme' />
-            <Route path='/config' />
-            <Route path='/profile' />
-            <Route path='/git' />
+          <Route path='/about' />
+          <Route path='/readme' />
+          <Route path='/config' />
+          <Route path='/profile' />
+          <Route path='/git' />
         </Routes>
       </div>
     </>

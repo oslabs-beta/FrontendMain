@@ -11,28 +11,6 @@ interface OAuthProp {
   handleOAuthClick: (type: loginTypes) => void
 }
 const OAuth: React.FC <OAuthProp>= ({handleOAuthClick}) => {
-  //cannot use navigate here because its a external link
-  // const loginWithGithub = ():void => {
-  //   //assign() will add URL to history in browser
-  //   window.location.assign(`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`);
-  // };
-  // useEffect(() => {
-  //   const queryString = window.location.search;
-  //   const params = new URLSearchParams(queryString);
-  //   const githubCode = params.get("code");
-    
-  //   if(githubCode) {
-  //     console.log("called");
-  //     fetch(`${API_URL}/getAccessToken?code=${githubCode}`)
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         console.log(data);
-  //       })
-  //       .catch(error => {
-  //         console.log(error,"error in calling from frontend");
-  //       })
-  //   }
-  // }, []);
   return (
     <div className='oauth-icons'>
       <motion.div
