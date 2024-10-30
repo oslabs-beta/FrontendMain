@@ -4,13 +4,14 @@ import Metrics from './Metrics';
 import System from './System';
 import About from './About';
 import Config from './Config';
+import Profile from './Profile';
 import '../css/navbar.css';
 import { Route, Routes, useLocation, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import SidebarMenu from './SidebarMenu';
 import ContentPanel from './ContentPanel';
 import ProtectedRoute from './ProtectedRoute';
-import { DataResponse } from '../components/Metrics';
+import { DataResponse } from './metricsDisplayRender/renderMetrics';
 
 function App(): JSX.Element {
   const location = useLocation();
@@ -24,6 +25,12 @@ function App(): JSX.Element {
   const [aiResponse, setAiResponse] = useState<string>('');
   //used in Metrics
   const [data, setData] = useState<DataResponse | null>(null);
+  //used in Profile
+  const [dataSource, setDataSource] = useState<string>('');
+  const [ip, setIp] = useState<string>('');
+  const [port, setPort] = useState<string>('');
+  //used in System
+  const [queries, setQueries] = useState<{ [key: string]: string[] }>({});
 
   const handleMouseEnter = (): void => {
     setIsSideBarHovered(true);
@@ -45,7 +52,10 @@ function App(): JSX.Element {
         />
       )}
       <Routes>
-        <Route path='/' element={<Form />} />
+        <Route
+          path='/'
+          element={<Form queries={queries} setQueries={setQueries} />}
+        />
         <Route
           // path='/*'
           element={
@@ -67,17 +77,38 @@ function App(): JSX.Element {
           }
         >
           <Route element={<ProtectedRoute />}>
-            <Route path='/system' element={<System />} />
+            <Route
+              path='/system'
+              element={<System queries={queries} setQueries={setQueries} />}
+            />
             <Route
               path='/metrics'
-              element={<Metrics data={data} setData={setData} />}
+              element={
+                <Metrics data={data} setData={setData} queries={queries} />
+              }
             />
             <Route path='/about' element={<About />} />
             <Route path='/config' element={<Config />} />
+            <Route
+              path='/profile'
+              element={
+                <Profile
+                  dataSource={dataSource}
+                  setDataSource={setDataSource}
+                  ip={ip}
+                  setIp={setIp}
+                  port={port}
+                  setPort={setPort}
+                />
+              }
+            />
           </Route>
         </Route>
 
-        <Route path='*' element={<Form />} />
+        <Route
+          path='*'
+          element={<Form queries={queries} setQueries={setQueries} />}
+        />
       </Routes>
     </div>
   );

@@ -94,13 +94,18 @@ import '../css/system.css';
 import { QueryDisplay } from './metricsDisplayRender/queryDisplay';
 import { QueryEditor } from './metricsDisplayRender/queryEditor';
 
-function System(): JSX.Element {
+export interface QueriesProps {
+  queries: { [key: string]: string[] };
+  setQueries: React.Dispatch<React.SetStateAction<{ [key: string]: string[] }>>;
+}
+
+const System: React.FC<QueriesProps> = ({ queries, setQueries }) => {
   return (
     <div className='system'>
-      <QueryDisplay />
-      <QueryEditor />
+      <QueryDisplay queries={queries}/>
+      <QueryEditor queries={queries} setQueries={setQueries} />
     </div>
   );
-}
+};
 
 export default System;

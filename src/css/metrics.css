@@ -48,9 +48,14 @@
   background: linear-gradient(to right, rgb(251, 75, 230), rgb(255, 0, 225));
 }
 
+.numberBox-default {
+  background: linear-gradient(to right, rgb(161, 161, 161), rgb(125, 125, 125));
+}
+
 .numberBox-blue,
 .numberBox-orange,
-.numberBox-pink {
+.numberBox-pink,
+.numberBox-default {
   /* border: 0.5px solid white; */
   color: #fff;
   height: 150px;
@@ -65,7 +70,8 @@
 
 .numberBox-blue:hover,
 .numberBox-orange:hover,
-.numberBox-pink:hover {
+.numberBox-pink:hover,
+.numberBox-default:hover {
   transform: translateY(-2.5px) translateX(-2.5px);
 }
 

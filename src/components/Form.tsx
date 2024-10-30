@@ -1,16 +1,16 @@
-// import * as React from 'react';
 import { useState } from 'react';
 import OAuth from './OAuth';
 import { motion } from 'framer-motion';
-
 import '../css/App.css';
 import AccountCreatedModal from './AccountCreatedPopup';
 import { handleLoginClick } from '../helpers/handleLoginClick';
 import { handleSignupClick } from '../helpers/handleSignupClick';
+import retreiveUserQueryMap from '../helpers/retreiveUserQueryMap';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { QueriesProps } from './System';
 
-function Form(): JSX.Element {
+function Form({ setQueries }: QueriesProps): JSX.Element {
   const [signInEmail, setSignInEmail] = useState<string>('');
   const [signInPassword, setSignInPassword] = useState<string>('');
   const [signUpEmail, setSignUpEmail] = useState<string>('');
@@ -32,6 +32,7 @@ function Form(): JSX.Element {
   const [isSignInEmailNotValid, setIsSignInEmailNotValid] =
     useState<boolean>(false);
   const navigate = useNavigate();
+
   const handleSignUpSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     email: string,
@@ -107,6 +108,12 @@ function Form(): JSX.Element {
           if (result.err === 'Error in verifying user') {
             setIsSignInEmailNotValid(true);
           }
+        })
+        .then(() => {
+          return retreiveUserQueryMap();
+        })
+        .then((updatedQueries) => {
+          setQueries(updatedQueries);
         })
         .catch((error) => console.log(error, 'ERROR in SIGNIN'));
     } else {

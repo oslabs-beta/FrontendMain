@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface MetricsProps {
   data: DataResponse | null;
+  queries: { [key: string]: string[] };
   setData: React.Dispatch<React.SetStateAction<DataResponse | null>>;
 }
 
@@ -29,18 +30,22 @@ export interface DataResponse {
 }
 
 const classMap: Record<string, string> = {
-  systemQueries: 'numberBox-blue',
-  brokerQueries: 'numberBox-orange',
-  threadingQueries: 'numberBox-pink',
+  system: 'numberBox-blue',
+  broker: 'numberBox-orange',
+  threading: 'numberBox-pink',
+  'cloud-system': 'numberBox-blue',
+  'cloud-broker': 'numberBox-orange',
+  'cloud-threading': 'numberBox-pink',
 };
 
 export const renderMetricsBox = (metrics: Metric[]) => {
   const intMetrics: Metric[] = metrics.filter((d) => d.dataType === 'integer');
 
   return intMetrics.map((metricData, index) => {
-    const boxClass = classMap[metricData.source!];
-
-    // console.log('Rendering metric data:', metricData);
+    const boxClass =
+      metricData.source && classMap[metricData.source]
+        ? classMap[metricData.source]
+        : 'numberBox-default';
 
     return (
       <div className={boxClass} key={index}>
