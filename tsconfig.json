@@ -1,0 +1,9 @@
+{
+  "files": [
+    "./src/components/App.tsx",
+    "src/components/Form.tsx",
+    "src/components/main.tsx",
+    "./src/vite-env.d.ts"
+  ],
+  "references": [{ "path": "./tsconfig.app.json" }]
+}

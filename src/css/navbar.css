@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+.dm-serif-display-regular {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.nav-link,
+.navbar-brand {
+  color: #fff !important;
+}
+.nav-link {
+  padding-right: var(--bs-navbar-nav-link-padding-x) !important;
+  padding-left: var(--bs-navbar-nav-link-padding-x) !important;
+}
+.containermain {
+  position: fixed !important;
+  top: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+}
+
+body {
+  display: block !important;
+}
+
+.bg-purple {
+  background: linear-gradient(to right, #ac4ab0, #512da8) !important;
+  padding: 1px 0px !important;
+  font-size: 10px;
+}
+
+.bg-btnPurple {
+  border-radius: 0.5rem !important;
+  text-align: center !important;
+  transition: background-color 0.4s ease !important;
+  height: 22px;
+}
+
+.bg-btnPurple:hover {
+  background-color: rgb(151, 150, 150, 0.3) !important;
+  color: #fff !important;
+  height: 22px;
+}
+
+.btn-primaary {
+  --bs-btn-border-color: none !important;
+  --bs-btn-hover-bg: #4b007f !important;
+  --bs-btn-hover-border-color: #4a007fbd !important;
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #b0b0b0 !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.nav-pills .nav-link.active {
+  background-color: inherit !important;
+}
+@media (max-width: 992px) {
+  .bg-btnPurple {
+    background: none !important;
+    border-radius: 0 !important;
+    text-align: left !important;
+    transition: background 0.4s ease !important;
+  }
+  button.bg-btnPurple {
+    padding-left: 5px !important;
+  }
+  .btn {
+    padding-left: 0px !important;
+  }
+  .bg-btnPurple:hover {
+    background-color: #512da8 !important;
+  }
+  .dropdown-menu {
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+  }
+  .dropdown-item:hover {
+    background-color: #e0cce9;
+    color: #333;
+  }
+  .bg-purple {
+    padding-left: 160px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .bg-purple {
+    padding-left: 80px !important;
+  }
+}
+
+.form-check {
+  display: flex !important;
+  align-items: center;
+}
+
+.form-check-input {
+  width: 32px !important;
+  height: 20px;
+  cursor: pointer;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: rgb(189, 189, 189) !important;
+  position: relative;
+  border-radius: 20px;
+}
+
+/* Knob style */
+.form-check-input::before {
+  content: '';
+  position: absolute;
+  width: 14.5px;
+  height: 14.5px;
+  left: 1.5px;
+  top: 0.5px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: left 0.2s;
+}
+
+.form-check-input:checked {
+  background-color: rgb(150, 150, 150) !important;
+}
+
+/* Move the knob when checked */
+.form-check-input:checked::before {
+  left: calc(100% - 16px);
+}

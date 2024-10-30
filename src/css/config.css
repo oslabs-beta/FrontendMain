@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+.dm-serif-display-regular {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  /* border: 0.5px solid white; */
+}
+
+.config-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.headline {
+  margin-top: 170px;
+  font-weight: 600;
+  width: 80%;
+}
+
+.product-description {
+  padding: 70px 0;
+  width: 40%;
+  font-size: 18px;
+}
+
+.product-description strong {
+  font-size: 25px;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.moving-gradient-text {
+  font-size: 50px;
+  background: linear-gradient(to right, orange, yellow, rgb(255, 77, 0));
+  opacity: 0.8;
+  background-size: 200% 200%;
+  animation: gradient-animation 3s ease infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+#docker-icon {
+  font-size: 50px;
+  padding-bottom: 30px;
+  color: #0077b3;
+}
+
+#globe-icon {
+  font-size: 50px;
+  padding-bottom: 30px;
+  color: #00a4ef;
+}
+
+.clone-repo {
+  margin: 30px 100px 30px 100px;
+  padding: 15px 0;
+  border-radius: 8px;
+  background-color: rgba(198, 198, 198, 0.245);
+}
+
+.clone-repo a {
+  text-decoration: none;
+  color: #00a4ef;
+  font-weight: 400;
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+
+.config-method {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-height: 550px;
+  width: 80%;
+  padding: 50px;
+  overflow: hidden;
+}
+
+.config-method .kafka-cloud .kafka-local {
+  width: 100%;
+  text-align: center;
+  height: 550px;
+}
+
+.config-method .kafka-cloud {
+  border-right: 4px solid rgba(198, 198, 198, 0.252);
+}
+
+.config-method .kafka-cloud p {
+  font-size: 13px;
+  padding: 23px 70px;
+  font-weight: 500;
+}
+
+.kafka-local p {
+  font-size: 13px;
+  padding: 5px 70px;
+  font-weight: 500;
+}
+
+.docker-code-snippet {
+  background-color: rgba(198, 198, 198, 0.04);
+  padding: 12px 0px;
+  margin: 20px 40px;
+  border-radius: 8px;
+}
+
+@media (max-width: 350px) {
+  .config-method {
+    display: none;
+  }
+  .get-start {
+    display: none;
+  }
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 50px 0;
+  width: 100%;
+  margin-top: 150px;
+}
+
+.team-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  width: 80%;
+  margin-top: 100px;
+}
+
+.team-content div {
+  overflow: hidden;
+  text-align: center;
+}
+
+.team-content p {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.team-content img {
+  height: 120px;
+  border-radius: 50%;
+  margin: 20px 0;
+}
+
+.team-icons {
+  display: flex;
+  justify-content: center;
+}
+
+.team-icons a {
+  text-decoration: none;
+  color: inherit;
+  padding: 10px 0;
+}
+
+.icon {
+  padding: 0 20px;
+  height: 25px;
+}
+
+footer {
+  height: 500px;
+  margin-top: auto;
+}
+
+@media (max-width: 1000px) {
+  .product-description {
+    display: none;
+  }
+
+  .team-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
