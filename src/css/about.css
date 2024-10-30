@@ -1,25 +1,32 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
-.about {
-    color: #cac6c6;
-    font-family: "Roboto Condensed", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
+.about-container {
+  margin: 50px;
+  color: #cac6c6;
+}
+.about-container img {
+  height: 4.5rem;
+  padding: 10px;
+}
+
+.about1,
+.about2 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  padding: 1.5rem;
+  padding-left: 40px;
 }
 .aboutHeader {
-    color:rgba(255, 255, 255, 0.822);
-    box-shadow: 40rem;
-    background: linear-gradient(#701d91, #522DA8, #131212);
-    border-radius: .5rem;
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+  color: #cac6c6 !important;
+  box-shadow: 40rem;
+  background: linear-gradient(#701d91, #522da8, #131212);
+  border-radius: 0.5rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 600;
 }
-.aboutSFLogo {
-    height: 4rem;
-}
-.KafkaLogo {
-    height: 4rem
+
+.about1 strong,
+.about2 strong {
+  font-size: 20px;
 }

@@ -1,35 +1,4 @@
-/* 
 .metrics {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 150px;
-    padding: 100px;
-      margin-bottom: 150px;
-
-}
-
-#top{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.frames {
-  border: 2px solid #110303;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(29, 27, 27, 0.1)
-}
-
-#logmetrics{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-} */
-
-.metrics {
-  /* border: 0.5px solid white; */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1px;
@@ -49,14 +18,13 @@
 }
 
 .numberBox-default {
-  background: linear-gradient(to right, rgb(161, 161, 161), rgb(125, 125, 125));
+  background: linear-gradient(to right, rgb(99, 99, 99), rgb(64, 64, 64));
 }
 
 .numberBox-blue,
 .numberBox-orange,
 .numberBox-pink,
 .numberBox-default {
-  /* border: 0.5px solid white; */
   color: #fff;
   height: 150px;
   text-align: center;
@@ -76,7 +44,6 @@
 }
 
 .numberBox-value {
-  /* border: 0.5px solid white; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,13 +54,10 @@
 }
 
 .numberBox-info {
-  /* border: 0.5px solid white; */
   display: flex;
   flex-direction: column;
   text-align: left;
   font-size: 7px;
   width: 100%;
-  padding-left: 10px;
-  margin-bottom: 30px;
   overflow-wrap: break-word;
 }

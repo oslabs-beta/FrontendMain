@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-// import { queryMap } from '../../helpers/fetchData';
 import * as d3 from 'd3';
 
 interface TreeChartProps {

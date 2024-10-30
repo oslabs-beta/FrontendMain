@@ -1,5 +1,4 @@
 import TreeChart from './treeChart';
-// import { QueriesProps } from '../System';
 
 interface QueryDisplayProps {
   queries: { [key: string]: string[] };

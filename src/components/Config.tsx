@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useBgColor } from './BgColorContext';
 import '../css/config.css';
 import { teamMembers } from '../assets/teamInfo';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,43 +13,20 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faDocker } from '@fortawesome/free-brands-svg-icons';
 
-const Config: React.FC = () => {
-  const [showDescription, setShowDescription] = useState(false);
-  const [textColor, setTextColor] = useState<string>('');
-  const [BgColor, setBgColor] = useState<string>('');
-  const checkBgColor = (): string => {
-    return window.getComputedStyle(document.body).backgroundColor;
-  };
+interface ConfigProps {
+  showDescription: boolean;
+  setShowDescription: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  useEffect(() => {
-    const handleBgColorChange = () => {
-      const newBgColor = checkBgColor();
-      setBgColor(newBgColor);
-      if (
-        newBgColor === 'rgb(17, 18, 24)' ||
-        newBgColor === 'rgb(28, 28, 30)'
-      ) {
-        setTextColor('white');
-      } else {
-        setTextColor('black');
-      }
-    };
-    // Create a new MutationObserver instance that listens for changes to the background color.
-    const observer = new MutationObserver(handleBgColorChange);
-    // Start observing the body element, specifically watching for changes to the style attribute.
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ['style'],
-    });
-    // Immediately call handleColorChange once to fetch the initial background color when the component mounts.
-    handleBgColorChange();
-    // When the component unmounts, stop the MutationObserver to prevent memory leaks.
-    return () => observer.disconnect();
-  }, []);
+const Config: React.FC<ConfigProps> = ({
+  showDescription,
+  setShowDescription,
+}) => {
+  const { textColor } = useBgColor();
 
   useEffect(() => {
     setShowDescription(true);
-  }, []);
+  });
 
   return (
     <>
@@ -56,9 +34,9 @@ const Config: React.FC = () => {
         <div className='config-content' style={{ color: `${textColor}` }}>
           <div className='headline'>
             <h1 style={{ fontSize: '55px' }}>
-              <p style={{ fontSize: '30px' }}>Spin up</p>
-              <strong style={{ fontSize: '80px', color: '#845cc0' }}>
-                Kafka
+              <p style={{ fontSize: '45px', fontWeight: '900' }}>Spin up</p>
+              <strong style={{ fontSize: '120px', color: '#845cc0' }}>
+                KAFKA
                 <span>
                   <img
                     className='logo'
@@ -66,18 +44,26 @@ const Config: React.FC = () => {
                     style={{ height: '180px', padding: '20px' }}
                   />
                 </span>
-                Cluster
+                CLUSTER
               </strong>
-              <p style={{ fontSize: '30px', paddingTop: '17px' }}>to get</p>
+              <p
+                style={{
+                  fontSize: '45px',
+                  paddingTop: '17px',
+                  fontWeight: '900',
+                }}
+              >
+                to get
+              </p>
               <strong
                 className='moving-gradient-text'
                 style={{
-                  fontSize: '70px',
+                  fontSize: '80px',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
               >
-                started
+                STARTED
               </strong>
             </h1>
           </div>
@@ -91,12 +77,14 @@ const Config: React.FC = () => {
                 transition={{ duration: 1.5 }}
               >
                 <p>
-                  Effortlessly track and manage your Kafka clusters with an
-                  intuitive interface. Customize dashboards to visualize
-                  real-time metrics, leverage built-in alerts for proactive
-                  monitoring, and integrate seamlessly with existing workflows.
-                  Harness the power of advanced analytics and reporting features
-                  to gain insights and optimize performance.
+                  <strong>Effortlessly</strong> track and manage your Kafka
+                  clusters with an intuitive interface.{' '}
+                  <strong>Customize</strong> dashboards to visualize real-time
+                  metrics, <strong>leverage</strong> built-in alerts for
+                  proactive monitoring, and <strong>integrate</strong>{' '}
+                  seamlessly with existing workflows. <strong>Harness</strong>{' '}
+                  the power of advanced analytics and reporting features to gain
+                  insights and optimize performance.
                 </p>
               </motion.div>
             )}

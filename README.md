@@ -53,7 +53,7 @@ Provides a highly secure login system utilizing OAuth, sessions, and JWT tokens 
 
  Offers streamlined configuration for connecting Kafka clusters, with guidance for setting up Prometheus to automatically scrape and process metrics.
 
- ![image](src/assets/AIchat.png)
+ ![image](src/assets/AIchat2.png)
 
 #### AI Chat Support
 

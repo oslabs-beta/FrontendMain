@@ -1,0 +1,19 @@
+.tippy {
+  border: 0.1px solid rgba(171, 171, 171, 0.5);
+  height: 150px;
+  width: 250px;
+  font-size: 10px;
+  max-width: 250px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+  background-color: rgb(42, 42, 42);
+  white-space: normal;
+  color: #03a062;
+  border-radius: 3px;
+}
+
+.tippy p {
+  margin: 2px 0;
+  margin-left: 5px;
+}

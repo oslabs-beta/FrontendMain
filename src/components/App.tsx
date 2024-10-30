@@ -32,6 +32,9 @@ function App(): JSX.Element {
   const [port, setPort] = useState<string>('');
   //used in System
   const [queries, setQueries] = useState<{ [key: string]: string[] }>({});
+  //used in Config && About
+  const [showDescription, setShowDescription] = useState(false);
+  // const [textColor, setTextColor] = useState<string>('');
 
   const handleMouseEnter = (): void => {
     setIsSideBarHovered(true);
@@ -53,12 +56,8 @@ function App(): JSX.Element {
         />
       )}
       <Routes>
-        <Route
-          path='/'
-          element={<Form queries={queries} setQueries={setQueries} />}
-        />
-        <Route path='/' element={<Form />} />
-        <Route path='/oauth/google' element={<GoogleRouteCallback/>}/>
+        <Route path='/' element={<Form setQueries={setQueries} />} />
+        <Route path='/oauth/google' element={<GoogleRouteCallback />} />
         <Route
           // path='/*'
           element={
@@ -90,8 +89,24 @@ function App(): JSX.Element {
                 <Metrics data={data} setData={setData} queries={queries} />
               }
             />
-            <Route path='/about' element={<About />} />
-            <Route path='/config' element={<Config />} />
+            <Route
+              path='/about'
+              element={
+                <About
+                  showDescription={showDescription}
+                  setShowDescription={setShowDescription}
+                />
+              }
+            />
+            <Route
+              path='/config'
+              element={
+                <Config
+                  showDescription={showDescription}
+                  setShowDescription={setShowDescription}
+                />
+              }
+            />
             <Route
               path='/profile'
               element={
@@ -102,16 +117,14 @@ function App(): JSX.Element {
                   setIp={setIp}
                   port={port}
                   setPort={setPort}
+                  queries={queries}
                 />
               }
             />
           </Route>
         </Route>
 
-        <Route
-          path='*'
-          element={<Form queries={queries} setQueries={setQueries} />}
-        />
+        <Route path='*' element={<Form setQueries={setQueries} />} />
       </Routes>
     </div>
   );
