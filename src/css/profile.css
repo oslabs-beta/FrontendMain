@@ -1,0 +1,53 @@
+.user-container {
+  /* keep this border */
+  border: 0.1px solid rgb(171, 171, 171, 0.25);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  text-align: flex-start;
+  margin-left: 13%;
+  margin-top: 100px;
+  padding: 50px;
+  width: 75%;
+  background: #262626bc;
+  box-shadow: 3px 3px 5px rgb(0, 0, 0);
+  border-radius: 7px;
+  font-size: 12px;
+}
+
+.user-inputField label {
+  /* border: 0.5px solid white; */
+  padding-right: 30px;
+}
+
+.user-inputField input {
+  border-radius: 7px;
+  box-shadow: 3px 3px 5px rgb(30, 30, 30);
+  text-decoration: none;
+  outline: none;
+  padding: 3px;
+  width: 200px;
+  text-align: center;
+}
+
+.user-inputField button {
+  margin-left: 30px;
+  padding: 3px 15px;
+  margin-left: 30px;
+  border-radius: 7px;
+  box-shadow: 3px 3px 5px rgb(30, 30, 30);
+  text-decoration: none;
+  outline: none;
+  background: rgba(92, 92, 92, 0.778);
+  color: #fff;
+}
+
+.user-displayField {
+  /* border: 0.5px solid white; */
+  /* margin-top: 50px;
+  margin-left: 15px; */
+}
+
+.user-displayField p {
+  text-align: start;
+}

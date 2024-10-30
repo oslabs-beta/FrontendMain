@@ -114,11 +114,13 @@ import { renderMetricsBox } from './metricsDisplayRender/renderMetrics';
 import type { MetricsProps } from './metricsDisplayRender/renderMetrics';
 import '../css/metrics.css';
 
-const Metrics: React.FC<MetricsProps> = ({ data, setData }) => {
+const Metrics: React.FC<MetricsProps> = ({ data, queries, setData }) => {
   useEffect(() => {
+    // console.log(queries)
     const fetchAndSetData = async () => {
       try {
-        const response = await fetchData();
+        const response = await fetchData({ queries });
+        // console.log(response)
         if (response.status === 'success') {
           setData(response);
         } else setData(null);
@@ -134,7 +136,7 @@ const Metrics: React.FC<MetricsProps> = ({ data, setData }) => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [setData]);
+  }, [setData, queries]);
 
   return (
     <div className='metrics'>

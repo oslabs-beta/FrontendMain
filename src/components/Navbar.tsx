@@ -142,7 +142,9 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                     </Nav.Link>
                     <Nav.Link
                       as={Link}
-                      to={'/git'}
+                      to={
+                        'https://github.com/orgs/oslabs-beta/teams/streamforge'
+                      }
                       className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
                     >
                       <FontAwesomeIcon
@@ -172,7 +174,6 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                   id='flexSwitchCheck'
                   checked={isToggled}
                   onChange={handleModeToggle}
-                  
                 />
               </div>
             )}

@@ -1,4 +1,7 @@
+
 // import * as React from 'react';
+import retreiveUserQueryMap from '../helpers/retreiveUserQueryMap';
+import { QueriesProps } from './System';
 import { useEffect, useState, useRef} from "react";
 import OAuth from "./OAuth";
 import { motion } from "framer-motion";
@@ -19,12 +22,12 @@ export const LogOutGithub = () => {
   localStorage.removeItem('githubRefreshJwtToken');
 };
 
-function Form(): JSX.Element  {
-  const [signInEmail, setSignInEmail] = useState<string>("");
-  const [signInPassword, setSignInPassword] = useState<string>("");
-  const [signUpEmail, setSignUpEmail] = useState<string>("");
-  const [signUpPassword, setSignUpPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+function Form({ setQueries }: QueriesProps): JSX.Element {
+  const [signInEmail, setSignInEmail] = useState<string>('');
+  const [signInPassword, setSignInPassword] = useState<string>('');
+  const [signUpEmail, setSignUpEmail] = useState<string>('');
+  const [signUpPassword, setSignUpPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [isSignupPage, setIsSignupPage] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [pwdSignInNotConfirmed, setSignInNotPwdConfirmed] =
@@ -43,6 +46,7 @@ function Form(): JSX.Element  {
   const {setLoginGateway, isGoogleLoginFailed, setGithubLoginFailed, isGithubLoginFailed} = useGettingContext();
   // const [isLoading, setIsloading] = useState<boolean>(true);
   const navigate = useNavigate();
+
   const loginWithGithub = ():void => {
     //assign() will add URL to history in browser
     setLoginGateway("github");
@@ -165,6 +169,7 @@ function Form(): JSX.Element  {
   
   //   checkSession();
   // }, [navigate]);
+
   const handleSignUpSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     email: string,
@@ -240,6 +245,12 @@ function Form(): JSX.Element  {
           if (result.err === 'Error in verifying user') {
             setIsSignInEmailNotValid(true);
           }
+        })
+        .then(() => {
+          return retreiveUserQueryMap();
+        })
+        .then((updatedQueries) => {
+          setQueries(updatedQueries);
         })
         .catch((error) => console.log(error, 'ERROR in SIGNIN'));
     } else {
