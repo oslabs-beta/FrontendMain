@@ -65,11 +65,13 @@ function Form({ setQueries }: FormProps): JSX.Element {
   };
   const generateRandomState = () => Math.random().toString(36).substring(2, 15);
   const handleGoogleLogin = (): void => {
+    console.log("handleGoogleLoginCalled");
     setLoginGateway('google');
     //generating random state
     const state = generateRandomState();
     //store state in sessionStorage
     sessionStorage.setItem('googleOAuthState', state);
+    console.log("test1");
     const googleAuthUrl =
       `https://accounts.google.com/o/oauth2/v2/auth?` +
       `client_id=${google_clientID}&` +
