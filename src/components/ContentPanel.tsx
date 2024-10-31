@@ -63,7 +63,7 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
           setLabelText,
           '  Welcome to StreamForge! How can I help you today?'
         );
-      }, 300);
+      }, 100);
 
       return () => {
         clearTimeout(interval as NodeJS.Timeout);

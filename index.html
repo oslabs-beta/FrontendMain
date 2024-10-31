@@ -8,7 +8,6 @@
       href="src/assets/steamForge-logo.png"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StreamForge</title>
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
       rel="stylesheet"
@@ -16,7 +15,68 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/components/main.tsx"></script>
+
+    <!-- Preload CSS -->
+    <link
+      rel="preload"
+      href="/src/css/config.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="/src/css/config.css" /></noscript>
+
+    <link
+      rel="preload"
+      href="/src/css/metrics.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="/src/css/metrics.css" /></noscript>
+
+    <link
+      rel="preload"
+      href="/src/css/contentPanel.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript
+      ><link rel="stylesheet" href="/src/css/contentPanel.css"
+    /></noscript>
+
+    <link
+      rel="preload"
+      href="/src/css/App.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="/src/css/App.css" /></noscript>
+
+    <link
+      rel="preload"
+      href="/src/css/about.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="/src/css/about.css" /></noscript>
+
+    <link
+      rel="preload"
+      href="/src/css/navbar.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="/src/css/navbar.css" /></noscript>
+
+    <link
+      rel="preload"
+      href="/src/css/sidebar.css"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="/src/css/sidebar.css" /></noscript>
+
+    <!-- Scripts -->
+    <script type="module" src="/src/components/main.tsx" defer></script>
     <script
       src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js"
       crossorigin

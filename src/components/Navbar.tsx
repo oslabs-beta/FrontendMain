@@ -109,7 +109,7 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                 <>
                   <img
                     className='logo'
-                    src='src/assets/steamForge-logo.png'
+                    src='src/assets/streamForge-logo.png'
                     style={{ height: '50px' }}
                   />
                   <Navbar.Brand
@@ -178,10 +178,6 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
       </div>
       <div>
         <Routes>
-          {/* <Route
-            path='/dash'
-             element={<Dashboard/>}
-          /> */}
           <Route path='/about' />
           <Route path='/readme' />
           <Route path='/config' />

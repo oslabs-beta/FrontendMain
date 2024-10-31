@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { useBgColor } from './BgColorContext';
 import '../css/config.css';
 import { teamMembers } from '../assets/teamInfo';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import {
   faLink as faLinkSimple,
   faArrowRightArrowLeft,
@@ -12,6 +11,8 @@ import {
   faCode,
 } from '@fortawesome/free-solid-svg-icons';
 import { faDocker } from '@fortawesome/free-brands-svg-icons';
+
+const TeamMember = lazy(() => import('./TeamMember'));
 
 interface ConfigProps {
   showDescription: boolean;
@@ -40,7 +41,7 @@ const Config: React.FC<ConfigProps> = ({
                 <span>
                   <img
                     className='logo'
-                    src='src/assets/steamForge-logo.png'
+                    src='src/assets/streamForge-logo.png'
                     style={{ height: '180px', padding: '20px' }}
                   />
                 </span>
@@ -170,35 +171,9 @@ const Config: React.FC<ConfigProps> = ({
           </div>
           <div className='team-content'>
             {teamMembers.map((member) => (
-              <div key={member.id} id={member.id}>
-                <motion.img
-                  src={member.image}
-                  alt={`${member.name} headshot`}
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                />
-                <p>{member.name}</p>
-                <div className='team-icons'>
-                  <motion.a
-                    href={member.github}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    whileHover={{ scale: 1.3 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                  >
-                    <FontAwesomeIcon icon={faGithub} className='icon' />
-                  </motion.a>
-                  <motion.a
-                    href={member.linkedin}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    whileHover={{ scale: 1.3 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                  >
-                    <FontAwesomeIcon icon={faLinkedin} className='icon' />
-                  </motion.a>
-                </div>
-              </div>
+              <Suspense key={member.id} fallback={<div>Loading...</div>}>
+                <TeamMember member={member} />
+              </Suspense>
             ))}
           </div>
         </div>

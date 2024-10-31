@@ -419,7 +419,7 @@ function Form({
             >
               <img
                 className='logo'
-                src='src/assets/steamForge-logo.png'
+                src='src/assets/streamForge-logo.png'
                 style={{ height: '250px' }}
               />
               <p>Get started with</p> <span id='name'> StreamForge</span>
@@ -440,7 +440,7 @@ function Form({
               {
                 <img
                   className='logo'
-                  src='src/assets/steamForge-logo.png'
+                  src='src/assets/streamForge-logo.png'
                   style={{ height: '250px' }}
                 />
               }
