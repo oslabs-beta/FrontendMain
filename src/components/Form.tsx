@@ -2,8 +2,6 @@ import retreiveUserQueryMap from '../helpers/retreiveUserQueryMap';
 import { useEffect, useState, useRef } from 'react';
 import OAuth from './OAuth';
 import { motion } from 'framer-motion';
-import dotenv from "dotenv"
-dotenv.config();
 import '../css/App.css';
 import AccountCreatedModal from './AccountCreatedPopup';
 import { handleLoginClick } from '../helpers/handleLoginClick';
@@ -15,7 +13,7 @@ const github_clientID = import.meta.env.VITE_GITHUB_CLIENTID;
 const google_clientID = import.meta.env.VITE_GOOGLE_CLIENTID;
 const API_URL = import.meta.env.VITE_API_URL;
 const google_redirect_uri = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
-const Backend_Url: string = process.env.BACKEND_URL;
+const backend_url = import.meta.env.VITE_BACKEND_URL;
 export const LogOutGithub = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('githubJwtToken');
@@ -220,7 +218,7 @@ function Form({ setQueries }: FormProps): JSX.Element {
     setSignInEmailIsNotValid(false);
     setIsSignInEmailNotValid(false);
     if (validateEmail(email)) {
-      fetch(`${Backend_Url}/api/signin`, {
+      fetch(`${backend_url}/api/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: password }),
