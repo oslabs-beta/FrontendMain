@@ -6,6 +6,7 @@ import { faAnglesLeft, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import '../css/contentPanel.css';
 import { startTypingEffect } from '../helpers/typingEffect';
 import { handleOpenAiCall } from '../helpers/handleOpenAiCall';
+
 interface ContentPanelProps {
   isExpanded: boolean;
   isOpenAiWindow: boolean;
@@ -38,7 +39,11 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
   const location = useLocation();
   const inputRef = useRef<HTMLInputElement>(null);
   const handleButtonClick = (): void => {
-    setIsOpenAiWindow((prev) => !prev);
+    setIsOpenAiWindow((prev) => {
+      const newAiWindowState = !prev;
+      return newAiWindowState;
+    });
+
     setIsRotated((prev) => !prev);
   };
   const { textColor } = useBgColor();

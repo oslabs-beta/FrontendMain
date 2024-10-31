@@ -7,7 +7,7 @@ import Config from './Config';
 import Profile from './Profile';
 import '../css/navbar.css';
 import { Route, Routes, useLocation, Outlet } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SidebarMenu from './SidebarMenu';
 import ContentPanel from './ContentPanel';
 import ProtectedRoute from './ProtectedRoute';
@@ -15,6 +15,11 @@ import { DataResponse } from './metricsDisplayRender/renderMetrics';
 import GoogleRouteCallback from './googleRoute';
 
 function App(): JSX.Element {
+  interface StateType {
+    isOpenAiWindow: boolean;
+    queries: { [key: string]: string[] };
+  }
+
   const location = useLocation();
   //used in NavBar
   const [isSideBarHovered, setIsSideBarHovered] = useState<boolean>(false);
@@ -43,6 +48,32 @@ function App(): JSX.Element {
     setIsSideBarHovered(false);
   };
 
+  const initialState = {
+    queries,
+  };
+
+  const [state, setState] = useState<StateType>(() => {
+    const savedState = localStorage.getItem('sessionState');
+    return savedState ? JSON.parse(savedState) : initialState;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('sessionState', JSON.stringify(state));
+    if (state.queries) {
+      setQueries(state.queries);
+    }
+  }, [state]);
+
+
+  const updateLocalStorageQueries = (newQueries: {
+    [key: string]: string[];
+  }) => {
+    setState((prev) => ({
+      ...prev,
+      queries: newQueries,
+    }));
+  };
+
   return (
     <div>
       {location.pathname !== '/' && (
@@ -56,7 +87,15 @@ function App(): JSX.Element {
         />
       )}
       <Routes>
-        <Route path='/' element={<Form setQueries={setQueries} />} />
+        <Route
+          path='/'
+          element={
+            <Form
+              setQueries={setQueries}
+              updateLocalStorageQueries={updateLocalStorageQueries}
+            />
+          }
+        />
         <Route path='/oauth/google' element={<GoogleRouteCallback />} />
         <Route
           // path='/*'
@@ -81,7 +120,13 @@ function App(): JSX.Element {
           <Route element={<ProtectedRoute />}>
             <Route
               path='/system'
-              element={<System queries={queries} setQueries={setQueries} />}
+              element={
+                <System
+                  queries={queries}
+                  setQueries={setQueries}
+                  updateLocalStorageQueries={updateLocalStorageQueries}
+                />
+              }
             />
             <Route
               path='/metrics'
@@ -124,7 +169,15 @@ function App(): JSX.Element {
           </Route>
         </Route>
 
-        <Route path='*' element={<Form setQueries={setQueries} />} />
+        <Route
+          path='*'
+          element={
+            <Form
+              setQueries={setQueries}
+              updateLocalStorageQueries={updateLocalStorageQueries}
+            />
+          }
+        />
       </Routes>
     </div>
   );

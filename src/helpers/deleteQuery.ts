@@ -3,7 +3,8 @@ import { QueriesType } from './addCategory';
 const deleteQuery = async (
   key: string,
   query: string,
-  setQueries: React.Dispatch<React.SetStateAction<QueriesType>>
+  setQueries: React.Dispatch<React.SetStateAction<QueriesType>>,
+  updateLocalStorageQueries: (queries: { [key: string]: string[] }) => void
 ) => {
   try {
     const response = await fetch('/api/deleteQuery', {
@@ -20,6 +21,7 @@ const deleteQuery = async (
 
     const data = await response.json();
     setQueries(data);
+    updateLocalStorageQueries(data);
   } catch (error) {
     console.log('Error sending query for deletion', error);
   }

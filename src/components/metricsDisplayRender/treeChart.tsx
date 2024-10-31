@@ -48,7 +48,15 @@ const TreeChart: React.FC<TreeChartProps> = ({ queries }) => {
   const data = createData({ queries });
 
   useEffect(() => {
+    if (
+      !queries ||
+      typeof queries !== 'object' ||
+      Object.keys(queries).length === 0
+    )
+      return;
+
     d3.select(ref.current).selectAll('*').remove();
+
     const chart = () => {
       const width = 1500;
 
@@ -73,7 +81,7 @@ const TreeChart: React.FC<TreeChartProps> = ({ queries }) => {
         }
       });
 
-      const height = Math.min(x1 - x0 + dx * 2);
+      const height = Math.min(x1 - x0 + dx * 3);
 
       const svg = d3
         .create('svg')
@@ -128,7 +136,7 @@ const TreeChart: React.FC<TreeChartProps> = ({ queries }) => {
     if (svg) {
       ref.current?.appendChild(svg);
     }
-  }, [data]);
+  }, [queries]);
 
   return (
     <div style={{ overflow: 'auto', maxWidth: '100%', maxHeight: '1340px' }}>
