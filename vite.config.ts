@@ -8,8 +8,8 @@ export default defineConfig({
     proxy: {
       '/api': {
         target:
-          'http://StreamForgeBackEnd-env.eba-ck4xhmjr.us-east-1.elasticbeanstalk.com',
-        // 'http://localhost:3008',
+          // 'http://StreamForgeBackEnd-env.eba-ck4xhmjr.us-east-1.elasticbeanstalk.com',
+          'http://localhost:3008',
         changeOrigin: true,
         secure: false,
         ws: true,

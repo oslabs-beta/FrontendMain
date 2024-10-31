@@ -10,13 +10,13 @@
   background-color: #845cc00f;
   margin: 10px;
   border-radius: 7px;
-  height: 100vh;
 }
 
 .queryDisplay-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 1.6875rem;
 }
 
 .queryEditor-editor,

@@ -33,6 +33,7 @@
 }
 
 .openAI-container.expanded {
+  margin-top: 57px;
   width: 25%;
 }
 
@@ -59,7 +60,7 @@
   width: 100%;
   padding: 50px;
   font-size: 13px;
-  height: 900px;
+  height: 800px;
 }
 
 .input-container {
@@ -83,6 +84,7 @@
   color: #fff;
   flex: 1;
   padding: 7px;
+  padding-right: 50px;
 }
 
 label {
