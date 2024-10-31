@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/oauth/google", "destination": "/" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
+
