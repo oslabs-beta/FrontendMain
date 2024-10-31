@@ -1,7 +1,7 @@
 const updateDataSource = async (newDataSource: string) => {
   console.log('sending this to update data source', newDataSource);
   try {
-    const response = await fetch('/dataSource', {
+    const response = await fetch('/api/dataSource', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ dataSource: newDataSource }),
