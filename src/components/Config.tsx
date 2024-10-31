@@ -10,7 +10,7 @@ import {
   faGlobe,
   faCode,
 } from '@fortawesome/free-solid-svg-icons';
-import { faDocker } from '@fortawesome/free-brands-svg-icons';
+import { faDocker, faAws } from '@fortawesome/free-brands-svg-icons';
 
 const TeamMember = lazy(() => import('./TeamMember'));
 
@@ -94,9 +94,9 @@ const Config: React.FC<ConfigProps> = ({
             <FontAwesomeIcon
               icon={faArrowRightArrowLeft}
               style={{
-                fontSize: '50px',
+                fontSize: '80px',
                 color: '#00CED1',
-                margin: '40px',
+                marginBottom: '40px',
               }}
             />
             <p style={{ fontSize: '40px', fontWeight: '600' }}>
@@ -108,9 +108,29 @@ const Config: React.FC<ConfigProps> = ({
               <FontAwesomeIcon icon={faGlobe} id='globe-icon' />
               <h3>In the cloud</h3>
               <p>
-                You can connect our product to your Kafka cluster in the{' '}
+                <strong style={{ fontSize: '15px' }}>You</strong> can connect
+                our product to your Kafka cluster in the{' '}
                 <span style={{ color: '#00a4ef' }}>cloud</span>. Here are the
                 steps you need to follow to ensure a robust connection.
+              </p>
+              <a href='https://aws.amazon.com/ec2/' target='_blank'>
+                <FontAwesomeIcon
+                  icon={faAws}
+                  style={{ height: '50px', color: '#FF9900' }}
+                />
+              </a>
+              <p>
+                <strong style={{ fontSize: '15px' }}>Visit </strong> our{' '}
+                <a
+                  href='https://github.com/oslabs-beta/FrontendMain/blob/dev/README.md'
+                  style={{ color: '#0077b3', textDecoration: 'none' }}
+                >
+                  README
+                </a>{' '}
+                for detailed instructions on deploying your Kafka Cluster on the
+                AWS EC2 service. If your cluster is already up and running, head
+                to your profile to set your URL and port. Then, navigate to the
+                system page to start adding your queries.
               </p>
             </div>
             <div className='kafka-local'>
@@ -135,13 +155,14 @@ const Config: React.FC<ConfigProps> = ({
               <div>
                 <p>
                   Download{' '}
-                  <span style={{ color: '#0077b3' }}>Docker image</span> onto
-                  your local mahine
+                  <span style={{ color: '#0077b3' }}>Docker image</span> and
+                  onto your local mahine
                 </p>
                 <p>
-                  kafka requires JMX to expose its metrics. We have configured
-                  this in our Kafka cluster, allowing you to easily spin it up
-                  and start experimenting.
+                  <strong style={{ fontSize: '15px' }}>kafka</strong> requires
+                  JMX to expose its metrics. We have configured this in our
+                  Kafka cluster, allowing you to easily spin it up and start
+                  experimenting.
                 </p>
               </div>
               <div className='docker-code-snippet'>
