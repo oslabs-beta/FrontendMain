@@ -9,11 +9,11 @@ import { handleSignupClick } from '../helpers/handleSignupClick';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useGettingContext, loginTypes } from './AuthContext';
-import streamForgeLogo from '../assets/streamForge-logo.png';
 const github_clientID = import.meta.env.VITE_GITHUB_CLIENTID;
 const google_clientID = import.meta.env.VITE_GOOGLE_CLIENTID;
 const API_URL = import.meta.env.VITE_API_URL;
 const google_redirect_uri = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
+const backend_url = import.meta.env.VITE_BACKEND_URL;
 export const LogOutGithub = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('githubJwtToken');
@@ -22,13 +22,9 @@ export const LogOutGithub = () => {
 
 interface FormProps {
   setQueries: React.Dispatch<React.SetStateAction<{ [key: string]: string[] }>>;
-  updateLocalStorageQueries: (queries: { [key: string]: string[] }) => void;
 }
 
-function Form({
-  setQueries,
-  updateLocalStorageQueries,
-}: FormProps): JSX.Element {
+function Form({ setQueries }: FormProps): JSX.Element {
   const [signInEmail, setSignInEmail] = useState<string>('');
   const [signInPassword, setSignInPassword] = useState<string>('');
   const [signUpEmail, setSignUpEmail] = useState<string>('');
@@ -81,9 +77,10 @@ function Form({
       `response_type=code&` +
       `state=${encodeURIComponent(state)}&` +
       `redirect_uri=${encodeURIComponent(google_redirect_uri)}&` +
-      `scope=${encodeURIComponent('email profile')}`;
-    // +`&prompt=consent`;
+      `scope=${encodeURIComponent('email profile')}&`
+      +`&prompt=consent`;
     //redirect to google login page
+    console.log(googleAuthUrl);
     window.location.assign(googleAuthUrl);
   };
 
@@ -222,10 +219,11 @@ function Form({
     setSignInEmailIsNotValid(false);
     setIsSignInEmailNotValid(false);
     if (validateEmail(email)) {
-      fetch('/api/signin', {
+      fetch(`${backend_url}/api/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: password }),
+        credentials: 'include',
       })
         .then((result) => result.json())
         .then((result) => {
@@ -245,7 +243,6 @@ function Form({
         })
         .then((updatedQueries) => {
           setQueries(updatedQueries);
-          updateLocalStorageQueries(updatedQueries);
         })
         .catch((error) => console.log(error, 'ERROR in SIGNIN'));
     } else {
@@ -420,7 +417,7 @@ function Form({
             >
               <img
                 className='logo'
-                src={streamForgeLogo}
+                src='src/assets/steamForge-logo.png'
                 style={{ height: '250px' }}
               />
               <p>Get started with</p> <span id='name'> StreamForge</span>
@@ -441,7 +438,7 @@ function Form({
               {
                 <img
                   className='logo'
-                  src={streamForgeLogo}
+                  src='src/assets/steamForge-logo.png'
                   style={{ height: '250px' }}
                 />
               }
