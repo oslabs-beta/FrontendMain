@@ -9,7 +9,6 @@ import { handleSignupClick } from '../helpers/handleSignupClick';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useGettingContext, loginTypes } from './AuthContext';
-import streamForgeLogo from '../assets/streamForge-logo.png';
 const github_clientID = import.meta.env.VITE_GITHUB_CLIENTID;
 const google_clientID = import.meta.env.VITE_GOOGLE_CLIENTID;
 const API_URL = import.meta.env.VITE_API_URL;
@@ -420,7 +419,7 @@ function Form({
             >
               <img
                 className='logo'
-                src={streamForgeLogo}
+                src='src/assets/steamForge-logo.png'
                 style={{ height: '250px' }}
               />
               <p>Get started with</p> <span id='name'> StreamForge</span>
@@ -441,7 +440,7 @@ function Form({
               {
                 <img
                   className='logo'
-                  src={streamForgeLogo}
+                  src='src/assets/steamForge-logo.png'
                   style={{ height: '250px' }}
                 />
               }

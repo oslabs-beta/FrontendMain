@@ -64,7 +64,6 @@ function App(): JSX.Element {
     }
   }, [state]);
 
-
   const updateLocalStorageQueries = (newQueries: {
     [key: string]: string[];
   }) => {
@@ -101,6 +100,7 @@ function App(): JSX.Element {
           // path='/*'
           element={
             <ContentPanel
+              queries={queries}
               isExpanded={isSideBarHovered}
               isOpenAiWindow={isOpenAiWindow}
               setIsOpenAiWindow={setIsOpenAiWindow}

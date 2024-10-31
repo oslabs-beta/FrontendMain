@@ -8,6 +8,7 @@ import { startTypingEffect } from '../helpers/typingEffect';
 import { handleOpenAiCall } from '../helpers/handleOpenAiCall';
 
 interface ContentPanelProps {
+  queries: { [key: string]: string[] };
   isExpanded: boolean;
   isOpenAiWindow: boolean;
   setIsOpenAiWindow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,6 +24,7 @@ interface ContentPanelProps {
 }
 
 const ContentPanel: React.FC<ContentPanelProps> = ({
+  queries,
   isOpenAiWindow,
   setIsOpenAiWindow,
   isRotated,
@@ -74,7 +76,7 @@ const ContentPanel: React.FC<ContentPanelProps> = ({
   const handleKeyPress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === 'Return') {
       e.preventDefault();
-      const response: string = await handleOpenAiCall(userInput);
+      const response: string = await handleOpenAiCall(userInput, queries);
       console.log(response);
       startTypingEffect(setAiResponse, `  ${response}`);
       setUserInput('');
