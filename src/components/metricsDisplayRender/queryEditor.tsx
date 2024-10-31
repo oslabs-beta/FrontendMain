@@ -7,11 +7,13 @@ import handleDeleteCategory from '../../helpers/deleteCategory';
 interface QueryEditorProps {
   queries: { [key: string]: string[] };
   setQueries: React.Dispatch<React.SetStateAction<{ [key: string]: string[] }>>;
+  updateLocalStorageQueries: (queries: { [key: string]: string[] }) => void;
 }
 
 export function QueryEditor({
   queries,
   setQueries,
+  updateLocalStorageQueries,
 }: QueryEditorProps): JSX.Element {
   const inputRef1 = useRef<HTMLInputElement>(null);
   const inputRef2 = useRef<HTMLInputElement>(null);
@@ -22,7 +24,7 @@ export function QueryEditor({
     if (selectRef.current && inputRef2.current) {
       const selectedValue = selectRef.current.value;
       const queryValue = inputRef2.current.value;
-      addQuery(selectedValue, queryValue, setQueries);
+      addQuery(selectedValue, queryValue, setQueries, updateLocalStorageQueries);
       inputRef2.current.value = '';
     }
   };
@@ -33,7 +35,7 @@ export function QueryEditor({
     query: string
   ) => {
     e.preventDefault();
-    deleteQuery(key, query, setQueries);
+    deleteQuery(key, query, setQueries, updateLocalStorageQueries);
   };
   return (
     <div className='queryEditor-container'>
@@ -47,7 +49,7 @@ export function QueryEditor({
               if (inputRef1.current) {
                 const newCategory = inputRef1.current?.value;
                 if (newCategory.trim()) {
-                  handleAddCategory(newCategory, setQueries);
+                  handleAddCategory(newCategory, setQueries, updateLocalStorageQueries);
                   inputRef1.current.value = '';
                 }
               }
@@ -107,7 +109,7 @@ export function QueryEditor({
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  handleDeleteCategory(key, setQueries);
+                  handleDeleteCategory(key, setQueries, updateLocalStorageQueries);
                 }}
               >
                 <button type='submit' style={{ marginRight: '8px' }}>

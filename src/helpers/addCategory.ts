@@ -4,7 +4,8 @@ export interface QueriesType {
 
 const handleAddCategory = async (
   newCategory: string,
-  setQueries: React.Dispatch<React.SetStateAction<QueriesType>>
+  setQueries: React.Dispatch<React.SetStateAction<QueriesType>>,
+  updateLocalStorageQueries: (queries: { [key: string]: string[] }) => void
 ) => {
   try {
     const response = await fetch('/api/addCategory', {
@@ -20,6 +21,7 @@ const handleAddCategory = async (
     const data = await response.json();
     console.log('This category has been added to db: ', data);
     setQueries(data);
+    updateLocalStorageQueries(data);
   } catch (error) {
     console.log('Error trying to add category to database', error);
   }

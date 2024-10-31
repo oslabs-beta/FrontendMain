@@ -150,9 +150,10 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                     className='bg-btnPurple me-2 d-flex flex-column justify-content-center'
                     onClick={async () => {
                       handleLogoutClick(loginGateway);
-                      await fetch("/api/logout");
+                      localStorage.removeItem('sessionState');
+
+                      await fetch('/api/logout');
                     }}
-                    
                   >
                     Logout
                   </Nav.Link>
