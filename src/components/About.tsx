@@ -77,8 +77,8 @@ const About: React.FC<AboutProps> = ({
         )}
       </AnimatePresence>
       <h2 className='aboutHeader'>
-        <img className='aboutSFLogo' src='src/assets/steamForge-logo.png' /> Why
-        StreamForge?
+        <img className='aboutSFLogo' src='src/assets/streamForge-logo.png' />{' '}
+        Why StreamForge?
       </h2>
       <AnimatePresence>
         {showDescription && (

@@ -10,7 +10,7 @@ export function QueryDisplay({ queries }: QueryDisplayProps) {
       <div
         style={{
           background: '#303030',
-          height: '100vh',
+          // height: '100vh',
           borderRadius: '7px',
           border: '0.1px solid rgba(171, 171, 171, 0.25)',
         }}
