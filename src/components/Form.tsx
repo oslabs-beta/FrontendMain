@@ -218,7 +218,7 @@ function Form({ setQueries }: FormProps): JSX.Element {
     setSignInEmailIsNotValid(false);
     setIsSignInEmailNotValid(false);
     if (validateEmail(email)) {
-      fetch(`${backend_url}/api/signin`, {
+      fetch(`/api/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: password }),
