@@ -19,6 +19,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "d3": "^7.9.0",
+    "dotenv": "^16.4.5",
     "framer-motion": "^11.11.8",
     "lodash": "^4.17.21",
     "react-bootstrap": "^2.10.5",

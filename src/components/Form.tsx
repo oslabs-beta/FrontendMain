@@ -13,6 +13,7 @@ const github_clientID = import.meta.env.VITE_GITHUB_CLIENTID;
 const google_clientID = import.meta.env.VITE_GOOGLE_CLIENTID;
 const API_URL = import.meta.env.VITE_API_URL;
 const google_redirect_uri = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
+const backend_url = import.meta.env.VITE_BACKEND_URL;
 export const LogOutGithub = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('githubJwtToken');
@@ -221,10 +222,11 @@ function Form({
     setSignInEmailIsNotValid(false);
     setIsSignInEmailNotValid(false);
     if (validateEmail(email)) {
-      fetch('/api/signin', {
+      fetch(`/api/signin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: password }),
+        credentials: 'include',
       })
         .then((result) => result.json())
         .then((result) => {

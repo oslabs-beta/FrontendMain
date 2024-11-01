@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useGettingContext } from "./AuthContext";
 const API_URL = import.meta.env.VITE_API_URL;
 export const clearTokens = () => {
+  console.log('Here the token was called maybe...')
   localStorage.removeItem('googleAccessToken');
   localStorage.removeItem('googleRefreshToken');
   localStorage.removeItem('googleAccessTokenExpireTime');
+  sessionStorage.removeItem('googleOAuthState');
 };
 
 const GoogleRouteCallback: React.FC = ()  => {

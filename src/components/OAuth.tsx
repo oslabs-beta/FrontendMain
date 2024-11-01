@@ -5,6 +5,7 @@ import {
   faGithub,
 } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
+import { clearTokens } from './googleRoute';
 import * as React from 'react';
 import {loginTypes} from './AuthContext';
 interface OAuthProp {
@@ -23,7 +24,9 @@ const OAuth: React.FC <OAuthProp>= ({handleOAuthClick}) => {
         }}
         whileHover={{ scale: 1.2 }}
       >
-        <a href='#' className='icon' onClick={() => handleOAuthClick("google")}>
+        <a href='#' className='icon' onClick={() => {
+          // clearTokens();
+          handleOAuthClick("google");}}>
           <FontAwesomeIcon icon={faGoogle} />
         </a>
       </motion.div>
