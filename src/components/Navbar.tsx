@@ -109,7 +109,7 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                 <>
                   <img
                     className='logo'
-                    src='src/assets/steamForge-logo.png'
+                    src='./src/assets/steamForge-logo.png'
                     style={{ height: '50px' }}
                   />
                   <Navbar.Brand
