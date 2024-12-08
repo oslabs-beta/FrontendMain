@@ -26,6 +26,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member }) => {
       <div className='team-icons'>
         <motion.a
           href={member.github}
+          aria-label={`View ${member.name}'s github`}
           target='_blank'
           rel='noopener noreferrer'
           whileHover={{ scale: 1.3 }}
@@ -35,6 +36,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({ member }) => {
         </motion.a>
         <motion.a
           href={member.linkedin}
+          aria-label={`View ${member.name}'s linkedin`}
           target='_blank'
           rel='noopener noreferrer'
           whileHover={{ scale: 1.3 }}

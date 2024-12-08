@@ -21,8 +21,12 @@ const About: React.FC<AboutProps> = ({
   return (
     <div className='about-container' style={{ color: textColor }}>
       <h1 className='aboutHeader'>
-        <img src='src/assets/KafkaLogo.png' className='KafkaLogo' /> What is
-        Kafka?
+        <img
+          src='src/assets/KafkaLogo.png'
+          alt='Kafka logo'
+          className='KafkaLogo'
+        />{' '}
+        What is Kafka?
       </h1>
       <AnimatePresence>
         {showDescription && (
@@ -77,8 +81,12 @@ const About: React.FC<AboutProps> = ({
         )}
       </AnimatePresence>
       <h2 className='aboutHeader'>
-        <img className='aboutSFLogo' src='src/assets/streamForge-logo.png' />{' '}
-        Why StreamForge?
+        <img
+          className='aboutSFLogo'
+          src='src/assets/streamForgeObs-logo.png'
+          alt='StreamForgeObs logo'
+        />{' '}
+        Why StreamForgeObs?
       </h2>
       <AnimatePresence>
         {showDescription && (

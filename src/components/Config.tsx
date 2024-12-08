@@ -41,7 +41,8 @@ const Config: React.FC<ConfigProps> = ({
                 <span>
                   <img
                     className='logo'
-                    src='src/assets/streamForge-logo.png'
+                    alt='StreamForgeObs logo'
+                    src='src/assets/streamForgeObs-logo.png'
                     style={{ height: '180px', padding: '20px' }}
                   />
                 </span>
@@ -106,14 +107,18 @@ const Config: React.FC<ConfigProps> = ({
           <div className='config-method'>
             <div className='kafka-cloud'>
               <FontAwesomeIcon icon={faGlobe} id='globe-icon' />
-              <h3>In the cloud</h3>
+              <p style={{ fontSize: '30px' }}>In the cloud</p>
               <p>
                 <strong style={{ fontSize: '15px' }}>You</strong> can connect
                 our product to your Kafka cluster in the{' '}
                 <span style={{ color: '#00a4ef' }}>cloud</span>. Here are the
                 steps you need to follow to ensure a robust connection.
               </p>
-              <a href='https://aws.amazon.com/ec2/' target='_blank'>
+              <a
+                href='https://aws.amazon.com/ec2/'
+                aria-label='Go to AWS EC2 site'
+                target='_blank'
+              >
                 <FontAwesomeIcon
                   icon={faAws}
                   style={{ height: '50px', color: '#FF9900' }}
@@ -123,7 +128,7 @@ const Config: React.FC<ConfigProps> = ({
                 <strong style={{ fontSize: '15px' }}>Visit </strong> our{' '}
                 <a
                   href='https://github.com/oslabs-beta/FrontendMain/blob/dev/README.md'
-                  style={{ color: '#0077b3', textDecoration: 'none' }}
+                  style={{ color: '#00a4ef', textDecoration: 'none' }}
                 >
                   README
                 </a>{' '}
@@ -135,7 +140,9 @@ const Config: React.FC<ConfigProps> = ({
             </div>
             <div className='kafka-local'>
               <FontAwesomeIcon icon={faDocker} id='docker-icon' />
-              <h3>On your machine</h3>
+              <p style={{ fontSize: '30px', marginTop: '15px' }}>
+                On your machine
+              </p>
               <motion.div
                 className='clone-repo'
                 whileHover={{ scale: 1.1 }}
@@ -155,7 +162,7 @@ const Config: React.FC<ConfigProps> = ({
               <div>
                 <p>
                   Download{' '}
-                  <span style={{ color: '#0077b3' }}>Docker image</span> and
+                  <span style={{ color: '#00a4ef' }}>Docker image</span> and
                   onto your local mahine
                 </p>
                 <p>

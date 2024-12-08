@@ -31,6 +31,6 @@ export const handleOpenAiCall = async (
     return data.response;
   } catch (error) {
     console.log('Error connecting to the server', error);
-    return '';
+    throw error;
   }
 };

@@ -5,6 +5,7 @@ import System from './System';
 import About from './About';
 import Config from './Config';
 import Profile from './Profile';
+import ResetMyPwPage from './ResetMyPwPage';
 import '../css/navbar.css';
 import { Route, Routes, useLocation, Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -21,6 +22,8 @@ function App(): JSX.Element {
   }
 
   const location = useLocation();
+  //used in Form
+  const [isPwdShown, setIsPwdShown] = useState<boolean>(false);
   //used in NavBar
   const [isSideBarHovered, setIsSideBarHovered] = useState<boolean>(false);
   //used in ContentPanel
@@ -39,7 +42,12 @@ function App(): JSX.Element {
   const [queries, setQueries] = useState<{ [key: string]: string[] }>({});
   //used in Config && About
   const [showDescription, setShowDescription] = useState(false);
-  // const [textColor, setTextColor] = useState<string>('');
+  //used in ResetMyPwPage
+  const [isPwMatch, setIsPwMatch] = useState(true);
+  const [resetPwEmail, setResetPwEmail] = useState('');
+  const [newPw, setNewPw] = useState('');
+  const [confirmNewPw, setConfirmNewPw] = useState('');
+  const [resetSuccess, setResetSuccess] = useState(false);
 
   const handleMouseEnter = (): void => {
     setIsSideBarHovered(true);
@@ -75,16 +83,18 @@ function App(): JSX.Element {
 
   return (
     <div>
-      {location.pathname !== '/' && (
-        <NavBar isSideBarHovered={isSideBarHovered} />
-      )}
-      {location.pathname !== '/' && (
-        <SidebarMenu
-          isExpanded={isSideBarHovered}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        />
-      )}
+      {location.pathname !== '/' &&
+        location.pathname !== '/resetmypassword' && (
+          <NavBar isSideBarHovered={isSideBarHovered} />
+        )}
+      {location.pathname !== '/' &&
+        location.pathname !== '/resetmypassword' && (
+          <SidebarMenu
+            isExpanded={isSideBarHovered}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          />
+        )}
       <Routes>
         <Route
           path='/'
@@ -92,10 +102,31 @@ function App(): JSX.Element {
             <Form
               setQueries={setQueries}
               updateLocalStorageQueries={updateLocalStorageQueries}
+              isPwdShown={isPwdShown}
+              setIsPwdShown={setIsPwdShown}
             />
           }
         />
         <Route path='/oauth/google' element={<GoogleRouteCallback />} />
+        <Route
+          path='/resetmypassword'
+          element={
+            <ResetMyPwPage
+              isPwdShown={isPwdShown}
+              setIsPwdShown={setIsPwdShown}
+              isPwMatch={isPwMatch}
+              setIsPwMatch={setIsPwMatch}
+              resetPwEmail={resetPwEmail}
+              setResetPwEmail={setResetPwEmail}
+              newPw={newPw}
+              setNewPw={setNewPw}
+              confirmNewPw={confirmNewPw}
+              setConfirmNewPw={setConfirmNewPw}
+              resetSuccess={resetSuccess}
+              setResetSuccess={setResetSuccess}
+            />
+          }
+        />
         <Route
           // path='/*'
           element={
@@ -175,6 +206,8 @@ function App(): JSX.Element {
             <Form
               setQueries={setQueries}
               updateLocalStorageQueries={updateLocalStorageQueries}
+              isPwdShown={isPwdShown}
+              setIsPwdShown={setIsPwdShown}
             />
           }
         />

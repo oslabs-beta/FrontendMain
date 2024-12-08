@@ -73,7 +73,7 @@
   border: 0.1px solid rgba(171, 171, 171, 0.25);
   padding: 20px;
   margin-top: 30px;
-  height: 765px;
+  height: 100vh;
   overflow: auto;
   color: #03a062;
   font-size: 12px;
