@@ -109,7 +109,8 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                 <>
                   <img
                     className='logo'
-                    src='./src/assets/steamForge-logo.png'
+                    alt='StreamForge logo'
+                    src='./src/assets/streamForgeObs-logo.png'
                     style={{ height: '50px' }}
                   />
                   <Navbar.Brand
@@ -118,7 +119,7 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
                     className='me-auto'
                     style={{ fontSize: '30px', fontWeight: 'bold' }}
                   >
-                    StreamForge
+                    StreamForgeObs
                   </Navbar.Brand>
                   <Nav className='ml-auto'>
                     <Nav.Link
@@ -165,12 +166,16 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
               <div className='form-check form-switch mx-4'>
                 <input
                   className='form-check-input p-2'
+                  aria-labelledby='darkmode-toggle-switch'
                   type='checkbox'
                   role='switch'
                   id='flexSwitchCheck'
                   checked={isToggled}
                   onChange={handleModeToggle}
                 />
+                <label id='darkmode-toggle-switch' className='visually-hidden'>
+                  Toggle Mode
+                </label>
               </div>
             )}
           </Container>
@@ -178,10 +183,6 @@ const NavBar: React.FC<NavProps> = ({ isSideBarHovered }) => {
       </div>
       <div>
         <Routes>
-          {/* <Route
-            path='/dash'
-             element={<Dashboard/>}
-          /> */}
           <Route path='/about' />
           <Route path='/readme' />
           <Route path='/config' />

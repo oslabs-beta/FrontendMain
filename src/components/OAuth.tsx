@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGoogle,
-  faFacebook,
+  // faFacebook,
   faGithub,
 } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
-import { clearTokens } from './googleRoute';
+// import { clearTokens } from './googleRoute';
 import * as React from 'react';
 import {loginTypes} from './AuthContext';
 interface OAuthProp {
@@ -30,7 +30,7 @@ const OAuth: React.FC <OAuthProp>= ({handleOAuthClick}) => {
           <FontAwesomeIcon icon={faGoogle} />
         </a>
       </motion.div>
-      <motion.div
+      {/* <motion.div
         initial={{ scale: 0 }}
         animate={{ rotate: 360, scale: 1 }}
         transition={{
@@ -43,7 +43,7 @@ const OAuth: React.FC <OAuthProp>= ({handleOAuthClick}) => {
         <a href='#' className='icon' onClick={() => handleOAuthClick("facebook")}>
           <FontAwesomeIcon icon={faFacebook} />
         </a>
-      </motion.div>
+      </motion.div> */}
       <motion.div
         initial={{ scale: 0 }}
         animate={{ rotate: 360, scale: 1 }}

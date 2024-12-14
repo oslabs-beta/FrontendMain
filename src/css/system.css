@@ -10,7 +10,6 @@
   background-color: #845cc00f;
   margin: 10px;
   border-radius: 7px;
-  height: 100vh;
 }
 
 .queryDisplay-container {
@@ -32,7 +31,6 @@
   padding: 40px;
   color: white;
   text-decoration: none;
-  margin-top: 10px;
   font-weight: 600;
 }
 
@@ -75,7 +73,7 @@
   border: 0.1px solid rgba(171, 171, 171, 0.25);
   padding: 20px;
   margin-top: 30px;
-  height: 765px;
+  height: 100vh;
   overflow: auto;
   color: #03a062;
   font-size: 12px;

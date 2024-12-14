@@ -5,10 +5,6 @@
   font-style: normal;
 }
 
-* {
-  /* border: 0.5px solid white; */
-}
-
 .config-content {
   display: flex;
   flex-direction: column;
@@ -62,7 +58,7 @@
 #docker-icon {
   font-size: 50px;
   padding-bottom: 30px;
-  color: #0077b3;
+  color: #00a4ef;
 }
 
 #globe-icon {

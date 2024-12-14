@@ -103,7 +103,6 @@ body {
 
 .form-check-input {
   width: 32px !important;
-  height: 20px;
   cursor: pointer;
   border: none !important;
   outline: none !important;
@@ -133,4 +132,15 @@ body {
 /* Move the knob when checked */
 .form-check-input:checked::before {
   left: calc(100% - 16px);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
 }

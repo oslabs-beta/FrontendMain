@@ -1,0 +1,62 @@
+.resetMyPwPage-content {
+  min-height: 100vh;
+  background: linear-gradient(to right, #845cc0, #512da8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resetMyPwPage-title {
+  color: #fff;
+  margin-top: 200px;
+}
+
+.resetMyPwPage-title h1 {
+  font-size: 50px;
+  font-weight: bold;
+  display: inline-block;
+  padding-top: 16px;
+  margin-right: 70px;
+}
+
+.resetMyPwPage-input {
+  display: flex;
+  flex-direction: column;
+  padding: 70px;
+  position: relative;
+}
+
+.resetMyPwPage-input input {
+  flex: 1;
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  margin: 5px 0;
+  padding: 8px 40px 8px 15px;
+  font-size: 14px;
+  width: 20em;
+  outline: none;
+  color: #845cc0;
+}
+
+#submitButton {
+  border: 1px solid rgba(171, 171, 171, 0.25);
+  background-color: #845cc0;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 45px;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.resetMyPwPage-eye {
+  position: absolute;
+  right: 80px;
+  margin-top: 11px;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer;
+}

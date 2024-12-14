@@ -9,12 +9,14 @@ import { handleSignupClick } from '../helpers/handleSignupClick';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useGettingContext, loginTypes } from './AuthContext';
-import streamForgeLogo from '../assets/streamForge-logo.png';
+import PwReset from './PwReset';
+import PwResetSent from './PwResetSent';
+
 const github_clientID = import.meta.env.VITE_GITHUB_CLIENTID;
 const google_clientID = import.meta.env.VITE_GOOGLE_CLIENTID;
 const API_URL = import.meta.env.VITE_API_URL;
 const google_redirect_uri = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
-const backend_url = import.meta.env.VITE_BACKEND_URL;
+// const backend_url = import.meta.env.VITE_BACKEND_URL;
 export const LogOutGithub = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('githubJwtToken');
@@ -24,11 +26,15 @@ export const LogOutGithub = () => {
 interface FormProps {
   setQueries: React.Dispatch<React.SetStateAction<{ [key: string]: string[] }>>;
   updateLocalStorageQueries: (queries: { [key: string]: string[] }) => void;
+  isPwdShown: boolean;
+  setIsPwdShown: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function Form({
   setQueries,
   updateLocalStorageQueries,
+  isPwdShown,
+  setIsPwdShown,
 }: FormProps): JSX.Element {
   const [signInEmail, setSignInEmail] = useState<string>('');
   const [signInPassword, setSignInPassword] = useState<string>('');
@@ -47,10 +53,25 @@ function Form({
     useState<boolean>(false);
   const [isSigupEmailPwdNotValid, setIsSigupEmailPwdNotValid] =
     useState<boolean>(false);
-  const [isPwdShown, setIsPwdShown] = useState<boolean>(false);
   const [isSignInEmailNotValid, setIsSignInEmailNotValid] =
     useState<boolean>(false);
   const gitOAuthCalledRef = useRef<boolean>(false);
+  const [isPwResetOpen, setIsPwResetOpen] = useState(false);
+  const [isPwResetSent, setIsPwResetSent] = useState(false);
+
+  const openPopup = () => {
+    setIsPwResetOpen(true);
+  };
+
+  const sendPwReset = () => {
+    setIsPwResetSent(true);
+  };
+
+  const closePopup = () => {
+    setIsPwResetSent(false);
+    setIsPwResetOpen(false);
+  };
+
   const {
     setLoginGateway,
     isGoogleLoginFailed,
@@ -363,14 +384,12 @@ function Form({
           >
             <p className='greetings'>Welcome back!</p>
             <input
-              required
               type='text'
               placeholder='Email'
               value={signInEmail}
               onChange={(e) => setSignInEmail(e.target.value)}
             />
             <input
-              required
               type='password'
               placeholder='Password'
               value={signInPassword}
@@ -402,12 +421,30 @@ function Form({
               </p>
             )}
             <button type='submit'>Sign In</button>
-            <p>
-              Forgot password?
-              <span>
-                <a href='#'>Reset password 🔓</a>
-              </span>
-            </p>
+            <div>
+              <p>
+                Forgot password?
+                <span>
+                  <button
+                    id='passResetButton'
+                    type='button'
+                    onClick={openPopup}
+                  >
+                    Reset password 🔓
+                  </button>
+                </span>
+              </p>
+              {isPwResetSent ? (
+                <PwResetSent onClose={closePopup} />
+              ) : (
+                <PwReset
+                  isEmailResetOpen={isPwResetOpen}
+                  onClose={closePopup}
+                  sendPwReset={sendPwReset}
+                />
+              )}
+            </div>
+
             <OAuth handleOAuthClick={handleOAuthClick} />
           </form>
         </div>
@@ -422,10 +459,11 @@ function Form({
             >
               <img
                 className='logo'
-                src={streamForgeLogo}
+                alt="StreamForgeObs logo"
+                src='src/assets/streamForgeObs-logo.png'
                 style={{ height: '250px' }}
               />
-              <p>Get started with</p> <span id='name'> StreamForge</span>
+              <p>Get started with</p> <span id='name'> StreamForgeObs</span>
               <motion.button
                 className='hidden'
                 onClick={() => handleLoginClick(setIsSignupPage)}
@@ -443,11 +481,12 @@ function Form({
               {
                 <img
                   className='logo'
-                  src={streamForgeLogo}
+                  alt="StreamForgeObs logo"
+                  src='src/assets/streamForgeObs-logo.png'
                   style={{ height: '250px' }}
                 />
               }
-              <p id='name'>StreamForge</p>
+              <p id='name'>StreamForgeObs</p>
               <motion.button
                 className='hidden'
                 onClick={() => handleSignupClick(setIsSignupPage)}
