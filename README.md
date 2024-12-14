@@ -1,4 +1,6 @@
-![Image](src/assets/invertedSFBanner.png)
+<div style="display: flex; justify-content: center; align-items: center; margin: 30px 0;">
+    <img src="src/assets/banner.jpg" alt="Banner" />
+</div>
 
 <div align ='center'>
 <img alt="typescript" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white">
@@ -21,11 +23,11 @@
 
 </div>
 
-# Welcome to StreamForge
+# Welcome to StreamForgeObs
 
-StreamForge is an advanced metrics monitoring dashboard specifically designed to help users easily visualize and track the health and performance of their Kafka clusters. Tailored for seamless integration with AWS MSK (Managed Streaming for Apache Kafka), StreamForge enables users to provide their unique Kafka cluster details and get up and running quickly with Prometheus configurations for efficient metrics scraping.
+StreamForgeObs is an advanced metrics monitoring dashboard specifically designed to help users easily visualize and track the health and performance of their Kafka clusters. Tailored for seamless integration with AWS MSK (Managed Streaming for Apache Kafka), StreamForgeObs enables users to provide their unique Kafka cluster details and get up and running quickly with Prometheus configurations for efficient metrics scraping.
 
-Managing and understanding Kafka clusters, especially in cloud environments like AWS MSK, can be challenging due to the complexity of setting up monitoring, managing large datasets, and interpreting intricate performance metrics. StreamForge simplifies this by offering a centralized, customizable, and user-friendly dashboard that gathers essential metrics and displays them in an intuitive, visually appealing format. By reducing configuration time and streamlining monitoring, StreamForge helps users make informed decisions about their Kafka infrastructure.
+Managing and understanding Kafka clusters, especially in cloud environments like AWS MSK, can be challenging due to the complexity of setting up monitoring, managing large datasets, and interpreting intricate performance metrics. StreamForgeObs simplifies this by offering a centralized, customizable, and user-friendly dashboard that gathers essential metrics and displays them in an intuitive, visually appealing format. By reducing configuration time and streamlining monitoring, StreamForgeObs helps users make informed decisions about their Kafka infrastructure.
 
 ---
 
@@ -33,13 +35,17 @@ Managing and understanding Kafka clusters, especially in cloud environments like
 
 #### Secure Access
 
-![OauthSignIn image](src/assets/signinPage.jpeg)
+![OauthSignIn image](src/assets/signinPage.jpg)
 
 Provides a highly secure login system utilizing OAuth, sessions, and JWT tokens for secure and compliant access.
 
 #### Customizable Dashboard
 
-![image](src/assets/QueryTree.jpeg)
+![image](src/assets/QueryTree.jpg)
+<br/>
+<br/>
+<br/>
+![image](src/assets/MetricsPage.jpg)
 
 Users can add, delete, and modify categories based on their monitoring needs, ensuring a tailored view of their data.
 
@@ -47,7 +53,7 @@ Users can add, delete, and modify categories based on their monitoring needs, en
 
 Offers streamlined configuration for connecting Kafka clusters, with guidance for setting up Prometheus to automatically scrape and process metrics.
 
-![image](src/assets/AIchat2.jpeg)
+![image](src/assets/AIchat2.jpg)
 
 #### AI Chat Support
 
@@ -208,9 +214,9 @@ If you want to see the metrics you are scraping from your broker simply go to th
 
 ---
 
-## Collaborate with StreamForge
+## Collaborate with StreamForgeObs
 
-StreamForge is an open-source product, welcoming collaboration from developers who want to contribute to advancing Kafka monitoring. Any contributions are always appreciated!
+StreamForgeObs is an open-source product, welcoming collaboration from developers who want to contribute to advancing Kafka monitoring. Any contributions are always appreciated!
 
 - Fork the repository
 - Create your feature branch
