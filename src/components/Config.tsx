@@ -1,17 +1,18 @@
-import { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { useBgColor } from './BgColorContext';
 import '../css/config.css';
 import { teamMembers } from '../assets/teamInfo';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import {
   faLink as faLinkSimple,
   faArrowRightArrowLeft,
   faGlobe,
   faCode,
 } from '@fortawesome/free-solid-svg-icons';
-import { faDocker } from '@fortawesome/free-brands-svg-icons';
+import { faDocker, faAws } from '@fortawesome/free-brands-svg-icons';
+
+const TeamMember = lazy(() => import('./TeamMember'));
 
 interface ConfigProps {
   showDescription: boolean;
@@ -40,7 +41,8 @@ const Config: React.FC<ConfigProps> = ({
                 <span>
                   <img
                     className='logo'
-                    src='src/assets/steamForge-logo.png'
+                    alt='StreamForgeObs logo'
+                    src='src/assets/streamForgeObs-logo.png'
                     style={{ height: '180px', padding: '20px' }}
                   />
                 </span>
@@ -93,9 +95,9 @@ const Config: React.FC<ConfigProps> = ({
             <FontAwesomeIcon
               icon={faArrowRightArrowLeft}
               style={{
-                fontSize: '50px',
+                fontSize: '80px',
                 color: '#00CED1',
-                margin: '40px',
+                marginBottom: '40px',
               }}
             />
             <p style={{ fontSize: '40px', fontWeight: '600' }}>
@@ -105,16 +107,42 @@ const Config: React.FC<ConfigProps> = ({
           <div className='config-method'>
             <div className='kafka-cloud'>
               <FontAwesomeIcon icon={faGlobe} id='globe-icon' />
-              <h3>In the cloud</h3>
+              <p style={{ fontSize: '30px' }}>In the cloud</p>
               <p>
-                You can connect our product to your Kafka cluster in the{' '}
+                <strong style={{ fontSize: '15px' }}>You</strong> can connect
+                our product to your Kafka cluster in the{' '}
                 <span style={{ color: '#00a4ef' }}>cloud</span>. Here are the
                 steps you need to follow to ensure a robust connection.
+              </p>
+              <a
+                href='https://aws.amazon.com/ec2/'
+                aria-label='Go to AWS EC2 site'
+                target='_blank'
+              >
+                <FontAwesomeIcon
+                  icon={faAws}
+                  style={{ height: '50px', color: '#FF9900' }}
+                />
+              </a>
+              <p>
+                <strong style={{ fontSize: '15px' }}>Visit </strong> our{' '}
+                <a
+                  href='https://github.com/oslabs-beta/FrontendMain/blob/dev/README.md'
+                  style={{ color: '#00a4ef', textDecoration: 'none' }}
+                >
+                  README
+                </a>{' '}
+                for detailed instructions on deploying your Kafka Cluster on the
+                AWS EC2 service. If your cluster is already up and running, head
+                to your profile to set your URL and port. Then, navigate to the
+                system page to start adding your queries.
               </p>
             </div>
             <div className='kafka-local'>
               <FontAwesomeIcon icon={faDocker} id='docker-icon' />
-              <h3>On your machine</h3>
+              <p style={{ fontSize: '30px', marginTop: '15px' }}>
+                On your machine
+              </p>
               <motion.div
                 className='clone-repo'
                 whileHover={{ scale: 1.1 }}
@@ -134,13 +162,14 @@ const Config: React.FC<ConfigProps> = ({
               <div>
                 <p>
                   Download{' '}
-                  <span style={{ color: '#0077b3' }}>Docker image</span> onto
-                  your local mahine
+                  <span style={{ color: '#00a4ef' }}>Docker image</span> and
+                  onto your local mahine
                 </p>
                 <p>
-                  kafka requires JMX to expose its metrics. We have configured
-                  this in our Kafka cluster, allowing you to easily spin it up
-                  and start experimenting.
+                  <strong style={{ fontSize: '15px' }}>kafka</strong> requires
+                  JMX to expose its metrics. We have configured this in our
+                  Kafka cluster, allowing you to easily spin it up and start
+                  experimenting.
                 </p>
               </div>
               <div className='docker-code-snippet'>
@@ -170,35 +199,9 @@ const Config: React.FC<ConfigProps> = ({
           </div>
           <div className='team-content'>
             {teamMembers.map((member) => (
-              <div key={member.id} id={member.id}>
-                <motion.img
-                  src={member.image}
-                  alt={`${member.name} headshot`}
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                />
-                <p>{member.name}</p>
-                <div className='team-icons'>
-                  <motion.a
-                    href={member.github}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    whileHover={{ scale: 1.3 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                  >
-                    <FontAwesomeIcon icon={faGithub} className='icon' />
-                  </motion.a>
-                  <motion.a
-                    href={member.linkedin}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    whileHover={{ scale: 1.3 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                  >
-                    <FontAwesomeIcon icon={faLinkedin} className='icon' />
-                  </motion.a>
-                </div>
-              </div>
+              <Suspense key={member.id} fallback={<div>Loading...</div>}>
+                <TeamMember member={member} />
+              </Suspense>
             ))}
           </div>
         </div>

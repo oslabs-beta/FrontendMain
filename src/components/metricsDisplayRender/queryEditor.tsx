@@ -67,7 +67,7 @@ export function QueryEditor({
             <label htmlFor='category-options'>Select Category:</label>
             <select className='category-options' ref={selectRef} required>
               <option></option>
-              {Object.entries(queries).map(([key]) => (
+              {queries && Object.entries(queries).map(([key]) => (
                 <option key={`${key} + a`}>{key}</option>
               ))}
             </select>
@@ -98,7 +98,7 @@ export function QueryEditor({
       <div className='queryEditor-log'>
         <div>
           {/* convert object to array then map through */}
-          {Object.entries(queries).map(([key, queryArray]) => (
+          {queries && Object.entries(queries).map(([key, queryArray]) => (
             <div
               key={key}
               style={{

@@ -118,7 +118,8 @@ body {
   padding: 0 5px;
 }
 
-.form-container p a {
+#passResetButton {
+  font-size: 13px;
   color: #845cc0;
   padding: 0 15px;
   background-color: rgb(255, 255, 0);
@@ -171,6 +172,7 @@ body {
   top: 50%;
   transform: translateY(-50%);
 }
+
 .eyeicon {
   color: black;
 }
@@ -191,7 +193,7 @@ body {
 .oauth-icons {
   margin: 20px 0;
   display: flex;
-} 
+}
 
 .oauth-icons a {
   background-color: #fff;

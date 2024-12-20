@@ -1,7 +1,3 @@
-* {
-  /* border: 0.5px solid #fff; */
-}
-
 .content {
   display: flex;
   height: 100vh;
@@ -37,6 +33,7 @@
 }
 
 .openAI-container.expanded {
+  margin-top: 57px;
   width: 25%;
 }
 
@@ -63,7 +60,7 @@
   width: 100%;
   padding: 50px;
   font-size: 13px;
-  height: 900px;
+  height: 800px;
 }
 
 .input-container {
@@ -87,6 +84,7 @@
   color: #fff;
   flex: 1;
   padding: 7px;
+  padding-right: 50px;
 }
 
 label {
@@ -141,10 +139,6 @@ label {
   box-shadow: 0 0 2px 0 rgb(188, 188, 188);
   text-decoration: none;
   border: 0.5px solid #fff;
-}
-
-.icon:hover {
-  box-shadow: 1px 0 10px 0px rgb(75, 171, 240);
 }
 
 #arrow {
