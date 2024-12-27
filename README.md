@@ -231,10 +231,10 @@ This project is licensed under the MIT license- see the [LICENSE](./LICENSE) fil
 <table>
   <tr>
     <td align="center">
-      <h6>Qianlin Zhang</h6>
-      <img src="src/assets/qianlin-hs.jpeg" alt="Qianlin Zhang Headshot" width="120" height="120"/><br>
+      <h6>Tiffany Zhang</h6>
+      <img src="src/assets/qianlin-hs.jpeg" alt="Tiffany Zhang Headshot" width="120" height="120"/><br>
       <a href="https://github.com/QianQian1997">GitHub</a> |
-      <a href="https://www.linkedin.com/in/qianlin-zhang-381972191/">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/tiffany-zhang01/">LinkedIn</a>
     </td>
     <td align="center">
       <h6>David Schweitzer</h6>

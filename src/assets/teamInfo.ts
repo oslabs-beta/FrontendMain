@@ -7,11 +7,11 @@ export const teamMembers = [
     linkedin: 'https://www.linkedin.com/in/allieitczak/',
   },
   {
-    id: 'qianlin',
-    name: 'Qianlin Zhang',
+    id: 'Tiffany',
+    name: 'Tiffany Zhang',
     image: 'src/assets/qianlin-hs.jpg',
     github: 'https://github.com/QianQian1997',
-    linkedin: 'https://www.linkedin.com/in/qianlin-zhang-381972191/',
+    linkedin: 'https://www.linkedin.com/in/tiffany-zhang01/',
   },
   {
     id: 'david',
